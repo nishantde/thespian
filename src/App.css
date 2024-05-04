@@ -2,6 +2,7 @@
     font-family: "Aktiv-Grotesk";
     src: url("./assets/fonts/AktivGrotesk-Regular.otf") format("opentype"),
         url("./assets/fonts/AktivGrotesk-Regular.ttf") format("truetype");
+    font-weight: normal;
 }
 
 @font-face {
@@ -15,7 +16,7 @@
     font-family: "Aktiv-Grotesk";
     src: url("./assets/fonts/AktivGrotesk-Italic.otf") format("opentype"),
         url("./assets/fonts/AktivGrotesk-Italic.ttf") format("truetype");
-    font-weight: italic;
+    font-style: italic;
 }
 
 @font-face {
@@ -48,10 +49,38 @@
     --body: "Aktiv-Grotesk", sans-serif;
 }
 
-*,
+* {
+    font-family: var(--body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--body);
+    font-weight: bold;
+}
+
+html,
+body,
+.App {
+    background: var(--eerie-black);
+    color: var(--floral-white);
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+}
+
+/* *,
 html,
 body {
     background: var(--eerie-black);
     color: var(--floral-white);
     font-family: var(--body);
-}
+} */

@@ -1,6 +1,11 @@
+.cards-display h2 {
+    text-align: center;
+    padding: 2rem 0;
+}
+
 .cards {
     width: 80vw;
-    margin: 1rem auto;
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -8,11 +13,4 @@
     flex-wrap: wrap;
     /* gap: 1rem; */
     /* background: red; */
-}
-
-.view-video-test {
-    width: 100%;
-    margin: 1rem auto;
-    height: 60vh;
-    display: none;
 }

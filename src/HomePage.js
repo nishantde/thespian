@@ -84,20 +84,27 @@ function HomePage() {
 
     return (
         <div>
-            <div className="main-search-bar">
-                <input
-                    type="text"
-                    className="main-search-input"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search for a movie"
-                />
-                <button
-                    className="main-search-button"
-                    onClick={() => getMovies(searchTerm)}
-                    type="submit"
-                >
-                    Search
-                </button>
+            <div className="hero-section">
+                <div className="hero-text">
+                    <h1>Lorem ipsum</h1>
+                    <h4>Placeholder text</h4>
+                </div>
+                <div className="main-search-bar">
+                    <input
+                        type="text"
+                        className="main-search-input"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search for a movie"
+                    />
+                    <button
+                        className="main-search-button"
+                        onClick={() => getMovies(searchTerm)}
+                        type="submit"
+                    >
+                        Search
+                    </button>
+                </div>
             </div>
 
             {!isMovieListEmpty ? (

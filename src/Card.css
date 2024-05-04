@@ -1,5 +1,5 @@
 .card {
-    background: transparent;
+    /* background: transparent; */
     /* background: lightgray; */
     /* height: 450px; */
     height: 600px;
@@ -27,7 +27,7 @@
 .card-front,
 .card-back {
     border-radius: 8px;
-    background: lightgray;
+    background: var(--black-olive);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -49,15 +49,20 @@
     border-radius: 8px 8px 0 0;
 }
 
-.card-content {
+.card-front-content {
     margin-top: 1rem;
     padding: 0 1rem;
-    /* width: 100%; */
     text-align: center;
 }
 
 .card-back {
-    background: lightgray;
-    border: 2px solid rgba(0, 0, 0, 0);
     transform: rotateY(180deg);
+}
+
+.card-back-content {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 8px;
 }

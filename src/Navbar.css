@@ -1,0 +1,28 @@
+.navbar-content {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.main-logo img {
+    max-width: 150px;
+}
+
+.navbar-links ul {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar-links ul li {
+    transition: 0.2s all ease-in-out;
+}
+
+.navbar-links ul li:hover {
+    color: var(--flame);
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+}
