@@ -33,7 +33,7 @@ const Card = ({ movie }) => {
                         style={{
                             backgroundImage: "url(" + moviePoster + ")",
                             backgroundSize: "cover",
-                            filter: "grayscale(100%)",
+                            backdropFilter: "grayscale(100%)",
                             backgroundPosition: "center",
                         }}
                     >
@@ -42,12 +42,15 @@ const Card = ({ movie }) => {
                                 IMDB ID: {movieIMDBID}
                             </div>
                             <div className="link-to-view">
-                                <Link
-                                    to={"/movie"}
-                                    state={{ movieEmbedID: movieIMDBID }}
-                                >
-                                    Watch Movie
-                                </Link>
+                                <button className="button-to-view">
+                                    <Link
+                                        to={"/movie"}
+                                        state={{ movieEmbedID: movieIMDBID }}
+                                        className="webpage-link"
+                                    >
+                                        Watch Now
+                                    </Link>
+                                </button>
                             </div>
                         </div>
                     </div>

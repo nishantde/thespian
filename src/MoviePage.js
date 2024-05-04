@@ -10,9 +10,11 @@ const MoviePage = () => {
 
     const InvalidMovieIDContent = () => {
         return (
-            <Link to="/" className="webpage-link">
-                Home
-            </Link>
+            <div className="page-link-back">
+                <Link to="/" className="webpage-link">
+                    Home
+                </Link>
+            </div>
         );
     };
 
@@ -31,7 +33,7 @@ const MoviePage = () => {
         );
     };
 
-        var movieEmbedSource = MOVIE_EMBED_LINK_PREPEND + movieEmbedID;
+    var movieEmbedSource = MOVIE_EMBED_LINK_PREPEND + movieEmbedID;
 
     return (
         <div className="movie-page-content">

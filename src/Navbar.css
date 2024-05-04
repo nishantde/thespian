@@ -26,3 +26,14 @@
     transition: 0.2s all ease-in-out;
     cursor: pointer;
 }
+
+.webpage-link {
+    text-decoration: none;
+    color: var(--floral-white);
+    transition: 0.2s color ease-in-out;
+}
+
+.webpage-link:hover {
+    color: var(--flame);
+    transition: 0.2s color ease-in-out;
+}
