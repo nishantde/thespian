@@ -1,0 +1,40 @@
+.cards-wrap {
+    background: darkgray;
+}
+
+.main-search-bar {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.main-search-input, .main-search-button {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.main-search-input {
+    width: 60%;
+    padding: 1rem;
+    border: 2px solid var(--floral-white);
+    border-radius: 6px;
+}
+
+.main-search-button {
+    max-width: 30%;
+    padding: 0.5rem 2rem;
+    border: 2px solid var(--flame);
+    border-radius: 6px;
+    background: var(--flame);
+    color: var(--floral-white);
+    transition: 0.25s all ease-in-out;
+}
+
+.main-search-button:hover {
+    background: var(--eerie-black);
+    color: var(--flame);
+    transition: 0.25s all ease-in-out;
+    cursor: pointer;
+}
