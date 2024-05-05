@@ -70,6 +70,28 @@
     justify-content: space-between;
 }
 
+.additional-details {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-back-subheading {
+    color: var(--flame);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-back-details {
+    color: var(--floral-white);
+}
+
+.details-overview {
+    height: 50px;
+    overflow-y: scroll;
+}
+
 .button-to-view {
     display: block;
     margin: auto;
