@@ -1,5 +1,7 @@
 .movie-page-content {
+    margin: auto;
     width: 100%;
+    max-width: 1280px;
     height: 100%;
 }
 
@@ -7,11 +9,19 @@
     width: 100%;
     margin: 1rem auto;
     height: 60vh;
-    /* display: none; */
 }
 
 .page-link-back {
     display: block;
     text-align: center;
     transform: translateY(50%);
+}
+
+.movie-load-warning {
+    font-style: italic;
+    font-size: 14px;
+    color: var(--timberwolf);
+    max-width: 80%;
+    display: block;
+    margin: auto;
 }

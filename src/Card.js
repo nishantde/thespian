@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 const Card = ({ movie }) => {
     const TMDB_FETCH_LINK_PREPEND = "https://api.themoviedb.org/3/movie/";
 
+    var movieTitle = movie["Title"];
+    var movieYear = movie["Year"];
+    var moviePoster = movie["Poster"];
+    var titleType = movie["Type"];
+
     const [movieIMDBID, setMovieIMDBID] = useState(movie["imdbID"]);
     const [movieBudget, setMovieBudget] = useState(0);
     const [movieOverview, setMovieOverview] = useState("");
     const [movieRuntime, setMovieRuntime] = useState(0);
-    // const [movieGenres, setMovieGenres] = useState([]);
-    // var movieBudget, movieOverview, movieRuntime;
 
     if (!movie["imdbID"]) {
         setMovieIMDBID("default");
@@ -28,24 +31,22 @@ const Card = ({ movie }) => {
             },
         };
 
-        if (movieIMDBID != "default") {
+        if (movieIMDBID !== "default" && titleType === "movie") {
             fetch(additionalDetailsFetchURL, options)
                 .then((response) => response.json())
                 .then((response) => {
-                    console.log(response);
-                    setMovieBudget(response["budget"]);
+                    setMovieBudget(() =>
+                        Intl.NumberFormat("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                        }).format(response["budget"])
+                    );
                     setMovieOverview(response["overview"]);
                     setMovieRuntime(response["runtime"]);
-                    // setMovieGenres(...response["genres"]);
                 })
                 .catch((err) => console.error(err));
         }
     };
-
-    var movieTitle = movie["Title"];
-    var movieYear = movie["Year"];
-    var moviePoster = movie["Poster"];
-    var titleType = movie["Type"];
 
     useEffect(() => {
         getAdditionalMovieDetails();
@@ -76,20 +77,39 @@ const Card = ({ movie }) => {
                     >
                         <div className="card-back-content">
                             <div className="additional-details">
-                                <h4 className="card-back-subheading">IMDB ID</h4>
-                                <p className="card-back-details">{movieIMDBID}</p>
+                                <h4 className="card-back-subheading">
+                                    IMDB ID
+                                </h4>
+                                <p className="card-back-details">
+                                    {movieIMDBID}
+                                </p>
                                 <h4 className="card-back-subheading">Budget</h4>
-                                <p className="card-back-details">{movieBudget}</p>
-                                <h4 className="card-back-subheading">Runtime</h4>
-                                <p className="card-back-details">{movieRuntime} minutes</p>
-                                <h4 className="card-back-subheading">Overview</h4>
-                                <p className="card-back-details details-overview">{movieOverview}</p>
+                                <p className="card-back-details">
+                                    {movieBudget}
+                                </p>
+                                <h4 className="card-back-subheading">
+                                    Runtime
+                                </h4>
+                                <p className="card-back-details">
+                                    {movieRuntime} minutes
+                                </p>
+                                <div className="overview-section">
+                                    <h4 className="card-back-subheading">
+                                        Overview
+                                    </h4>
+                                    <p className="card-back-details details-overview">
+                                        {movieOverview}
+                                    </p>
+                                </div>
                             </div>
                             <div className="link-to-view">
                                 <button className="button-to-view">
                                     <Link
                                         to={"/movie"}
-                                        state={{ movieEmbedID: movieIMDBID }}
+                                        state={{
+                                            movieEmbedID: movieIMDBID,
+                                            movieBudget: movieBudget,
+                                        }}
                                         className="webpage-link"
                                     >
                                         Watch Now

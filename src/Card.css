@@ -73,8 +73,25 @@
 .additional-details {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 8px 8px 0 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--black-olive) transparent;
+}
+
+.additional-details::-webkit-scrollbar {
+    width: 12px;
+}
+
+.additional-details::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.additional-details::-webkit-scrollbar-thumb {
+    background-color: var(--black-olive);
+    border-radius: 20px;
+    border: 3px solid transparent;
 }
 
 .card-back-subheading {
@@ -87,10 +104,9 @@
     color: var(--floral-white);
 }
 
-.details-overview {
-    height: 50px;
-    overflow-y: scroll;
-}
+/* .details-overview {
+    line-height: 1.25;
+} */
 
 .button-to-view {
     display: block;
@@ -114,10 +130,18 @@
     transition: 0.2s all ease-in-out;
 }
 
+.button-to-view:hover .webpage-link {
+    color: var(--flame);
+}
+
 .link-to-view .webpage-link {
     text-align: center;
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
+}
+
+.link-to-view .webpage-link:hover {
+    color: var(--floral-white);
 }
