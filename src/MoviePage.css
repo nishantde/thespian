@@ -8,7 +8,9 @@
 .view-video-test {
     width: 100%;
     margin: 1rem auto;
-    height: 60vh;
+    /* height: 60vh; */
+    height: auto;
+    aspect-ratio: 16/9;
 }
 
 .page-link-back {

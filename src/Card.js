@@ -14,6 +14,7 @@ const Card = ({ movie }) => {
     const [movieBudget, setMovieBudget] = useState(0);
     const [movieOverview, setMovieOverview] = useState("");
     const [movieRuntime, setMovieRuntime] = useState(0);
+    const [movieTMDBRating, setMovieTMDBRating] = useState(0);
 
     if (!movie["imdbID"]) {
         setMovieIMDBID("default");
@@ -43,6 +44,7 @@ const Card = ({ movie }) => {
                     );
                     setMovieOverview(response["overview"]);
                     setMovieRuntime(response["runtime"]);
+                    setMovieTMDBRating(response["vote_average"]);
                 })
                 .catch((err) => console.error(err));
         }
@@ -64,6 +66,7 @@ const Card = ({ movie }) => {
                             <h3>{movieTitle}</h3>
                             <p>{movieYear}</p>
                             <p>Type: {titleType}</p>
+                            <p>Rating: {movieTMDBRating}</p>
                         </div>
                     </div>
                     <div

@@ -22,22 +22,6 @@ OMDB API_KEY
 a1282244
 */
 
-/*TMDB API Check*/
-/*
-  fetch('https://api.themoviedb.org/3/authentication?api_key=826e4b1b74af7887390dd6eb8201ac50', options)
-    .then(response => response.json())
-    .then(response => console.log('TMDB API Check', '\n', response))
-    .catch(err => console.error(err));
-*/
-
-/*OMDB API Check*/
-/*
-  fetch('https://www.omdbapi.com/?s=guardians&apikey=a1282244', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-*/
-
 function HomePage() {
     const [movies, setMovies] = useState([]);
     const [isMovieListEmpty, setIsMovieListEmpty] = useState(true);
@@ -54,7 +38,7 @@ function HomePage() {
             },
         };
 
-        if (searchString == "") {
+        if (searchString === "") {
             var searchString = "guardians";
         }
 
@@ -86,8 +70,8 @@ function HomePage() {
         <div>
             <div className="hero-section">
                 <div className="hero-text">
-                    <h1>Lorem ipsum</h1>
-                    <h4>Placeholder text</h4>
+                    <h1 className="calistoga-regular">thespian</h1>
+                    <p className="hero-subtitle">Dive into a world of free entertainment with Thespian - stream movies and TV shows without spending a dime.</p>
                 </div>
                 <div className="main-search-bar">
                     <input

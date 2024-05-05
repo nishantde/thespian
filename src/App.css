@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+
+/* Could probably remove the regular typeface if it is not being used */
+
 @font-face {
     font-family: "Aktiv-Grotesk";
     src: url("./assets/fonts/AktivGrotesk-Regular.otf") format("opentype"),
@@ -62,6 +66,14 @@ h6 {
     font-family: var(--body);
     font-weight: bold;
 }
+
+.calistoga-regular {
+    font-family: "Calistoga", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 64px;
+    color: var(--flame);
+  }  
 
 html,
 body,
