@@ -52,7 +52,10 @@ function HomePage() {
             <div className="hero-section">
                 <div className="hero-text">
                     <h1 className="calistoga-regular">thespian</h1>
-                    <p className="hero-subtitle">Dive into a world of free entertainment with Thespian - stream movies and TV shows without spending a dime.</p>
+                    <p className="hero-subtitle">
+                        Dive into a world of free entertainment with Thespian -
+                        stream movies and TV shows without spending a dime.
+                    </p>
                 </div>
                 <div className="main-search-bar">
                     <input
@@ -72,16 +75,14 @@ function HomePage() {
                 </div>
             </div>
 
-            {!isMovieListEmpty ? (
+            {isLoading ? (<Loading />) : (
                 <div className="cards-wrap">
-                    {isLoading ? (
-                        <Loading />
-                    ) : (
+                    {!isMovieListEmpty ? (
                         <Cards movies={movies} totalResults={totalResults} />
+                    ) : (
+                        <></>
                     )}
                 </div>
-            ) : (
-                <></>
             )}
         </div>
     );

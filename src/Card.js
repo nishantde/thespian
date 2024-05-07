@@ -67,7 +67,7 @@ const Card = ({ movie }) => {
                             <h3>{movieTitle}</h3>
                             <p>{movieYear}</p>
                             <p>Type: {titleType}</p>
-                            <p>Rating: {movieTMDBRating}</p>
+                            <p>Rating: {parseFloat(movieTMDBRating).toFixed(1)}</p>
                         </div>
                     </div>
                     <div

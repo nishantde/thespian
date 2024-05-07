@@ -6,11 +6,18 @@ Thespian - a React web app to stream content online
 
 Not all titles are available to watch at the moment, currently being limited at the source itself
 
-List of bugs/issues currently present and being looked at:
-- TV shows cannot be streamed yet
-- Some styling for the site is yet to be added
-- Loading component not working as intended (does not show up on the first search but shows up for subsequent searches, and does not show up on the movie page on initial data fetch)
-- Some pages still need to be filled out
+List of bugs/issues currently present and being looked at (this list will keep getting updated as more bugs pop up):
+- [x] Loading component not working as intended (was not showing up for initial search)
+- [ ] Custom font shenanigans (minor)
+- [ ] Video source shenanigans (minor)
+
+To-do:
+- [ ] Better loading animation
+- [ ] TV show streaming
+- [ ] Pagination
+- [ ] About/Attributions/Privacy Policy pages need to be filled out
+- [ ] Different loading styling for different elements
+- [ ] User accounts (future update)
 
 To work on a local copy of the project 
 

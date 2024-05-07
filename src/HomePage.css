@@ -53,6 +53,21 @@
     cursor: pointer;
 }
 
-/* .cards-wrap {
-    background: darkgray;
-} */
+@media only screen and (max-width: 512px) {
+    .hero-section {
+        width: 90%;
+    }
+
+    .main-search-bar {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-search-input, .main-search-button {
+        width: 90vw;
+        padding: 1rem;
+        margin: 0;
+    }
+}
