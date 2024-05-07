@@ -23,12 +23,13 @@ const Card = ({ movie }) => {
     var additionalDetailsFetchURL = TMDB_FETCH_LINK_PREPEND + movieIMDBID;
 
     const getAdditionalMovieDetails = () => {
+        const TMDB_API_READ_ACCESS_TOKEN = process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
                 Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MjZlNGIxYjc0YWY3ODg3MzkwZGQ2ZWI4MjAxYWM1MCIsInN1YiI6IjY2MjNhOWE4ODdlNjNlMDE4ODczNjI4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.g41xhry5OzBREjLQN65hVt2qZ53hnxNJMZZ-GT0IQGQ",
+                    "Bearer " + TMDB_API_READ_ACCESS_TOKEN
             },
         };
 

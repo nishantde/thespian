@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 
 const MoviePage = () => {
+    var OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
     const [isLoading, setIsLoading] = useState(true);
 
     const [movieTitle, setMovieTitle] = useState("");
@@ -20,7 +21,7 @@ const MoviePage = () => {
     const [movieIMDBRating, setMovieIMDBRating] = useState("N/A");
 
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =
-        "http://www.omdbapi.com/?apikey=a1282244&plot=full&i=";
+        "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var MOVIE_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/movie/";
 
     const location = useLocation();

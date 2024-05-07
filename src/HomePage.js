@@ -3,25 +3,6 @@ import Loading from "./Loading.js";
 import Cards from "./Cards.js";
 import { useState } from "react";
 
-/* 
-
-Either API READ ACCESS TOKEN can be added to headers as authorization: 'Bearer <API_READ_ACCESS_TOKEN>
-OR
-API KEY can be appended to the end of the URL as ?api_key=<API_KEY> and API READ ACCESS TOKEN can be removed from the headers
-
-*/
-
-/*
-TMDB API_KEY
-826e4b1b74af7887390dd6eb8201ac50
-
-TMDB API_READ_ACCESS_TOKEN
-eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MjZlNGIxYjc0YWY3ODg3MzkwZGQ2ZWI4MjAxYWM1MCIsInN1YiI6IjY2MjNhOWE4ODdlNjNlMDE4ODczNjI4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.g41xhry5OzBREjLQN65hVt2qZ53hnxNJMZZ-GT0IQGQ
-
-OMDB API_KEY
-a1282244
-*/
-
 function HomePage() {
     const [movies, setMovies] = useState([]);
     const [isMovieListEmpty, setIsMovieListEmpty] = useState(true);
@@ -43,7 +24,7 @@ function HomePage() {
         }
 
         var API_SEARCH_LINK = "https://www.omdbapi.com/?";
-        var API_KEY = "a1282244";
+        const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
         var API_PARAMETER = "&apikey=";
         var searchString = searchString;
         var SEARCH_STRING_PARAMETER = "s=";
@@ -52,7 +33,7 @@ function HomePage() {
             SEARCH_STRING_PARAMETER +
             searchString +
             API_PARAMETER +
-            API_KEY;
+            OMDB_API_KEY;
 
         const response = await fetch(apiSearchURL, options)
             .then((response) => {
