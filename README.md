@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Thespian
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+***Please note**: The project has not been deployed yet*
 
-## Available Scripts
+Thespian - a React web app to stream content online
 
-In the project directory, you can run:
+Not all titles are available to watch at the moment, currently being limited at the source itself
 
-### `npm start`
+List of bugs/issues currently present and being looked at:
+- TV shows cannot be streamed yet
+- Some styling for the site is yet to be added
+- Loading component not working as intended (does not show up on the first search but shows up for subsequent searches, and does not show up on the movie page on initial data fetch)
+- Some pages still need to be filled out
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To work on a local copy of the project 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Set up your local version of the app by cloning the repository with the following command:
 
-### `npm test`
+```
+$ git clone https://github.com/nishantde/thespian.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. If you don't already have Node.js installed, you can do so from [their official website](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs). You can check that the installation has been successful when it shows the version upon entering the following in your terminal:
 
-### `npm run build`
+```
+$ node -v
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Request API keys from [The Open Movie Database (OMDB)](https://www.omdbapi.com/) and [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Create a ```.env``` file in the root folder of the cloned repository folder (not the ```src/``` folder) and add the following three lines in the file:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+REACT_APP_TMDB_API_KEY = '<YOUR_TMDB_API_KEY>'
+REACT_APP_TMDB_API_READ_ACCESS_TOKEN = '<YOUR_TMDB_API_READ_ACCESS_TOKEN>'
+REACT_APP_OMDB_API_KEY = '<YOUR_OMDB_API_KEY>'
+```
 
-### `npm run eject`
+It is **crucial** that your environment variables start with ```REACT_APP_``` so that React can read them into your app accurately.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The source files have already been configured to read the keys, so you need to *substitute* the keys and the token in the ```.env``` file with the values you have received.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Once you have entered the right values, navigate to the folder where you cloned the repository and start the developmental server by typing the following in your terminal:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+$ npm run start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+A browser window should open at port 3000 (```localhost:3000```) showing you the webpage.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you encounter any other bugs, please [reach out to me](https://nishant.work/contact-me). Happy streaming!
