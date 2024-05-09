@@ -1,10 +1,12 @@
 import "./HomePage.css";
 import Loading from "./Loading.js";
 import Cards from "./Cards.js";
+import Pages from "./Pages.js";
 import { useState } from "react";
 
 function HomePage() {
     const [movies, setMovies] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
     const [isMovieListEmpty, setIsMovieListEmpty] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -75,10 +77,20 @@ function HomePage() {
                 </div>
             </div>
 
-            {isLoading ? (<Loading />) : (
+            {isLoading ? (
+                <Loading />
+            ) : (
                 <div className="cards-wrap">
                     {!isMovieListEmpty ? (
-                        <Cards movies={movies} totalResults={totalResults} />
+                        <div>
+                            <div>
+                                <Cards
+                                    movies={movies}
+                                    totalResults={totalResults}
+                                />
+                                <Pages totalResults={totalResults} currentPage={currentPage} />
+                            </div>
+                        </div>
                     ) : (
                         <></>
                     )}

@@ -5,6 +5,7 @@
 
 .cards {
     width: 80vw;
+    gap: 2rem;
     margin: auto;
     display: flex;
     flex-direction: row;

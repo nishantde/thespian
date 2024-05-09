@@ -7,6 +7,8 @@ import Loading from "./Loading";
 
 const MoviePage = () => {
     var OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+    const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
+
     const [isLoading, setIsLoading] = useState(true);
 
     const [movieTitle, setMovieTitle] = useState("");
@@ -60,26 +62,81 @@ const MoviePage = () => {
     const MoreDetails = () => {
         return (
             <div>
-                <h1>{movieTitle}</h1>
-                <p>{movieEmbedID}</p>
-                <p>{movieRating}</p>
-                <p>{movieReleaseDate}</p>
-                <p>{movieRuntime}</p>
-                <p>
-                    {movieGenres.map((genre) => (
-                        <span key={genre}>{genre}</span>
-                    ))}
-                </p>
-                <p>{movieDirector}</p>
-                <p>
-                    {movieActors.map((actor) => (
-                        <span key={actor}>{actor}</span>
-                    ))}
-                </p>
-                <p>{moviePlot}</p>
-                <p>{movieAwards}</p>
-                <p>{movieBudget}</p>
-                <p>{movieIMDBRating}</p>
+                <div className="movie-title-and-link">
+                    <div className="movie-title-and-imdb-rating-section">
+                        <h1>{movieTitle}</h1>
+                        <p className="movie-imdb-rating">
+                            &#10030; {movieIMDBRating}
+                        </p>
+                    </div>
+                    <p>
+                        <a
+                            href={EXTERNAL_IMDB_LINK_PREPEND + movieEmbedID}
+                            className="movie-page-external-link"
+                            target="blank_"
+                            rel="noreferrer"
+                        >
+                            IMDB Link &#8599;
+                        </a>
+                    </p>
+                </div>
+                <div className="movie-details-other-flex">
+                    <div className="movie-details-other-flex-one">
+                        <p className="movie-plot-section">{moviePlot}</p>
+                        <div className="movie-details-subsection">
+                            <div className="movie-parental-rating-section">
+                                <h3>Rated</h3>
+                                <p>{movieRating}</p>
+                            </div>
+                            <div className="movie-release-date-section">
+                                <h3>Release Date</h3>
+                                <p>{movieReleaseDate}</p>
+                            </div>
+                            <div className="movie-runtime-section">
+                                <h3>Runtime</h3>
+                                <p>{movieRuntime}</p>
+                            </div>
+                        </div>
+                        <div className="movie-director-section">
+                            <h3>Director</h3>
+                            <p>{movieDirector}</p>
+                        </div>
+                        <div className="movie-genre-section">
+                            <h3>Genres</h3>
+                            <p className="movie-genre-listing">
+                                {movieGenres.map((genre) => (
+                                    <span key={genre} className="movie-genre">
+                                        {genre}
+                                    </span>
+                                ))}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="movie-details-other-flex-two">
+                        <div className="movie-actor-section">
+                            <div className="movie-actor-listing">
+                                {movieActors.map((actor) => (
+                                    <div className="movie-actor" key={actor}>
+                                        <img
+                                            src="https://placehold.co/64x64"
+                                            alt={actor}
+                                            className="movie-actor-portrait"
+                                        />
+                                        <p>{actor}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="movie-awards-section">
+                            <h3>Awards</h3>
+                            <p>{movieAwards}</p>
+                        </div>
+                        <div className="movie-budget-section">
+                            <h3>Budget</h3>
+                            <p>{movieBudget}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     };
@@ -102,7 +159,7 @@ const MoviePage = () => {
         return (
             <div>
                 <div className="movie-page-details">
-                    {isLoading ? <Loading /> : <MoreDetails />}
+                    <MoreDetails />
                 </div>
                 <div className="movie-content">
                     <embed
@@ -119,7 +176,9 @@ const MoviePage = () => {
 
     return (
         <div className="movie-page-content">
-            {movieEmbedID ? (
+            {isLoading ? (
+                <Loading />
+            ) : movieEmbedID ? (
                 <ValidMovieIDContent movieEmbedSource={movieEmbedSource} />
             ) : (
                 <InvalidMovieIDContent />

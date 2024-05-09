@@ -2,8 +2,10 @@ import "./Loading.css";
 
 const Loading = () => {
     return (
-        <h1 className="loading-icon">Loading</h1>
-    )
-}
+        <div className="loading-icon-parent">
+            <div className="loading-icon"></div>
+        </div>
+    );
+};
 
 export default Loading;

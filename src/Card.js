@@ -23,13 +23,13 @@ const Card = ({ movie }) => {
     var additionalDetailsFetchURL = TMDB_FETCH_LINK_PREPEND + movieIMDBID;
 
     const getAdditionalMovieDetails = () => {
-        const TMDB_API_READ_ACCESS_TOKEN = process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
+        const TMDB_API_READ_ACCESS_TOKEN =
+            process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization:
-                    "Bearer " + TMDB_API_READ_ACCESS_TOKEN
+                Authorization: "Bearer " + TMDB_API_READ_ACCESS_TOKEN,
             },
         };
 
@@ -64,10 +64,16 @@ const Card = ({ movie }) => {
                             <img src={moviePoster} alt="Placeholder" />
                         </div>
                         <div className="card-front-content">
-                            <h3>{movieTitle}</h3>
-                            <p>{movieYear}</p>
-                            <p>Type: {titleType}</p>
-                            <p>Rating: {parseFloat(movieTMDBRating).toFixed(1)}</p>
+                            <div className="card-front-title-year">
+                                <h4>{movieTitle}</h4>
+                                <p>{movieYear}</p>
+                            </div>
+                            <div className="card-front-tmdb-rating">
+                                <p className="title-tmdb-rating">
+                                    &#10030;{" "}
+                                    {parseFloat(movieTMDBRating).toFixed(1)}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div
@@ -81,16 +87,6 @@ const Card = ({ movie }) => {
                     >
                         <div className="card-back-content">
                             <div className="additional-details">
-                                <h4 className="card-back-subheading">
-                                    IMDB ID
-                                </h4>
-                                <p className="card-back-details">
-                                    {movieIMDBID}
-                                </p>
-                                <h4 className="card-back-subheading">Budget</h4>
-                                <p className="card-back-details">
-                                    {movieBudget}
-                                </p>
                                 <h4 className="card-back-subheading">
                                     Runtime
                                 </h4>

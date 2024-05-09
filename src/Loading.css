@@ -1,4 +1,35 @@
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        background: var(--flame);
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        background: var(--floral-white);
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        background: var(--flame);
+        transform: scale(1);
+    }
+}
+
+.loading-icon-parent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+}
+
 .loading-icon {
-    color: red;
-    animation: cubic-bezier(0.39, 0.575, 0.565, 1);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+    margin: auto;
 }

@@ -1,0 +1,91 @@
+.pages-section {
+    width: fit-content;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    border: 4px solid var(--black-olive);
+    border-radius: 8px;
+    align-items: center;
+}
+
+.left-buttons,
+.pages-search-bar-and-totals,
+.right-buttons {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+}
+
+.search-button,
+.page-search-bar input {
+    width: 4rem;
+    border-radius: 0;
+    border: none;
+    padding: 1rem;
+    /* border-top: 4px solid var(--black-olive);
+    border-bottom: 4px solid var(--black-olive); */
+    height: min-content;
+    background: var(--eerie-black);
+    text-align: center;
+}
+
+/* .left-buttons {
+    border-left: 4px solid var(--black-olive);
+    border-radius: 8px 0 0 8px;
+} */
+
+.first-page-button, .first-page-button .search-button {
+    border-radius: 8px 0 0 8px;
+    border-right: 2px solid var(--black-olive);
+}
+
+/* .right-buttons {
+    border-right: 4px solid var(--black-olive);
+    border-radius: 0 8px 8px 0;
+} */
+
+.last-page-button, .last-page-button .search-button {
+    border-radius: 0 8px 8px 0;
+    border-left: 2px solid var(--black-olive);
+}
+
+.page-search-bar input {
+    background: var(--floral-white);
+    height: 100%;
+    width: 4rem;
+    border-left: 4px solid var(--black-olive);
+    border-right: 4px solid var(--black-olive);
+}
+
+.page-search-bar input:focus {
+    outline: none;
+}
+
+.page-totals {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.search-button {
+    font-weight: bold;
+    color: var(--floral-white);
+    transition: 0.2s all ease-in-out;
+}
+
+.search-button:hover {
+    background: var(--floral-white);
+    color: var(--eerie-black);
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+}
+
+.last-page-button:hover {
+    border-radius: 0 4px 4px 0;
+}
+
+.first-page-button:hover {
+    border-radius: 4px 0 0 4px;
+}

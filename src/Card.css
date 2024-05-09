@@ -2,7 +2,7 @@
     /* background: transparent; */
     /* background: lightgray; */
     /* height: 450px; */
-    height: 600px;
+    height: 550px;
     width: 300px;
     /* padding: 1rem; */
     margin: 2rem auto;
@@ -53,6 +53,45 @@
     margin-top: 1rem;
     padding: 0 1rem;
     text-align: center;
+}
+
+.card-front-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-front-title-year {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 70%;
+}
+
+.card-front-title-year h4 {
+    margin-bottom: 0.25rem;
+}
+
+.card-front-title-year p {
+    margin-top: 0.25rem;
+}
+
+.title-type {
+    text-transform: capitalize;
+}
+
+/* .card-front-tmdb-rating {
+    width: 30%;
+} */
+
+.title-tmdb-rating {
+    width: fit-content;
+    background: var(--flame);
+    padding: 0.5rem 1rem;
+    text-align: center;
+    margin: auto;
+    border-radius: 8px;
 }
 
 .card-back {
