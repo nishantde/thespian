@@ -12,7 +12,7 @@ const Card = ({ movie }) => {
 
     const [movieIMDBID, setMovieIMDBID] = useState(movie["imdbID"]);
     const [movieBudget, setMovieBudget] = useState(0);
-    const [movieOverview, setMovieOverview] = useState("");
+    const [movieOverview, setMovieOverview] = useState("N/A");
     const [movieRuntime, setMovieRuntime] = useState(0);
     const [movieTMDBRating, setMovieTMDBRating] = useState(0);
 

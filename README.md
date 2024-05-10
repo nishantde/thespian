@@ -12,7 +12,7 @@ List of bugs/issues currently present and being looked at (this list will keep g
 - [ ] Video source shenanigans (minor)
 
 To-do:
-- [ ] Better loading animation
+- [x] Better loading animation
 - [ ] TV show streaming
 - [ ] Pagination
 - [ ] About/Attributions/Privacy Policy pages need to be filled out

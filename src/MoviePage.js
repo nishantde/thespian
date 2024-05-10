@@ -21,18 +21,26 @@ const MoviePage = () => {
     const [moviePlot, setMoviePlot] = useState("");
     const [movieAwards, setMovieAwards] = useState("N/A");
     const [movieIMDBRating, setMovieIMDBRating] = useState("N/A");
+    const [movieBanner, setMovieBanner] = useState("");
 
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =
         "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var MOVIE_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/movie/";
+    const TMDB_API_READ_ACCESS_TOKEN =
+        process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
+    const TMDB_MOVIE_BANNER_IMAGE_PREPEND =
+        "https://api.themoviedb.org/3/movie/";
+    const TMDB_MOVIE_IMAGE_TAG_APPEND = "/images";
+    const TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND =
+        "https://image.tmdb.org/t/p/original";
 
     const location = useLocation();
 
     var movieEmbedID = location.state?.movieEmbedID;
     var movieBudget = location.state?.movieBudget;
 
-    const fetchMoreDetails = () => {
-        setIsLoading(true);
+    async function fetchMoreDetails() {
+        // setIsLoading(true);
         const options = {
             method: "GET",
             headers: {
@@ -40,7 +48,18 @@ const MoviePage = () => {
             },
         };
 
-        fetch(OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND + movieEmbedID, options)
+        const tmdbOptions = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: "Bearer " + TMDB_API_READ_ACCESS_TOKEN,
+            },
+        };
+
+        await fetch(
+            OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND + movieEmbedID,
+            options
+        )
             .then((response) => response.json())
             .then((response) => {
                 setMovieTitle(response["Title"]);
@@ -56,15 +75,37 @@ const MoviePage = () => {
             })
             .catch((err) => console.error(err));
 
+        await fetch(
+            TMDB_MOVIE_BANNER_IMAGE_PREPEND +
+                movieEmbedID +
+                TMDB_MOVIE_IMAGE_TAG_APPEND,
+            tmdbOptions
+        )
+            .then((response) => response.json())
+            .then((response) => {
+                setMovieBanner(
+                    TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND +
+                        response["backdrops"][0]["file_path"]
+                );
+            })
+            .catch((err) => console.error(err));
+
         setIsLoading(false);
-    };
+
+        setTimeout(() => {
+            var movieTitle = document.getElementById("movieTitle");
+            if (movieTitle) {
+                movieTitle.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 200);
+    }
 
     const MoreDetails = () => {
         return (
             <div>
                 <div className="movie-title-and-link">
                     <div className="movie-title-and-imdb-rating-section">
-                        <h1>{movieTitle}</h1>
+                        <h1 id="movieTitle">{movieTitle}</h1>
                         <p className="movie-imdb-rating">
                             &#10030; {movieIMDBRating}
                         </p>
@@ -151,10 +192,6 @@ const MoviePage = () => {
         );
     };
 
-    useEffect(() => {
-        fetchMoreDetails();
-    }, []);
-
     const ValidMovieIDContent = ({ movieEmbedSource }) => {
         return (
             <div>
@@ -163,10 +200,22 @@ const MoviePage = () => {
                 </div>
                 <div className="movie-content">
                     <embed
-                        className="view-video-test"
+                        className="movie-page-view-video"
                         src={movieEmbedSource}
                         type="video/webm"
                     />
+                </div>
+                <div className="movie-load-warning">
+                    <p>
+                        If the video does not load, please wait for a few
+                        seconds and then try refreshing. Please note that the
+                        app is still in beta and some bugs might persist.
+                    </p>
+                    <p>
+                        Seeking might be slow for some titles. In such
+                        instances, please try lowering the quality of the video.
+                    </p>
+                    <p>Thank you for your patience!</p>
                 </div>
             </div>
         );
@@ -174,26 +223,32 @@ const MoviePage = () => {
 
     var movieEmbedSource = MOVIE_EMBED_LINK_PREPEND + movieEmbedID;
 
+    useEffect(() => {
+        setIsLoading(true);
+        fetchMoreDetails();
+        var movieTitle = document.getElementById("movieTitle");
+            if (movieTitle) {
+                console.log(movieTitle.offsetHeight);
+            }
+    }, []);
+
     return (
-        <div className="movie-page-content">
-            {isLoading ? (
-                <Loading />
-            ) : movieEmbedID ? (
-                <ValidMovieIDContent movieEmbedSource={movieEmbedSource} />
-            ) : (
-                <InvalidMovieIDContent />
-            )}
-            <div className="movie-load-warning">
-                <p>
-                    If the video does not load, please wait for a few seconds
-                    and then try refreshing. Please note that the app is still
-                    in beta and some bugs might persist.
-                </p>
-                <p>
-                    Seeking might be slow for some titles. In such instances,
-                    please try lowering the quality of the video.
-                </p>
-                <p>Thank you for your patience!</p>
+        <div>
+            <div className="movie-banner-image-section">
+                <img
+                    src={movieBanner}
+                    alt="Movie Banner"
+                    className="movie-banner-image"
+                />
+            </div>
+            <div className="movie-page-content">
+                {isLoading ? (
+                    <Loading />
+                ) : movieEmbedID ? (
+                    <ValidMovieIDContent movieEmbedSource={movieEmbedSource} />
+                ) : (
+                    <InvalidMovieIDContent />
+                )}
             </div>
         </div>
     );

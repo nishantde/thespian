@@ -2,7 +2,8 @@
     margin: auto;
     width: 100%;
     max-width: min(95%, 1280px);
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     height: 100%;
 }
 
@@ -10,12 +11,21 @@
     color: var(--timberwolf);
 }
 
-.view-video-test {
+.movie-page-view-video {
     width: 100%;
     margin: 1rem auto;
     /* height: 60vh; */
     height: auto;
     aspect-ratio: 16/9;
+}
+
+.movie-banner-image-section {
+    width: 100%;
+}
+
+.movie-banner-image {
+    width: 100%;
+    background-size: cover;
 }
 
 .movie-title-and-link {
@@ -155,6 +165,10 @@
 }
 
 @media only screen and (max-width: 980px) {
+    .movie-page-external-link {
+        display: none;
+    }
+
     .movie-details-other-flex,
     .movie-details-other-flex-one,
     .movie-details-other-flex-two {
@@ -167,13 +181,14 @@
     }
 
     .movie-title-and-imdb-rating-section {
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .movie-title-and-imdb-rating-section {
+        text-align: left;
         margin: 0;
         padding: 0;
+        display: block;
+    }
+
+    #movieTitle, .movie-imdb-rating {
+        text-align: left;
     }
 
     .movie-details-other-flex-two {

@@ -1,14 +1,16 @@
 import "./HomePage.css";
 import Loading from "./Loading.js";
+import InvalidSearch from "./InvalidSearch.js";
 import Cards from "./Cards.js";
 import Pages from "./Pages.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function HomePage() {
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [isMovieListEmpty, setIsMovieListEmpty] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [isInvalidSearchTerm, setIsInvalidSearchTerm] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [totalResults, setTotalResults] = useState("0");
 
@@ -22,7 +24,7 @@ function HomePage() {
         };
 
         if (searchString === "") {
-            var searchString = "guardians";
+            setIsInvalidSearchTerm(true);
         }
 
         var API_SEARCH_LINK = "https://www.omdbapi.com/?";
@@ -37,50 +39,79 @@ function HomePage() {
             API_PARAMETER +
             OMDB_API_KEY;
 
-        const response = await fetch(apiSearchURL, options)
+        /* Previously assigned the below function call to const response */
+        await fetch(apiSearchURL, options)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                setMovies(data["Search"]);
+                if (data["Search"]) {
+                    setMovies(data["Search"]);
+                    setIsMovieListEmpty(false);
+                    setIsInvalidSearchTerm(true);
+                } else {
+                    setIsMovieListEmpty(true);
+                }
                 setTotalResults(data["totalResults"]);
             });
-        setIsMovieListEmpty(false);
+
         setIsLoading(false);
+
+        /* To auto-scroll to the listings after 1 second of searching */
+        setTimeout(() => {
+            var titleListing = document.getElementById("titleListing");
+            if (titleListing) {
+                titleListing.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 200);
     }
 
+    useEffect(() => {
+        var titleListing = document.getElementById("titleListing");
+        if (titleListing) {
+            console.log(titleListing.offsetHeight);
+        }
+    }, []);
+
     return (
-        <div>
-            <div className="hero-section">
-                <div className="hero-text">
-                    <h1 className="calistoga-regular">thespian</h1>
-                    <p className="hero-subtitle">
-                        Dive into a world of free entertainment with Thespian -
-                        stream movies and TV shows without spending a dime.
-                    </p>
-                </div>
-                <div className="main-search-bar">
-                    <input
-                        type="text"
-                        className="main-search-input"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Search for a movie"
-                    />
-                    <button
-                        className="main-search-button"
-                        onClick={() => getMovies(searchTerm)}
-                        type="submit"
-                    >
-                        Search
-                    </button>
+        <div className="home-section-wrap">
+            <div className="hero-section-parent">
+                <div className="hero-section-parent-image-filter padding-adjustment">
+                    <div className="hero-section">
+                        <div className="hero-text">
+                            <h1 className="calistoga-regular">thespian</h1>
+                            <p className="hero-subtitle">
+                                Dive into a world of free entertainment with
+                                Thespian - stream movies and TV shows without
+                                spending a dime.
+                            </p>
+                        </div>
+                        <div className="main-search-bar">
+                            <input
+                                type="text"
+                                className="main-search-input"
+                                value={searchTerm}
+                                onChange={(e) =>
+                                    setSearchTerm(e.target.value.toString())
+                                }
+                                placeholder="Search for a movie"
+                            />
+                            <button
+                                className="main-search-button"
+                                onClick={() => getMovies(searchTerm)}
+                                type="submit"
+                            >
+                                Search
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {isLoading ? (
                 <Loading />
             ) : (
-                <div className="cards-wrap">
+                <div className="cards-wrap" id="titleListing">
                     {!isMovieListEmpty ? (
                         <div>
                             <div>
@@ -88,9 +119,14 @@ function HomePage() {
                                     movies={movies}
                                     totalResults={totalResults}
                                 />
-                                <Pages totalResults={totalResults} currentPage={currentPage} />
+                                <Pages
+                                    totalResults={totalResults}
+                                    currentPage={currentPage}
+                                />
                             </div>
                         </div>
+                    ) : isInvalidSearchTerm ? (
+                        <InvalidSearch />
                     ) : (
                         <></>
                     )}

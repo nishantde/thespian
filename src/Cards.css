@@ -3,6 +3,10 @@
     padding: 2rem 0;
 }
 
+.total-results-number {
+    color: var(--flame);
+}
+
 .cards {
     width: 80vw;
     gap: 2rem;

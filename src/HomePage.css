@@ -1,7 +1,21 @@
+.hero-section-parent {
+    width: 100%;
+    background: url("./assets/images/hero-section-background.png");
+    background-size: cover;
+}
+
+.hero-section-parent-image-filter {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    backdrop-filter: blur(2px) grayscale(100%);
+}
+
 .hero-section {
     display: block;
     width: 80%;
     margin: auto;
+    padding: 2rem 0;
 }
 
 .hero-subtitle {
@@ -20,10 +34,8 @@
 
 .main-search-input:focus {
     outline: none;
-    box-shadow: var(--flame) 0px 4px 12px -2px,
-        var(--flame) 0px 4px 8px -4px;
+    box-shadow: var(--flame) 0px 4px 12px -2px, var(--flame) 0px 4px 8px -4px;
 }
-
 
 .main-search-input {
     width: 100%;
@@ -65,7 +77,8 @@
         align-items: center;
     }
 
-    .main-search-input, .main-search-button {
+    .main-search-input,
+    .main-search-button {
         width: 90vw;
         padding: 1rem;
         margin: 0;

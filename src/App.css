@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Calistoga&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&display=swap");
 
 /* Could probably remove the regular typeface if it is not being used */
 
@@ -74,7 +74,7 @@ h6 {
     font-style: normal;
     font-size: 64px;
     color: var(--flame);
-  }  
+}
 
 html,
 body,
@@ -83,6 +83,7 @@ body,
     color: var(--floral-white);
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 html {
@@ -90,10 +91,12 @@ html {
     margin-right: calc(-1 * (100vw - 100%));
 }
 
-/* *,
-html,
-body {
-    background: var(--eerie-black);
-    color: var(--floral-white);
-    font-family: var(--body);
-} */
+.padding-adjustment {
+    padding-top: 3rem;
+}
+
+@media only screen and (min-width: 521px) {
+    .padding-adjustment {
+        padding-top: 8rem;
+    }
+}
