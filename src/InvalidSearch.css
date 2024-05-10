@@ -1,0 +1,19 @@
+.invalid-search {
+    margin: 2rem auto;
+    width: 80%;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.invalid-search-heading {
+    margin: 2rem auto;
+    line-height: 1.5;
+}
+
+.invalid-search-description {
+    margin: 1.5rem auto;
+    width: 100%;
+    max-width: 400px;
+    line-height: 1.2;
+    color: var(--timberwolf);
+}
