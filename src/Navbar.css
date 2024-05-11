@@ -15,6 +15,10 @@
     margin: auto;
 }
 
+.navbar-parent .calistoga-regular {
+    display: none;
+}
+
 .main-logo img {
     max-width: 100px;
 }
@@ -47,6 +51,30 @@
 }
 
 @media only screen and (max-width: 520px) {
+    .navbar-parent, .navbar-content {
+        height: 4rem;
+    }
+
+    .main-logo {
+        height: 100%;
+    }
+
+    .main-logo a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .navbar-parent .calistoga-regular {
+        display: block;
+        font-size: 1.5rem;
+    }
+
+    .main-logo img {
+        height: 4rem;
+    }
+
     .navbar-links {
         display: none;
     }

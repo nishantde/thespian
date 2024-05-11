@@ -8,7 +8,7 @@ import Loading from "./Loading";
 const MoviePage = () => {
     var OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
     const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
-
+    
     const [isLoading, setIsLoading] = useState(true);
 
     const [movieTitle, setMovieTitle] = useState("");
@@ -23,6 +23,11 @@ const MoviePage = () => {
     const [movieIMDBRating, setMovieIMDBRating] = useState("N/A");
     const [movieBanner, setMovieBanner] = useState("");
 
+    /*
+    const [movieActorPosters, setMovieActorPosters] = useState([]);
+    var movieActorPosterList = [];
+    */
+    
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =
         "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var MOVIE_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/movie/";
@@ -34,13 +39,20 @@ const MoviePage = () => {
     const TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/original";
 
+    /*
+    const TMDB_ACTOR_POSTER_IMAGE_PREPEND =
+        " https://api.themoviedb.org/3/search/person?query=";
+    const TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND =
+        "https://image.tmdb.org/t/p/w500";
+    */
+
     const location = useLocation();
 
     var movieEmbedID = location.state?.movieEmbedID;
     var movieBudget = location.state?.movieBudget;
 
     async function fetchMoreDetails() {
-        // setIsLoading(true);
+        setIsLoading(true);
         const options = {
             method: "GET",
             headers: {
@@ -74,6 +86,17 @@ const MoviePage = () => {
                 setMovieIMDBRating(response["Ratings"][0]["Value"]);
             })
             .catch((err) => console.error(err));
+
+        /*
+        movieActors.forEach((movieActor) => {
+            fetch(TMDB_ACTOR_POSTER_IMAGE_PREPEND + movieActor, tmdbOptions)
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((err) => console.error(err));
+        });
+        */
 
         await fetch(
             TMDB_MOVIE_BANNER_IMAGE_PREPEND +
@@ -138,10 +161,6 @@ const MoviePage = () => {
                                 <p>{movieRuntime}</p>
                             </div>
                         </div>
-                        <div className="movie-director-section">
-                            <h3>Director</h3>
-                            <p>{movieDirector}</p>
-                        </div>
                         <div className="movie-genre-section">
                             <h3>Genres</h3>
                             <p className="movie-genre-listing">
@@ -154,12 +173,17 @@ const MoviePage = () => {
                         </div>
                     </div>
                     <div className="movie-details-other-flex-two">
+                        <div className="movie-director-section">
+                            <h3>Director</h3>
+                            <p>{movieDirector}</p>
+                        </div>
                         <div className="movie-actor-section">
+                            <h3>Actors</h3>
                             <div className="movie-actor-listing">
                                 {movieActors.map((actor) => (
                                     <div className="movie-actor" key={actor}>
                                         <img
-                                            src="https://placehold.co/64x64"
+                                            src=""
                                             alt={actor}
                                             className="movie-actor-portrait"
                                         />
@@ -227,18 +251,24 @@ const MoviePage = () => {
         setIsLoading(true);
         fetchMoreDetails();
         var movieTitle = document.getElementById("movieTitle");
-            if (movieTitle) {
-                console.log(movieTitle.offsetHeight);
-            }
+        if (movieTitle) {
+            console.log(movieTitle.offsetHeight);
+        }
     }, []);
 
     return (
         <div>
             <div className="movie-banner-image-section">
+                <div
+                    style={{
+                        backgroundImage: "url(" + movieBanner + ")",
+                    }}
+                    className="movie-banner-image hide-banner-on-mobile"
+                ></div>
                 <img
                     src={movieBanner}
                     alt="Movie Banner"
-                    className="movie-banner-image"
+                    className="movie-banner-image hide-banner-on-desktop"
                 />
             </div>
             <div className="movie-page-content">

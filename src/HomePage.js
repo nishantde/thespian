@@ -7,15 +7,18 @@ import { useEffect, useState } from "react";
 
 function HomePage() {
     const [movies, setMovies] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentSearchPage, setCurrentSearchPage] = useState(1);
+    const [isFirstPage, setIsFirstPage] = useState(true);
+    const [isLastPage, setIsLastPage] = useState(false);
     const [isMovieListEmpty, setIsMovieListEmpty] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [isInvalidSearchTerm, setIsInvalidSearchTerm] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [totalResults, setTotalResults] = useState("0");
 
-    async function getMovies(searchString) {
+    async function getMovies(searchString, currentPage = 1) {
         setIsLoading(true);
+        setCurrentSearchPage(currentPage);
         const options = {
             method: "GET",
             headers: {
@@ -32,10 +35,14 @@ function HomePage() {
         var API_PARAMETER = "&apikey=";
         var searchString = searchString;
         var SEARCH_STRING_PARAMETER = "s=";
+        var PAGE_NUMBER_PARAMETER = "&page=";
+        var currentSearchPage = currentPage.toString();
         var apiSearchURL =
             API_SEARCH_LINK +
             SEARCH_STRING_PARAMETER +
             searchString +
+            PAGE_NUMBER_PARAMETER +
+            currentSearchPage +
             API_PARAMETER +
             OMDB_API_KEY;
 
@@ -92,7 +99,7 @@ function HomePage() {
                                 className="main-search-input"
                                 value={searchTerm}
                                 onChange={(e) =>
-                                    setSearchTerm(e.target.value.toString())
+                                    setSearchTerm(e.target.value.toString(), 1)
                                 }
                                 placeholder="Search for a movie"
                             />
@@ -121,7 +128,9 @@ function HomePage() {
                                 />
                                 <Pages
                                     totalResults={totalResults}
-                                    currentPage={currentPage}
+                                    currentSearchPage={currentSearchPage}
+                                    currentSearchTerm={searchTerm}
+                                    getMoviesByPage={getMovies}
                                 />
                             </div>
                         </div>

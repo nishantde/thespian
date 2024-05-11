@@ -25,7 +25,16 @@
 
 .movie-banner-image {
     width: 100%;
+    height: 500px;
     background-size: cover;
+}
+
+.hide-banner-on-mobile {
+    display: block;
+}
+
+.hide-banner-on-desktop {
+    display: none;
 }
 
 .movie-title-and-link {
@@ -165,6 +174,15 @@
 }
 
 @media only screen and (max-width: 980px) {
+    .hide-banner-on-mobile {
+        display: none;
+    }
+
+    .hide-banner-on-desktop {
+        height: auto;
+        display: block;
+    }
+
     .movie-page-external-link {
         display: none;
     }
@@ -206,4 +224,10 @@
         flex-basis: 0;
         flex-grow: 1;
     } */
+}
+
+@media only screen and (max-width: 520px) {
+    .movie-details-subsection {
+        row-gap: 0;
+    }
 }

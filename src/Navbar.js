@@ -11,9 +11,11 @@ const Navbar = () => {
                     <Link to="/">
                         <img
                             src={thespianLogo}
-                            alt="A film strip sitting atop the website name"
+                            alt="A film strip being unrolled"
                         />
+                        <h1 className="calistoga-regular">thespian</h1>
                     </Link>
+                    
                 </div>
                 <div className="navbar-links">
                     <ul>

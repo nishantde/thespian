@@ -20,7 +20,7 @@
 }
 
 .search-button,
-.page-search-bar input {
+#pageSearchInput {
     width: 4rem;
     border-radius: 0;
     border: none;
@@ -52,7 +52,11 @@
     border-left: 2px solid var(--black-olive);
 }
 
-.page-search-bar input {
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+#pageSearchInput {
     background: var(--floral-white);
     height: 100%;
     width: 4rem;
@@ -60,7 +64,12 @@
     border-right: 4px solid var(--black-olive);
 }
 
-.page-search-bar input:focus {
+#pageSearchInput::-webkit-outer-spin-button, #pageSearchInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#pageSearchInput:focus {
     outline: none;
 }
 
