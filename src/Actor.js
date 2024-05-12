@@ -26,7 +26,6 @@ const Actors = ({ movieActor }) => {
         await fetch(TMDB_ACTOR_POSTER_IMAGE_PREPEND + movieActor, tmdbOptions)
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
                 setMovieActorPoster(
                     TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
                         response["results"][0]["profile_path"]
@@ -44,7 +43,11 @@ const Actors = ({ movieActor }) => {
     }, []);
 
     if (isActorSectionLoading) {
-        return <Loading />;
+        return (
+            <div className="movie-actor">
+                <Loading />;
+            </div>
+        );
     } else {
         return (
             <div className="movie-actor">

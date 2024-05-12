@@ -15,7 +15,6 @@ const Navbar = () => {
                         />
                         <h1 className="calistoga-regular">thespian</h1>
                     </Link>
-                    
                 </div>
                 <div className="navbar-links">
                     <ul>

@@ -8,8 +8,6 @@ import { useEffect, useState } from "react";
 function HomePage() {
     const [movies, setMovies] = useState([]);
     const [currentSearchPage, setCurrentSearchPage] = useState(1);
-    const [isFirstPage, setIsFirstPage] = useState(true);
-    const [isLastPage, setIsLastPage] = useState(false);
     const [isMovieListEmpty, setIsMovieListEmpty] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [isInvalidSearchTerm, setIsInvalidSearchTerm] = useState(false);
@@ -74,6 +72,7 @@ function HomePage() {
     }
 
     useEffect(() => {
+        setMovies([]);
         var titleListing = document.getElementById("titleListing");
         if (titleListing) {
             console.log(titleListing.offsetHeight);

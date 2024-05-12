@@ -236,7 +236,10 @@ const MoviePage = () => {
                         backgroundImage: "url(" + movieBanner + ")",
                     }}
                     className="movie-banner-image hide-banner-on-mobile"
-                ></div>
+                >
+                    <div className="movie-banner-gradient"></div>
+                </div>
+                <div className="movie-banner-image hide-banner-on-desktop movie-banner-gradient-mobile"></div>
                 <img
                     src={movieBanner}
                     alt="Movie Banner"

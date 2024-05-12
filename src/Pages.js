@@ -47,8 +47,11 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
-                                getMoviesByPage(currentSearchTerm, pageValue - 1);
-                                setPageValue(value => value - 1)
+                                getMoviesByPage(
+                                    currentSearchTerm,
+                                    pageValue - 1
+                                );
+                                setPageValue((value) => value - 1);
                             }}
                             disabled={currentSearchPage === 1}
                         >
@@ -73,9 +76,12 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
-                                getMoviesByPage(currentSearchTerm, pageValue + 1);
+                                getMoviesByPage(
+                                    currentSearchTerm,
+                                    pageValue + 1
+                                );
                                 setPageValue(currentSearchPage + 1);
-                            }} 
+                            }}
                             disabled={currentSearchPage === numberOfPages}
                         >
                             &#8250;
@@ -85,8 +91,11 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
-                                getMoviesByPage(currentSearchTerm, numberOfPages);
-                                setPageValue(numberOfPages)
+                                getMoviesByPage(
+                                    currentSearchTerm,
+                                    numberOfPages
+                                );
+                                setPageValue(numberOfPages);
                             }}
                             disabled={currentSearchPage === numberOfPages}
                         >

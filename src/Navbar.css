@@ -51,7 +51,8 @@
 }
 
 @media only screen and (max-width: 520px) {
-    .navbar-parent, .navbar-content {
+    .navbar-parent,
+    .navbar-content {
         height: 4rem;
     }
 
