@@ -15,9 +15,13 @@ To-do:
 - [x] Better loading animation
 - [ ] TV show streaming
 - [x] Pagination
-- [ ] About/Attributions/Privacy Policy pages need to be filled out
 - [ ] Different loading styling for different elements
 - [ ] User accounts (future update)
+
+Pages to finish:
+- [x] Attributions Page
+- [ ] About Page
+- [ ] Privacy Policy
 
 To work on a local copy of the project 
 

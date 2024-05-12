@@ -56,7 +56,23 @@
 * {
     box-sizing: border-box;
     font-family: var(--body);
+    scrollbar-width: thin;
+    scrollbar-color: var(--flame) var(--eerie-black);
 }
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--eerie-black);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--flame);
+    border-radius: 1rem;
+    border: 2px solid var(--flame);
+  }
 
 h1,
 h2,
@@ -79,17 +95,37 @@ h6 {
 html,
 body,
 .App {
-    background: var(--eerie-black);
+    /* background: var(--eerie-black); */
+    background: linear-gradient(
+        to bottom,
+        var(--eerie-black) 0%,
+        var(--eerie-black) 20%,
+        #201f1d 40%,
+        #151514 60%,
+        #0b0b0a 80%,
+        black 100%
+    );
     color: var(--floral-white);
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
+    min-height: 100vh;
 }
 
 html {
     scrollbar-gutter: stable;
     overflow-x: hidden;
     margin-right: calc(-1 * (100vw - 100%));
+    background: linear-gradient(
+        to bottom,
+        var(--eerie-black) 0%,
+        var(--eerie-black) 20%,
+        #201f1d 40%,
+        #151514 60%,
+        #0b0b0a 80%,
+        black 100%
+    );
+    background-repeat: no-repeat;
 }
 
 .padding-adjustment {

@@ -29,25 +29,16 @@
     gap: 1rem;
 }
 
-.navbar-links ul li {
-    transition: 0.15s all ease-in-out;
-}
-
-.navbar-links ul li:hover {
-    color: var(--flame);
-    transition: 0.15s all ease-in-out;
-    cursor: pointer;
-}
-
 .webpage-link {
     text-decoration: none;
     color: var(--floral-white);
-    transition: 0.15s color ease-in-out;
+    transition: 0.1s color ease-in-out;
 }
 
 .webpage-link:hover {
     color: var(--flame);
-    transition: 0.15s color ease-in-out;
+    transition: 0.1s color ease-in-out;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 520px) {

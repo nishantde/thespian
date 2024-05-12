@@ -12,6 +12,7 @@ const Card = ({ movie }) => {
 
     const [movieIMDBID, setMovieIMDBID] = useState(movie["imdbID"]);
     const [movieBudget, setMovieBudget] = useState(0);
+    const [movieRevenue, setMovieRevenue] = useState(0);
     const [movieOverview, setMovieOverview] = useState("N/A");
     const [movieRuntime, setMovieRuntime] = useState(0);
     const [movieTMDBRating, setMovieTMDBRating] = useState(0);
@@ -42,6 +43,12 @@ const Card = ({ movie }) => {
                             style: "currency",
                             currency: "USD",
                         }).format(response["budget"])
+                    );
+                    setMovieRevenue(() =>
+                        Intl.NumberFormat("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                        }).format(response["revenue"])
                     );
                     setMovieOverview(response["overview"]);
                     setMovieRuntime(response["runtime"]);
@@ -108,7 +115,7 @@ const Card = ({ movie }) => {
                                         to={"/movie"}
                                         state={{
                                             movieEmbedID: movieIMDBID,
-                                            movieBudget: movieBudget,
+                                            movieBudget: movieBudget, movieRevenue: movieRevenue,
                                         }}
                                         className="webpage-link"
                                     >

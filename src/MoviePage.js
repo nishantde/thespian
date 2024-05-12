@@ -39,6 +39,7 @@ const MoviePage = () => {
 
     var movieEmbedID = location.state?.movieEmbedID;
     var movieBudget = location.state?.movieBudget;
+    var movieRevenue = location.state?.movieRevenue;
 
     function fetchMoreDetails() {
         setIsLoading(true);
@@ -105,7 +106,7 @@ const MoviePage = () => {
                     <div className="movie-title-and-imdb-rating-section">
                         <h1 id="movieTitle">{movieTitle}</h1>
                         <p className="movie-imdb-rating">
-                            &#10030; {movieIMDBRating}
+                            <span>&#10030; {movieIMDBRating}</span>
                         </p>
                     </div>
                     <p>
@@ -115,7 +116,7 @@ const MoviePage = () => {
                             target="blank_"
                             rel="noreferrer"
                         >
-                            IMDB Link &#8599;
+                            View on IMDB &#8599;
                         </a>
                     </p>
                 </div>
@@ -146,8 +147,6 @@ const MoviePage = () => {
                                 ))}
                             </p>
                         </div>
-                    </div>
-                    <div className="movie-details-other-flex-two">
                         <div className="movie-director-section">
                             <h3>Director</h3>
                             <p>{movieDirector}</p>
@@ -160,6 +159,8 @@ const MoviePage = () => {
                                 ))}
                             </div>
                         </div>
+                    </div>
+                    <div className="movie-details-other-flex-two">
                         <div className="movie-awards-section">
                             <h3>Awards</h3>
                             <p>{movieAwards}</p>
@@ -167,6 +168,10 @@ const MoviePage = () => {
                         <div className="movie-budget-section">
                             <h3>Budget</h3>
                             <p>{movieBudget}</p>
+                        </div>
+                        <div className="movie-revenue-section">
+                            <h3>Revenue</h3>
+                            <p>{movieRevenue}</p>
                         </div>
                     </div>
                 </div>
