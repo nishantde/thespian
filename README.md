@@ -14,7 +14,7 @@ List of bugs/issues currently present and being looked at (this list will keep g
 To-do:
 - [x] Better loading animation
 - [ ] TV show streaming
-- [ ] Pagination
+- [x] Pagination
 - [ ] About/Attributions/Privacy Policy pages need to be filled out
 - [ ] Different loading styling for different elements
 - [ ] User accounts (future update)

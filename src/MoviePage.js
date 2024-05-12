@@ -3,12 +3,14 @@ import { useLocation } from "react-router-dom";
 import "./MoviePage.css";
 import { useEffect, useState } from "react";
 
+import Actor from "./Actor";
 import Loading from "./Loading";
 
 const MoviePage = () => {
     var OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-    const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
-    
+    const TMDB_API_READ_ACCESS_TOKEN =
+        process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
+
     const [isLoading, setIsLoading] = useState(true);
 
     const [movieTitle, setMovieTitle] = useState("");
@@ -23,35 +25,22 @@ const MoviePage = () => {
     const [movieIMDBRating, setMovieIMDBRating] = useState("N/A");
     const [movieBanner, setMovieBanner] = useState("");
 
-    /*
-    const [movieActorPosters, setMovieActorPosters] = useState([]);
-    var movieActorPosterList = [];
-    */
-    
+    const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =
         "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var MOVIE_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/movie/";
-    const TMDB_API_READ_ACCESS_TOKEN =
-        process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
     const TMDB_MOVIE_BANNER_IMAGE_PREPEND =
         "https://api.themoviedb.org/3/movie/";
     const TMDB_MOVIE_IMAGE_TAG_APPEND = "/images";
     const TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/original";
 
-    /*
-    const TMDB_ACTOR_POSTER_IMAGE_PREPEND =
-        " https://api.themoviedb.org/3/search/person?query=";
-    const TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND =
-        "https://image.tmdb.org/t/p/w500";
-    */
-
     const location = useLocation();
 
     var movieEmbedID = location.state?.movieEmbedID;
     var movieBudget = location.state?.movieBudget;
 
-    async function fetchMoreDetails() {
+    function fetchMoreDetails() {
         setIsLoading(true);
         const options = {
             method: "GET",
@@ -68,10 +57,7 @@ const MoviePage = () => {
             },
         };
 
-        await fetch(
-            OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND + movieEmbedID,
-            options
-        )
+        fetch(OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND + movieEmbedID, options)
             .then((response) => response.json())
             .then((response) => {
                 setMovieTitle(response["Title"]);
@@ -87,18 +73,7 @@ const MoviePage = () => {
             })
             .catch((err) => console.error(err));
 
-        /*
-        movieActors.forEach((movieActor) => {
-            fetch(TMDB_ACTOR_POSTER_IMAGE_PREPEND + movieActor, tmdbOptions)
-                .then((response) => response.json())
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((err) => console.error(err));
-        });
-        */
-
-        await fetch(
+        fetch(
             TMDB_MOVIE_BANNER_IMAGE_PREPEND +
                 movieEmbedID +
                 TMDB_MOVIE_IMAGE_TAG_APPEND,
@@ -113,14 +88,14 @@ const MoviePage = () => {
             })
             .catch((err) => console.error(err));
 
-        setIsLoading(false);
-
         setTimeout(() => {
             var movieTitle = document.getElementById("movieTitle");
             if (movieTitle) {
                 movieTitle.scrollIntoView({ behavior: "smooth" });
             }
         }, 200);
+
+        setIsLoading(false);
     }
 
     const MoreDetails = () => {
@@ -181,14 +156,7 @@ const MoviePage = () => {
                             <h3>Actors</h3>
                             <div className="movie-actor-listing">
                                 {movieActors.map((actor) => (
-                                    <div className="movie-actor" key={actor}>
-                                        <img
-                                            src=""
-                                            alt={actor}
-                                            className="movie-actor-portrait"
-                                        />
-                                        <p>{actor}</p>
-                                    </div>
+                                    <Actor movieActor={actor} key={actor} />
                                 ))}
                             </div>
                         </div>
@@ -231,15 +199,18 @@ const MoviePage = () => {
                 </div>
                 <div className="movie-load-warning">
                     <p>
-                        If the video does not load, please wait for a few
-                        seconds and then try refreshing. Please note that the
-                        app is still in beta and some bugs might persist.
+                        All titles might not be available. However, if the video
+                        appears but does not load, please wait for a few seconds
+                        and then try refreshing.
                     </p>
                     <p>
                         Seeking might be slow for some titles. In such
                         instances, please try lowering the quality of the video.
                     </p>
-                    <p>Thank you for your patience!</p>
+                    <p>
+                        Please note that the project is still in beta and some
+                        bugs might persist. Thank you for your patience!
+                    </p>
                 </div>
             </div>
         );
@@ -248,8 +219,9 @@ const MoviePage = () => {
     var movieEmbedSource = MOVIE_EMBED_LINK_PREPEND + movieEmbedID;
 
     useEffect(() => {
-        setIsLoading(true);
-        fetchMoreDetails();
+        setTimeout(() => {
+            fetchMoreDetails();
+        }, 1200);
         var movieTitle = document.getElementById("movieTitle");
         if (movieTitle) {
             console.log(movieTitle.offsetHeight);

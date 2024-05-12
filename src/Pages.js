@@ -35,9 +35,10 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
+                                getMoviesByPage(currentSearchTerm, 1);
                                 setPageValue(1);
-                                getMoviesByPage(currentSearchTerm, pageValue);
                             }}
+                            disabled={currentSearchPage === 1}
                         >
                             &#171;
                         </button>
@@ -46,11 +47,10 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
-                                setPageValue(
-                                    (previousValue) => previousValue - 1
-                                );
-                                getMoviesByPage(currentSearchTerm, pageValue);
+                                getMoviesByPage(currentSearchTerm, pageValue - 1);
+                                setPageValue(value => value - 1)
                             }}
+                            disabled={currentSearchPage === 1}
                         >
                             &#8249;
                         </button>
@@ -73,11 +73,10 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
-                                setPageValue(
-                                    (previousValue) => previousValue + 1
-                                );
-                                getMoviesByPage(currentSearchTerm, pageValue);
-                            }}
+                                getMoviesByPage(currentSearchTerm, pageValue + 1);
+                                setPageValue(currentSearchPage + 1);
+                            }} 
+                            disabled={currentSearchPage === numberOfPages}
                         >
                             &#8250;
                         </button>
@@ -86,9 +85,10 @@ const Pages = ({
                         <button
                             className="search-button"
                             onClick={() => {
-                                setPageValue(numberOfPages);
-                                getMoviesByPage(currentSearchTerm, pageValue);
+                                getMoviesByPage(currentSearchTerm, numberOfPages);
+                                setPageValue(numberOfPages)
                             }}
+                            disabled={currentSearchPage === numberOfPages}
                         >
                             &#187;
                         </button>

@@ -7,8 +7,7 @@ const InvalidSearch = () => {
                 Please enter a valid search term
             </h2>
             <p className="invalid-search-description">
-                Results cannot be shown if the search term contains a number.
-                Please write the number out - Two instead of 2 - and try again.
+                Some titles cannot be shown if the search term contains a number. If you still see this error, please write the number out - 'two' instead of '2' - and try again.
             </p>
             <p className="invalid-search-description">
                 If movie details do not appear on hovering of the title, please

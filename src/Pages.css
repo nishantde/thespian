@@ -54,6 +54,7 @@
 
 input[type=number] {
     -moz-appearance: textfield;
+    appearance: textfield;
   }
 
 #pageSearchInput {
@@ -66,6 +67,7 @@ input[type=number] {
 
 #pageSearchInput::-webkit-outer-spin-button, #pageSearchInput::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 
@@ -89,6 +91,13 @@ input[type=number] {
     color: var(--eerie-black);
     transition: 0.2s all ease-in-out;
     cursor: pointer;
+}
+
+.search-button:disabled {
+    color: var(--black-olive);
+    background-color: var(--eerie-black);
+    transition: 0.2s all ease-in-out;
+    cursor: not-allowed;
 }
 
 .last-page-button:hover {
