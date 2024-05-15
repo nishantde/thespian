@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import "./Actor.css";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 const Actors = ({ movieActor }) => {
     const [isActorSectionLoading, setIsActorSectionLoading] = useState(false);
     const [movieActorPoster, setMovieActorPoster] = useState("");
+    const [actorID, setActorID] = useState(0);
+    const [actorOriginalName, setActorOriginalName] = useState(movieActor);
+    const [actorKnownMovies, setActorKnownMovies] = useState([]);
 
     const TMDB_API_READ_ACCESS_TOKEN =
         process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
@@ -30,6 +34,9 @@ const Actors = ({ movieActor }) => {
                     TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
                         response["results"][0]["profile_path"]
                 );
+                setActorID(response["results"][0]["id"]);
+                setActorOriginalName(response["results"][0]["original_name"]);
+                setActorKnownMovies(response["results"][0]["known_for"]);
             })
             .catch((err) => console.error(err));
 
@@ -58,7 +65,21 @@ const Actors = ({ movieActor }) => {
                     alt={movieActor}
                     className="movie-actor-portrait"
                 />
-                <p>{movieActor}</p>
+                {/* <p>{movieActor}</p> */}
+                <Link
+                    to={"/actor"}
+                    state={{
+                        actorID: actorID,
+                        actorOriginalName: actorOriginalName,
+                        actorKnownMovies: actorKnownMovies,
+                        actorProfilePath:
+                            TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
+                            movieActorPoster,
+                    }}
+                    className="actor-page-link"
+                >
+                    {movieActor}
+                </Link>
             </div>
         );
     }

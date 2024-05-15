@@ -1,0 +1,62 @@
+.actor-page-content {
+    margin: auto;
+    width: 100%;
+    max-width: min(95%, 1280px);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 100%;
+    color: var(--timberwolf);
+}
+
+.actor-portrait-and-details-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.actor-portrait, .actor-details {
+    width: 50%;
+}
+
+.actor-portrait-image {
+    height: 30vw;
+    width: 30vw;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.actor-page-name {
+    color: var(--floral-white);
+}
+
+.actor-biography {
+    margin: 3rem auto;
+    line-height: 1.4;
+}
+
+@media only screen and (max-width: 520px) {
+    .padding-adjustment {
+        padding-top: 6rem;
+    }
+
+    .actor-portrait-and-details-section {
+        flex-direction: column;
+    }
+
+    .actor-portrait, .actor-details {
+        width: 100%;
+    }
+
+    .actor-portrait-image {
+        width: 80vw;
+        height: 80vw;
+        display: block;
+        margin: auto;
+    }
+
+    .actor-biography {
+        margin: 1rem auto;
+    }
+}

@@ -17,7 +17,6 @@ const MoviePage = () => {
     const [movieRating, setMovieRating] = useState("");
     const [movieReleaseDate, setMovieReleaseDate] = useState("");
     const [movieRuntime, setMovieRuntime] = useState("");
-    const [movieGenres, setMovieGenres] = useState([]);
     const [movieDirector, setMovieDirector] = useState("");
     const [movieActors, setMovieActors] = useState([]);
     const [moviePlot, setMoviePlot] = useState("");
@@ -40,6 +39,9 @@ const MoviePage = () => {
     var movieEmbedID = location.state?.movieEmbedID;
     var movieBudget = location.state?.movieBudget;
     var movieRevenue = location.state?.movieRevenue;
+    var movieGenres = location.state?.movieGenres;
+    var movieProductionCompanies = location.state?.movieProductionCompanies;
+    var movieLanguages = location.state?.movieLanguages;
 
     function fetchMoreDetails() {
         setIsLoading(true);
@@ -65,7 +67,6 @@ const MoviePage = () => {
                 setMovieRating(response["Rated"]);
                 setMovieReleaseDate(response["Released"]);
                 setMovieRuntime(response["Runtime"]);
-                setMovieGenres(response["Genre"].split(","));
                 setMovieDirector(response["Director"]);
                 setMovieActors(response["Actors"].split(","));
                 setMoviePlot(response["Plot"]);
@@ -141,8 +142,11 @@ const MoviePage = () => {
                             <h3>Genres</h3>
                             <p className="movie-genre-listing">
                                 {movieGenres.map((genre) => (
-                                    <span key={genre} className="movie-genre">
-                                        {genre}
+                                    <span
+                                        key={genre["id"]}
+                                        className="movie-genre"
+                                    >
+                                        {genre["name"]}
                                     </span>
                                 ))}
                             </p>
@@ -172,6 +176,26 @@ const MoviePage = () => {
                         <div className="movie-revenue-section">
                             <h3>Revenue</h3>
                             <p>{movieRevenue}</p>
+                        </div>
+                        <div className="movie-production-companies-section">
+                            <h3>Production Companies</h3>
+                            <div className="movie-production-companies">
+                                {movieProductionCompanies.map((company) => (
+                                    <p key={company["id"]}>
+                                        {company["name"]}
+                                    </p>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="movie-languages-section">
+                            <h3>Languages</h3>
+                            <div className="movie-languages">
+                                {movieLanguages.map((language) => (
+                                    <p key={language["iso_639_1"]}>
+                                        {language["english_name"]}
+                                    </p>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

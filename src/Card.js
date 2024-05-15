@@ -16,6 +16,11 @@ const Card = ({ movie }) => {
     const [movieOverview, setMovieOverview] = useState("N/A");
     const [movieRuntime, setMovieRuntime] = useState(0);
     const [movieTMDBRating, setMovieTMDBRating] = useState(0);
+    const [movieGenres, setMovieGenres] = useState([]);
+    const [movieProductionCompanies, setMovieProductionCompanies] = useState(
+        []
+    );
+    const [movieLanguages, setMovieLanguages] = useState([]);
 
     if (!movie["imdbID"]) {
         setMovieIMDBID("default");
@@ -44,6 +49,7 @@ const Card = ({ movie }) => {
                             currency: "USD",
                         }).format(response["budget"])
                     );
+                    setMovieGenres(response["genres"]);
                     setMovieRevenue(() =>
                         Intl.NumberFormat("en-US", {
                             style: "currency",
@@ -51,7 +57,11 @@ const Card = ({ movie }) => {
                         }).format(response["revenue"])
                     );
                     setMovieOverview(response["overview"]);
+                    setMovieProductionCompanies(
+                        response["production_companies"]
+                    );
                     setMovieRuntime(response["runtime"]);
+                    setMovieLanguages(response["spoken_languages"]);
                     setMovieTMDBRating(response["vote_average"]);
                 })
                 .catch((err) => console.error(err));
@@ -115,7 +125,12 @@ const Card = ({ movie }) => {
                                         to={"/movie"}
                                         state={{
                                             movieEmbedID: movieIMDBID,
-                                            movieBudget: movieBudget, movieRevenue: movieRevenue,
+                                            movieBudget: movieBudget,
+                                            movieRevenue: movieRevenue,
+                                            movieGenres: movieGenres,
+                                            movieProductionCompanies:
+                                                movieProductionCompanies,
+                                            movieLanguages: movieLanguages,
                                         }}
                                         className="webpage-link"
                                     >

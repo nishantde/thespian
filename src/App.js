@@ -8,6 +8,7 @@ import AttributionsPage from "./AttributionsPage.js";
 import PrivacyPolicyPage from "./PrivacyPolicyPage.js";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ActorPage from "./ActorPage.js";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         element={<MoviePage movieID={"default"} />}
                     />
                     <Route path="/tv" element={<TVPage />} />
+                    <Route path="/actor" element={<ActorPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route
                         path="/attributions"
