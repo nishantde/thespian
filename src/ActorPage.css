@@ -36,6 +36,50 @@
     line-height: 1.4;
 }
 
+.actor-known-movies-heading {
+    text-align: center;
+}
+
+.actor-known-movies-section {
+    max-width: min(95vw, 800px);
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.actor-known-for {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.actor-known-movie-poster {
+    width: 12rem;
+    border-radius: 6px;
+}
+
+.actor-known-movie-title {
+    text-align: left;
+}
+
+.actor-known-movie-release-and-rating {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actor-known-movie-overview {
+    line-height: 1.4;
+}
+
 @media only screen and (max-width: 520px) {
     .padding-adjustment {
         padding-top: 6rem;
@@ -58,5 +102,14 @@
 
     .actor-biography {
         margin: 1rem auto;
+    }
+
+    .actor-known-movie-poster {
+        width: 100%;
+        margin: auto;
+    }
+
+    .actor-known-for {
+        flex-wrap: wrap;
     }
 }

@@ -57,7 +57,16 @@ const Actors = ({ movieActor }) => {
         );
     } else {
         return (
-            <div className="movie-actor">
+            <Link
+                to={"/actor"}
+                state={{
+                    actorID: actorID,
+                    actorOriginalName: actorOriginalName,
+                    actorKnownMovies: actorKnownMovies,
+                    actorProfilePath: movieActorPoster,
+                }}
+                className="movie-actor"
+            >
                 <img
                     src={
                         TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND + movieActorPoster
@@ -65,22 +74,8 @@ const Actors = ({ movieActor }) => {
                     alt={movieActor}
                     className="movie-actor-portrait"
                 />
-                {/* <p>{movieActor}</p> */}
-                <Link
-                    to={"/actor"}
-                    state={{
-                        actorID: actorID,
-                        actorOriginalName: actorOriginalName,
-                        actorKnownMovies: actorKnownMovies,
-                        actorProfilePath:
-                            TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
-                            movieActorPoster,
-                    }}
-                    className="actor-page-link"
-                >
-                    {movieActor}
-                </Link>
-            </div>
+                <p className="actor-page-link">{movieActor}</p>
+            </Link>
         );
     }
 };

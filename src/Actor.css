@@ -1,0 +1,21 @@
+.movie-actor {
+    transform: scale(1);
+    transition: 0.15s all ease-in-out;
+    text-decoration: none;
+}
+
+.actor-page-link {
+    margin: 0.5rem auto;
+    color: var(--floral-white);
+    transition: 0.15s all ease-in-out;
+}
+
+.movie-actor:hover {
+    transform: scale(1.1);
+    transition: 0.15s all ease-in-out;
+}
+
+.movie-actor:hover .actor-page-link {
+    color: var(--flame);
+    transition: 0.15s all ease-in-out;
+}

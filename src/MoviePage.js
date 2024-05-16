@@ -90,12 +90,12 @@ const MoviePage = () => {
             })
             .catch((err) => console.error(err));
 
-        setTimeout(() => {
-            var movieTitle = document.getElementById("movieTitle");
-            if (movieTitle) {
-                movieTitle.scrollIntoView({ behavior: "smooth" });
-            }
-        }, 200);
+        // setTimeout(() => {
+        //     var movieTitle = document.getElementById("movieTitle");
+        //     if (movieTitle) {
+        //         movieTitle.scrollIntoView({ behavior: "smooth" });
+        //     }
+        // }, 200);
 
         setIsLoading(false);
     }

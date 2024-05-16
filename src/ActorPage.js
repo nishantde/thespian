@@ -13,6 +13,9 @@ const ActorPage = () => {
     const [actorKnownDepartment, setActorKnownDepartment] = useState("");
     const [actorBirthplace, setActorBirthplace] = useState("");
 
+    const TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND =
+        "https://image.tmdb.org/t/p/w500";
+
     // const actorGenderDictionary = {
     //     0: "Not set/not specified",
     //     1: "Female",
@@ -72,12 +75,15 @@ const ActorPage = () => {
                 <div>
                     <div className="actor-portrait-and-details-section">
                         <div className="actor-portrait">
-                        <img
-                            src={actorProfilePath}
-                            alt={actorOriginalName}
-                            className="actor-portrait-image"
-                        />
-                            </div>
+                            <img
+                                src={
+                                    TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
+                                    actorProfilePath
+                                }
+                                alt={actorOriginalName}
+                                className="actor-portrait-image"
+                            />
+                        </div>
                         <div className="actor-details">
                             <h1 className="actor-page-name">{actorName}</h1>
                             <h3 className="actor-original-name-heading">
@@ -114,7 +120,32 @@ const ActorPage = () => {
                                 className="actor-known-for"
                                 key={knownMovie["id"]}
                             >
-                                {knownMovie["original_title"]}
+                                <img
+                                    src={
+                                        TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
+                                        knownMovie["poster_path"]
+                                    }
+                                    alt={knownMovie["title"] + "Poster"}
+                                    className="actor-known-movie-poster"
+                                />
+                                <div className="actor-known-for-movie-details">
+                                    <h3 className="actor-known-movie-title">
+                                        {knownMovie["title"]}
+                                    </h3>
+                                    <div className="actor-known-movie-release-and-rating">
+                                        <p className="actor-known-movie-release">
+                                            {knownMovie["release_date"].slice(0, 4)}
+                                        </p>
+                                        <p className="actor-known-movie-rating">
+                                            &#10030;{" "}
+                                            {knownMovie["vote_average"]}/10
+                                        </p>
+                                    </div>
+
+                                    <p className="actor-known-movie-overview">
+                                        {knownMovie["overview"]}
+                                    </p>
+                                </div>
                             </div>
                         ))}
                     </div>
