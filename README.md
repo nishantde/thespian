@@ -15,11 +15,13 @@ To-do:
 - [x] Better loading animation
 - [ ] TV show streaming
 - [x] Pagination
+- [ ] Implement TV titles in the 'Known for' section
 - [ ] Different loading styling for different elements
 - [ ] User accounts (future update)
 
 Pages to finish:
 - [x] Attributions Page
+- [x] Actor Page
 - [ ] About Page
 - [ ] Privacy Policy
 

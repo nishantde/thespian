@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./ActorPage.css";
 import Loading from "./Loading";
 import { useLocation } from "react-router-dom";
+import Cards from "./Cards";
 
 const ActorPage = () => {
     const [isActorPageLoading, setIsActorPageLoading] = useState(true);
@@ -12,16 +13,20 @@ const ActorPage = () => {
     // const [actorGender, setActorGender] = useState(0);
     const [actorKnownDepartment, setActorKnownDepartment] = useState("");
     const [actorBirthplace, setActorBirthplace] = useState("");
+    const [actorPageKnownMovies, setActorPageKnownMovies] = useState([]);
+
+    // var actorKnownMovie = {
+    //     Title: "",
+    //     Year: "",
+    //     Poster: "",
+    //     Type: "",
+    //     imdbID: "",
+    // };
+
+    var actorKnownMoviesList = [];
 
     const TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/w500";
-
-    // const actorGenderDictionary = {
-    //     0: "Not set/not specified",
-    //     1: "Female",
-    //     2: "Male",
-    //     3: "Non-binary",
-    // };
 
     const location = useLocation();
 
@@ -35,8 +40,41 @@ const ActorPage = () => {
     const TMDB_ACTOR_PAGE_DETAILS_PREPEND =
         "https://api.themoviedb.org/3/person/";
 
+    // console.log('Known movies: ', actorKnownMovies);
+
     async function getActorDetails() {
         setIsActorPageLoading(true);
+
+        // for (let i = 0; i < actorKnownMovies.length; i++) {
+        //     console.log('Known movie ', i, ': ', actorKnownMovies[i]);
+        //     actorKnownMovie["Title"] = actorKnownMovies[i]["title"];
+        //     actorKnownMovie["Year"] = actorKnownMovies[i]["release_date"].slice(
+        //         0,
+        //         4
+        //     );
+        //     actorKnownMovie["Poster"] =
+        //         TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
+        //         actorKnownMovies[i]["poster_path"];
+        //     actorKnownMovie["Type"] = actorKnownMovies[i]["media_type"];
+        //     actorKnownMovie["imdbID"] = actorKnownMovies[i]["id"].toString();
+        //     if (!actorKnownMoviesList.includes(actorKnownMovie)) {
+        //         actorKnownMoviesList.push(actorKnownMovie);
+        //     }
+        // }
+
+        actorKnownMovies.map((element) => {
+            actorKnownMoviesList.push({
+                "Title": element["title"],
+                "Year": element["release_date"].slice(0, 4),
+                "Poster": TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND + element["poster_path"],
+                "Type": element["media_type"],
+                "imdbID": element["id"]
+            });
+        });
+
+        console.log(actorKnownMoviesList);
+
+        setActorPageKnownMovies(actorKnownMoviesList);
 
         const tmdbOptions = {
             method: "GET",
@@ -59,13 +97,14 @@ const ActorPage = () => {
             .catch((error) => console.error(error));
 
         setIsActorPageLoading(false);
+        // console.log(actorPageKnownMovies);
     }
 
     useEffect(() => {
         setTimeout(() => {
             getActorDetails();
         }, 600);
-    }, []);
+    }, [actorName]);
 
     return (
         <div className="actor-page-content padding-adjustment">
@@ -113,42 +152,11 @@ const ActorPage = () => {
                         </div>
                     </div>
                     <p className="actor-biography">{actorBiography}</p>
-                    <h2 className="actor-known-movies-heading">Known for</h2>
-                    <div className="actor-known-movies-section">
-                        {actorKnownMovies.map((knownMovie) => (
-                            <div
-                                className="actor-known-for"
-                                key={knownMovie["id"]}
-                            >
-                                <img
-                                    src={
-                                        TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
-                                        knownMovie["poster_path"]
-                                    }
-                                    alt={knownMovie["title"] + "Poster"}
-                                    className="actor-known-movie-poster"
-                                />
-                                <div className="actor-known-for-movie-details">
-                                    <h3 className="actor-known-movie-title">
-                                        {knownMovie["title"]}
-                                    </h3>
-                                    <div className="actor-known-movie-release-and-rating">
-                                        <p className="actor-known-movie-release">
-                                            {knownMovie["release_date"].slice(0, 4)}
-                                        </p>
-                                        <p className="actor-known-movie-rating">
-                                            &#10030;{" "}
-                                            {knownMovie["vote_average"]}/10
-                                        </p>
-                                    </div>
-
-                                    <p className="actor-known-movie-overview">
-                                        {knownMovie["overview"]}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <Cards
+                        movies={actorPageKnownMovies}
+                        totalResults="IGNORE"
+                        key={Math.random}
+                    />
                 </div>
             )}
         </div>

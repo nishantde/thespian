@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 const Card = ({ movie }) => {
     const TMDB_FETCH_LINK_PREPEND = "https://api.themoviedb.org/3/movie/";
 
-    var movieTitle = movie["Title"];
-    var movieYear = movie["Year"];
-    var moviePoster = movie["Poster"];
-    var titleType = movie["Type"];
+    var movieTitle, movieYear, moviePoster, titleType, imdbID;
 
-    const [movieIMDBID, setMovieIMDBID] = useState(movie["imdbID"]);
+    movieTitle = movie["Title"];
+    movieYear = movie["Year"];
+    moviePoster = movie["Poster"];
+    titleType = movie["Type"];
+
     const [movieBudget, setMovieBudget] = useState(0);
     const [movieRevenue, setMovieRevenue] = useState(0);
     const [movieOverview, setMovieOverview] = useState("N/A");
@@ -22,9 +23,15 @@ const Card = ({ movie }) => {
     );
     const [movieLanguages, setMovieLanguages] = useState([]);
 
-    if (!movie["imdbID"]) {
-        setMovieIMDBID("default");
+    if (movie["imdbID"]) {
+        imdbID = movie["imdbID"];
+    } else if (movie["imdb_id"]) {
+        imdbID = movie["imdb_id"];
+    } else {
+        imdbID = "default";
     }
+
+    const [movieIMDBID, setMovieIMDBID] = useState(imdbID);
 
     var additionalDetailsFetchURL = TMDB_FETCH_LINK_PREPEND + movieIMDBID;
 
@@ -63,6 +70,7 @@ const Card = ({ movie }) => {
                     setMovieRuntime(response["runtime"]);
                     setMovieLanguages(response["spoken_languages"]);
                     setMovieTMDBRating(response["vote_average"]);
+                    setMovieIMDBID(response["imdb_id"]);
                 })
                 .catch((err) => console.error(err));
         }
