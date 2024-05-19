@@ -64,11 +64,13 @@ const ActorPage = () => {
 
         actorKnownMovies.map((element) => {
             actorKnownMoviesList.push({
-                "Title": element["title"],
-                "Year": element["release_date"].slice(0, 4),
-                "Poster": TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND + element["poster_path"],
-                "Type": element["media_type"],
-                "imdbID": element["id"]
+                Title: element["title"],
+                Year: element["release_date"].slice(0, 4),
+                Poster:
+                    TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
+                    element["poster_path"],
+                Type: element["media_type"],
+                imdbID: element["id"],
             });
         });
 

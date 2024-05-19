@@ -13,6 +13,8 @@ List of bugs/issues currently present and being looked at (this list will keep g
 
 To-do:
 - [x] Better loading animation
+- [x] TV details shown on cards
+- [ ] Other title types (might hide result - depending on available information)
 - [ ] TV show streaming
 - [x] Pagination
 - [ ] Implement TV titles in the 'Known for' section
@@ -22,6 +24,8 @@ To-do:
 Pages to finish:
 - [x] Attributions Page
 - [x] Actor Page
+- [x] Movie Streaming Page
+- [ ] TV Streaming Page
 - [ ] About Page
 - [ ] Privacy Policy
 

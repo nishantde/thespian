@@ -69,7 +69,7 @@ function HomePage() {
             if (titleListing) {
                 titleListing.scrollIntoView({ behavior: "smooth" });
             }
-        }, 200);
+        }, 400);
     }
 
     useEffect(() => {

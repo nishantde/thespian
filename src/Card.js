@@ -4,14 +4,20 @@ import { useEffect, useState } from "react";
 
 const Card = ({ movie }) => {
     const TMDB_FETCH_LINK_PREPEND = "https://api.themoviedb.org/3/movie/";
+    const TMDB_TV_FETCH_LINK_PREPEND = " https://api.themoviedb.org/3/tv/";
+    const TMDB_TV_FETCH_INTERNAL_LINK_PREPEND =
+        "https://api.themoviedb.org/3/find/";
+    const TMDB_TV_FETCH_INTERNAL_LINK_APPEND = "?external_source=imdb_id";
 
     var movieTitle, movieYear, moviePoster, titleType, imdbID;
+    var tvFetchTMDBID;
 
     movieTitle = movie["Title"];
     movieYear = movie["Year"];
     moviePoster = movie["Poster"];
     titleType = movie["Type"];
 
+    /* Movie details */
     const [movieBudget, setMovieBudget] = useState(0);
     const [movieRevenue, setMovieRevenue] = useState(0);
     const [movieOverview, setMovieOverview] = useState("N/A");
@@ -22,6 +28,22 @@ const Card = ({ movie }) => {
         []
     );
     const [movieLanguages, setMovieLanguages] = useState([]);
+    const [movieBackdropPath, setMovieBackdropPath] = useState("");
+
+    /* TV details */
+    const [tvBackdropPath, setTVBackdropPath] = useState("");
+    const [tvFirstAirDate, setTVFirstAirDate] = useState("");
+    const [tvLastAirDate, setTVLastAirDate] = useState("");
+    const [tvGenres, setTVGenres] = useState([]);
+    const [tvTMDBID, setTVTMDBID] = useState("");
+    const [tvLanguages, setTVLanguages] = useState([]);
+    const [tvNetworks, setTVNetworks] = useState([]);
+    const [tvNumberOfEpisodes, setTVNumberOfEpisodes] = useState(0);
+    const [tvNumberOfSeasons, setTVNumberOfSeasons] = useState(0);
+    const [tvOverview, setTVOverview] = useState("");
+    const [tvProductionCompanies, setTVProductionCompanies] = useState([]);
+    const [tvSeasons, setTVSeasons] = useState([]);
+    const [tvTMDBRating, setTVTMDBRating] = useState(0);
 
     if (movie["imdbID"]) {
         imdbID = movie["imdbID"];
@@ -50,6 +72,7 @@ const Card = ({ movie }) => {
             fetch(additionalDetailsFetchURL, options)
                 .then((response) => response.json())
                 .then((response) => {
+                    setMovieBackdropPath(response["backdrop_path"]);
                     setMovieBudget(() =>
                         Intl.NumberFormat("en-US", {
                             style: "currency",
@@ -73,11 +96,49 @@ const Card = ({ movie }) => {
                     setMovieIMDBID(response["imdb_id"]);
                 })
                 .catch((err) => console.error(err));
+        } else if (titleType == "tv" || titleType == "series") {
+            fetch(
+                TMDB_TV_FETCH_INTERNAL_LINK_PREPEND +
+                    imdbID +
+                    TMDB_TV_FETCH_INTERNAL_LINK_APPEND,
+                options
+            )
+                .then((response) => response.json())
+                .then((response) => {
+                    tvFetchTMDBID = response["tv_results"][0]["id"].toString();
+                    setTVTMDBID(tvFetchTMDBID);
+                })
+                .then(() => {
+                    fetch(TMDB_TV_FETCH_LINK_PREPEND + tvFetchTMDBID, options)
+                        .then((response) => response.json())
+                        .then((response) => {
+                            setTVBackdropPath(response["backdrop_path"]);
+                            setTVFirstAirDate(response["first_air_date"]);
+                            setTVLastAirDate(response["last_air_date"]);
+                            setTVGenres(response["genres"]);
+                            setTVLanguages(response["spoken_languages"]);
+                            setTVNetworks(response["networks"]);
+                            setTVNumberOfEpisodes(
+                                response["number_of_episodes"]
+                            );
+                            setTVNumberOfSeasons(response["number_of_seasons"]);
+                            setTVOverview(response["overview"]);
+                            setTVProductionCompanies(
+                                response["production_companies"]
+                            );
+                            setTVSeasons(response["seasons"]);
+                            setTVTMDBRating(response["vote_average"]);
+                        })
+                        .catch((err) => console.error(err));
+                })
+                .catch((err) => console.error(err));
         }
     };
 
     useEffect(() => {
-        getAdditionalMovieDetails();
+        setTimeout(() => {
+            getAdditionalMovieDetails();
+        }, 400);
     }, []);
 
     return (
@@ -96,7 +157,9 @@ const Card = ({ movie }) => {
                             <div className="card-front-tmdb-rating">
                                 <p className="title-tmdb-rating">
                                     &#10030;{" "}
-                                    {parseFloat(movieTMDBRating).toFixed(1)}
+                                    {titleType == "movie"
+                                        ? parseFloat(movieTMDBRating).toFixed(1)
+                                        : parseFloat(tvTMDBRating).toFixed(1)}
                                 </p>
                             </div>
                         </div>
@@ -112,38 +175,85 @@ const Card = ({ movie }) => {
                     >
                         <div className="card-back-content">
                             <div className="additional-details">
-                                <h4 className="card-back-subheading">
-                                    Runtime
-                                </h4>
-                                <p className="card-back-details">
-                                    {movieRuntime} minutes
-                                </p>
+                                {titleType == "movie" ? (
+                                    <h4 className="card-back-subheading">
+                                        Runtime
+                                    </h4>
+                                ) : (
+                                    <h4 className="card-back-subheading">
+                                        Series Run
+                                    </h4>
+                                )}
+                                {titleType == "movie" ? (
+                                    <p className="card-back-details">
+                                        {movieRuntime} minutes
+                                    </p>
+                                ) : (
+                                    <p className="card-back-details">
+                                        {tvNumberOfSeasons} seasons,{" "}
+                                        {tvNumberOfEpisodes} episodes
+                                    </p>
+                                )}
                                 <div className="overview-section">
                                     <h4 className="card-back-subheading">
                                         Overview
                                     </h4>
-                                    <p className="card-back-details details-overview">
-                                        {movieOverview}
-                                    </p>
+                                    {titleType == "movie" ? (
+                                        <p className="card-back-details details-overview">
+                                            {movieOverview}
+                                        </p>
+                                    ) : (
+                                        <p className="card-back-details details-overview">
+                                            {tvOverview}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                             <div className="link-to-view">
                                 <button className="button-to-view">
-                                    <Link
-                                        to={"/movie"}
-                                        state={{
-                                            movieEmbedID: movieIMDBID,
-                                            movieBudget: movieBudget,
-                                            movieRevenue: movieRevenue,
-                                            movieGenres: movieGenres,
-                                            movieProductionCompanies:
-                                                movieProductionCompanies,
-                                            movieLanguages: movieLanguages,
-                                        }}
-                                        className="webpage-link"
-                                    >
-                                        Watch Now
-                                    </Link>
+                                    {titleType == "movie" ? (
+                                        <Link
+                                            to={"/movie"}
+                                            state={{
+                                                movieEmbedID: movieIMDBID,
+                                                movieBackdropPath:
+                                                    movieBackdropPath,
+                                                movieBudget: movieBudget,
+                                                movieRevenue: movieRevenue,
+                                                movieGenres: movieGenres,
+                                                movieProductionCompanies:
+                                                    movieProductionCompanies,
+                                                movieLanguages: movieLanguages,
+                                            }}
+                                            className="webpage-link"
+                                        >
+                                            Watch Now
+                                        </Link>
+                                    ) : (
+                                        <Link
+                                            to={"/tv"}
+                                            state={{
+                                                tvBackdropPath: tvBackdropPath,
+                                                tvFirstAirDate: tvFirstAirDate,
+                                                tvLastAirDate: tvLastAirDate,
+                                                tvGenres: tvGenres,
+                                                tvTMDBID: tvTMDBID,
+                                                tvLanguages: tvLanguages,
+                                                tvNetworks: tvNetworks,
+                                                tvNumberOfEpisodes:
+                                                    tvNumberOfEpisodes,
+                                                tvNumberOfSeasons:
+                                                    tvNumberOfSeasons,
+                                                tvProductionCompanies:
+                                                    tvProductionCompanies,
+                                                tvSeasons: tvSeasons,
+                                                movieIMDBID: movieIMDBID,
+                                            }}
+                                            className="webpage-link"
+                                        >
+                                            Watch Now
+                                        </Link>
+                                    )}
                                 </button>
                             </div>
                         </div>

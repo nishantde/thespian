@@ -8,8 +8,8 @@ import Loading from "./Loading";
 
 const MoviePage = () => {
     var OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-    const TMDB_API_READ_ACCESS_TOKEN =
-        process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
+    // const TMDB_API_READ_ACCESS_TOKEN =
+    //     process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -28,14 +28,15 @@ const MoviePage = () => {
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =
         "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var MOVIE_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/movie/";
-    const TMDB_MOVIE_BANNER_IMAGE_PREPEND =
-        "https://api.themoviedb.org/3/movie/";
-    const TMDB_MOVIE_IMAGE_TAG_APPEND = "/images";
+    // const TMDB_MOVIE_BANNER_IMAGE_PREPEND =
+    //     "https://api.themoviedb.org/3/movie/";
+    // const TMDB_MOVIE_IMAGE_TAG_APPEND = "/images";
     const TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/original";
 
     const location = useLocation();
 
+    var movieBackdropPath = location.state?.movieBackdropPath;
     var movieEmbedID = location.state?.movieEmbedID;
     var movieBudget = location.state?.movieBudget;
     var movieRevenue = location.state?.movieRevenue;
@@ -52,13 +53,13 @@ const MoviePage = () => {
             },
         };
 
-        const tmdbOptions = {
-            method: "GET",
-            headers: {
-                accept: "application/json",
-                Authorization: "Bearer " + TMDB_API_READ_ACCESS_TOKEN,
-            },
-        };
+        // const tmdbOptions = {
+        //     method: "GET",
+        //     headers: {
+        //         accept: "application/json",
+        //         Authorization: "Bearer " + TMDB_API_READ_ACCESS_TOKEN,
+        //     },
+        // };
 
         fetch(OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND + movieEmbedID, options)
             .then((response) => response.json())
@@ -75,27 +76,27 @@ const MoviePage = () => {
             })
             .catch((err) => console.error(err));
 
-        fetch(
-            TMDB_MOVIE_BANNER_IMAGE_PREPEND +
-                movieEmbedID +
-                TMDB_MOVIE_IMAGE_TAG_APPEND,
-            tmdbOptions
-        )
-            .then((response) => response.json())
-            .then((response) => {
-                setMovieBanner(
-                    TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND +
-                        response["backdrops"][0]["file_path"]
-                );
-            })
-            .catch((err) => console.error(err));
+        // fetch(
+        //     TMDB_MOVIE_BANNER_IMAGE_PREPEND +
+        //         movieEmbedID +
+        //         TMDB_MOVIE_IMAGE_TAG_APPEND,
+        //     tmdbOptions
+        // )
+        //     .then((response) => response.json())
+        //     .then((response) => {
+        //         setMovieBanner(
+        //             TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND +
+        //                 response["backdrops"][0]["file_path"]
+        //         );
+        //     })
+        //     .catch((err) => console.error(err));
 
-        // setTimeout(() => {
-        //     var movieTitle = document.getElementById("movieTitle");
-        //     if (movieTitle) {
-        //         movieTitle.scrollIntoView({ behavior: "smooth" });
-        //     }
-        // }, 200);
+        setTimeout(() => {
+            var movieTitle = document.getElementById("movieTitle");
+            if (movieTitle) {
+                movieTitle.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 200);
 
         setIsLoading(false);
     }
@@ -181,9 +182,7 @@ const MoviePage = () => {
                             <h3>Production Companies</h3>
                             <div className="movie-production-companies">
                                 {movieProductionCompanies.map((company) => (
-                                    <p key={company["id"]}>
-                                        {company["name"]}
-                                    </p>
+                                    <p key={company["id"]}>{company["name"]}</p>
                                 ))}
                             </div>
                         </div>
@@ -262,7 +261,11 @@ const MoviePage = () => {
             <div className="movie-banner-image-section">
                 <div
                     style={{
-                        backgroundImage: "url(" + movieBanner + ")",
+                        backgroundImage:
+                            "url(" +
+                            TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND +
+                            movieBackdropPath +
+                            ")",
                     }}
                     className="movie-banner-image hide-banner-on-mobile"
                 >
@@ -270,7 +273,9 @@ const MoviePage = () => {
                 </div>
                 <div className="movie-banner-image hide-banner-on-desktop movie-banner-gradient-mobile"></div>
                 <img
-                    src={movieBanner}
+                    src={
+                        TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND + movieBackdropPath
+                    }
                     alt="Movie Banner"
                     className="movie-banner-image hide-banner-on-desktop"
                 />
