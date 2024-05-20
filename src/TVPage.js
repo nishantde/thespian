@@ -24,17 +24,12 @@ const MoviePage = () => {
     const OMDB_TV_ADDITIONAL_DETAILS_PREPEND =
         "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var TV_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/tv/";
-    // const TMDB_MOVIE_BANNER_IMAGE_PREPEND =
-    //     "https://api.themoviedb.org/3/movie/";
-    // const TMDB_MOVIE_IMAGE_TAG_APPEND = "/images";
     const TMDB_TV_BANNER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/original";
 
     const location = useLocation();
 
-    var tvTMDBID = location.state?.tvTMDBID;
-    var movieIMDBID = location.state?.movieIMDBID;
-
+    var tvIMDBID = location.state?.tvIMDBID;
     var tvBackdropPath = location.state?.tvBackdropPath;
     var tvCreatedBy = location.state?.tvCreatedBy;
     var tvFirstAirDate = location.state?.tvFirstAirDate;
@@ -56,18 +51,9 @@ const MoviePage = () => {
             },
         };
 
-        // const tmdbOptions = {
-        //     method: "GET",
-        //     headers: {
-        //         accept: "application/json",
-        //         Authorization: "Bearer " + TMDB_API_READ_ACCESS_TOKEN,
-        //     },
-        // };
-
-        fetch(OMDB_TV_ADDITIONAL_DETAILS_PREPEND + movieIMDBID, options)
+        fetch(OMDB_TV_ADDITIONAL_DETAILS_PREPEND + tvIMDBID, options)
             .then((response) => response.json())
             .then((response) => {
-                // console.log(response);
                 setTVTitle(response["Title"]);
                 setTVRating(response["Rated"]);
                 setTVReleaseDate(response["Released"]);
@@ -79,29 +65,12 @@ const MoviePage = () => {
             })
             .catch((err) => console.error(err));
 
-        // fetch(
-        //     TMDB_MOVIE_BANNER_IMAGE_PREPEND +
-        //         movieIMDBID +
-        //         TMDB_MOVIE_IMAGE_TAG_APPEND,
-        //     tmdbOptions
-        // )
-        //     .then((response) => response.json())
-        //     .then((response) => {
-        //         setMovieBanner(
-        //             TMDB_TV_BANNER_IMAGE_PATH_PREPEND +
-        //                 response["backdrops"][0]["file_path"]
-        //         );
-        //     })
-        //     .catch((err) => console.error(err));
-
         setTimeout(() => {
             var tvTitle = document.getElementById("tvTitle");
             if (tvTitle) {
                 tvTitle.scrollIntoView({ behavior: "smooth" });
             }
         }, 200);
-
-        console.log(tvPlot);
 
         setIsLoading(false);
     }
@@ -118,7 +87,7 @@ const MoviePage = () => {
                     </div>
                     <p>
                         <a
-                            href={EXTERNAL_IMDB_LINK_PREPEND + movieIMDBID}
+                            href={EXTERNAL_IMDB_LINK_PREPEND + tvIMDBID}
                             className="movie-page-external-link"
                             target="blank_"
                             rel="noreferrer"
@@ -161,7 +130,12 @@ const MoviePage = () => {
                             <h3>Created By</h3>
                             <div className="tv-created-by-listing">
                                 {tvCreatedBy.map((creator) => (
-                                    <p className="creator-name" key={creator["id"]}>{creator["name"]}</p>
+                                    <p
+                                        className="creator-name"
+                                        key={creator["id"]}
+                                    >
+                                        {creator["name"]}
+                                    </p>
                                 ))}
                             </div>
                         </div>
@@ -253,14 +227,11 @@ const MoviePage = () => {
         );
     };
 
-    var movieEmbedSource = TV_EMBED_LINK_PREPEND + movieIMDBID + "/1/1";
-    console.log(movieEmbedSource);
+    var movieEmbedSource = TV_EMBED_LINK_PREPEND + tvIMDBID + "/1/1";
 
     useEffect(() => {
         setTimeout(() => {
             fetchMoreDetails();
-            /* Possibly to request again since fetch isn't returning responses the first time around */
-            // fetchMoreDetails();
         }, 1200);
         var tvTitle = document.getElementById("tvTitle");
         if (tvTitle) {
@@ -293,7 +264,7 @@ const MoviePage = () => {
             <div className="movie-page-content">
                 {isLoading ? (
                     <Loading />
-                ) : movieIMDBID ? (
+                ) : tvIMDBID ? (
                     <ValidMovieIDContent movieEmbedSource={movieEmbedSource} />
                 ) : (
                     <InvalidMovieIDContent />

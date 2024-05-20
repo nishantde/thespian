@@ -10,7 +10,7 @@ List of bugs/issues currently present and being looked at (this list will keep g
 - [x] Loading component not working as intended (was not showing up for initial search)
 - [ ] Custom font shenanigans (minor)
 - [ ] Video source shenanigans (minor)
-- [ ] All TV page details do not show up when visited via the 'Known for' section on an actor page
+- [x] All TV page details do not show up when visited via the 'Known for' section on an actor page
 
 To-do:
 - [x] Better loading animation

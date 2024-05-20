@@ -8,6 +8,7 @@ const Card = ({ movie }) => {
     const TMDB_TV_FETCH_INTERNAL_LINK_PREPEND =
         "https://api.themoviedb.org/3/find/";
     const TMDB_TV_FETCH_INTERNAL_LINK_APPEND = "?external_source=imdb_id";
+    const TMDB_TV_FETCH_EXTERNAL_LINK_APPEND = "/external_ids";
 
     var movieTitle, movieYear, moviePoster, titleType, imdbID;
     var tvFetchTMDBID;
@@ -37,6 +38,7 @@ const Card = ({ movie }) => {
     const [tvLastAirDate, setTVLastAirDate] = useState("");
     const [tvGenres, setTVGenres] = useState([]);
     const [tvTMDBID, setTVTMDBID] = useState("");
+    const [tvIMDBID, setTVIMDBID] = useState("");
     const [tvLanguages, setTVLanguages] = useState([]);
     const [tvNetworks, setTVNetworks] = useState([]);
     const [tvNumberOfEpisodes, setTVNumberOfEpisodes] = useState(0);
@@ -54,6 +56,12 @@ const Card = ({ movie }) => {
         imdbID = "default";
     }
 
+    if (titleType == "tv" || titleType == "series") {
+        if (imdbID.toString().slice(0, 2) == "tt") {
+            setTVIMDBID(imdbID);
+        }
+    }
+
     const [movieIMDBID, setMovieIMDBID] = useState(imdbID);
 
     var additionalDetailsFetchURL = TMDB_FETCH_LINK_PREPEND + movieIMDBID;
@@ -61,6 +69,7 @@ const Card = ({ movie }) => {
     const getAdditionalMovieDetails = () => {
         const TMDB_API_READ_ACCESS_TOKEN =
             process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
+
         const options = {
             method: "GET",
             headers: {
@@ -99,66 +108,86 @@ const Card = ({ movie }) => {
                 .catch((err) => console.error(err));
         } else if (titleType == "tv" || titleType == "series") {
             if (imdbID.toString().slice(0, 2) != "tt") {
-                fetch(TMDB_TV_FETCH_LINK_PREPEND + imdbID, options)
-                        .then((response) => response.json())
-                        .then((response) => {
-                            setTVBackdropPath(response["backdrop_path"]);
-                            setTVCreatedBy(response["created_by"]);
-                            setTVFirstAirDate(response["first_air_date"]);
-                            setTVLastAirDate(response["last_air_date"]);
-                            setTVGenres(response["genres"]);
-                            setTVLanguages(response["spoken_languages"]);
-                            setTVNetworks(response["networks"]);
-                            setTVNumberOfEpisodes(
-                                response["number_of_episodes"]
-                            );
-                            setTVNumberOfSeasons(response["number_of_seasons"]);
-                            setTVOverview(response["overview"]);
-                            setTVProductionCompanies(
-                                response["production_companies"]
-                            );
-                            setTVSeasons(response["seasons"]);
-                            setTVTMDBRating(response["vote_average"]);
-                        })
-                        .catch((err) => console.error(err));
-            }
-            else {
-            fetch(
-                TMDB_TV_FETCH_INTERNAL_LINK_PREPEND +
-                    imdbID +
-                    TMDB_TV_FETCH_INTERNAL_LINK_APPEND,
-                options
-            )
-                .then((response) => response.json())
-                .then((response) => {
-                    tvFetchTMDBID = response["tv_results"][0]["id"].toString();
-                    setTVTMDBID(tvFetchTMDBID);
-                })
-                .then(() => {
-                    fetch(TMDB_TV_FETCH_LINK_PREPEND + tvFetchTMDBID, options)
-                        .then((response) => response.json())
-                        .then((response) => {
-                            setTVBackdropPath(response["backdrop_path"]);
-                            setTVCreatedBy(response["created_by"]);
-                            setTVFirstAirDate(response["first_air_date"]);
-                            setTVLastAirDate(response["last_air_date"]);
-                            setTVGenres(response["genres"]);
-                            setTVLanguages(response["spoken_languages"]);
-                            setTVNetworks(response["networks"]);
-                            setTVNumberOfEpisodes(
-                                response["number_of_episodes"]
-                            );
-                            setTVNumberOfSeasons(response["number_of_seasons"]);
-                            setTVOverview(response["overview"]);
-                            setTVProductionCompanies(
-                                response["production_companies"]
-                            );
-                            setTVSeasons(response["seasons"]);
-                            setTVTMDBRating(response["vote_average"]);
-                        })
-                        .catch((err) => console.error(err));
-                })
-                .catch((err) => console.error(err));
+                fetch(
+                    TMDB_TV_FETCH_LINK_PREPEND +
+                        imdbID +
+                        TMDB_TV_FETCH_EXTERNAL_LINK_APPEND,
+                    options
+                )
+                    .then((response) => response.json())
+                    .then((response) => {
+                        setTVIMDBID(response["imdb_id"].toString());
+                    })
+                    .then(() => {
+                        fetch(TMDB_TV_FETCH_LINK_PREPEND + imdbID, options)
+                            .then((response) => response.json())
+                            .then((response) => {
+                                setTVBackdropPath(response["backdrop_path"]);
+                                setTVCreatedBy(response["created_by"]);
+                                setTVFirstAirDate(response["first_air_date"]);
+                                setTVLastAirDate(response["last_air_date"]);
+                                setTVGenres(response["genres"]);
+                                setTVLanguages(response["spoken_languages"]);
+                                setTVNetworks(response["networks"]);
+                                setTVNumberOfEpisodes(
+                                    response["number_of_episodes"]
+                                );
+                                setTVNumberOfSeasons(
+                                    response["number_of_seasons"]
+                                );
+                                setTVOverview(response["overview"]);
+                                setTVProductionCompanies(
+                                    response["production_companies"]
+                                );
+                                setTVSeasons(response["seasons"]);
+                                setTVTMDBRating(response["vote_average"]);
+                            })
+                            .catch((err) => console.error(err));
+                    })
+                    .catch((err) => console.error(err));
+            } else {
+                fetch(
+                    TMDB_TV_FETCH_INTERNAL_LINK_PREPEND +
+                        imdbID +
+                        TMDB_TV_FETCH_INTERNAL_LINK_APPEND,
+                    options
+                )
+                    .then((response) => response.json())
+                    .then((response) => {
+                        tvFetchTMDBID =
+                            response["tv_results"][0]["id"].toString();
+                        setTVTMDBID(tvFetchTMDBID);
+                    })
+                    .then(() => {
+                        fetch(
+                            TMDB_TV_FETCH_LINK_PREPEND + tvFetchTMDBID,
+                            options
+                        )
+                            .then((response) => response.json())
+                            .then((response) => {
+                                setTVBackdropPath(response["backdrop_path"]);
+                                setTVCreatedBy(response["created_by"]);
+                                setTVFirstAirDate(response["first_air_date"]);
+                                setTVLastAirDate(response["last_air_date"]);
+                                setTVGenres(response["genres"]);
+                                setTVLanguages(response["spoken_languages"]);
+                                setTVNetworks(response["networks"]);
+                                setTVNumberOfEpisodes(
+                                    response["number_of_episodes"]
+                                );
+                                setTVNumberOfSeasons(
+                                    response["number_of_seasons"]
+                                );
+                                setTVOverview(response["overview"]);
+                                setTVProductionCompanies(
+                                    response["production_companies"]
+                                );
+                                setTVSeasons(response["seasons"]);
+                                setTVTMDBRating(response["vote_average"]);
+                            })
+                            .catch((err) => console.error(err));
+                    })
+                    .catch((err) => console.error(err));
             }
         }
     };
@@ -276,7 +305,7 @@ const Card = ({ movie }) => {
                                                 tvProductionCompanies:
                                                     tvProductionCompanies,
                                                 tvSeasons: tvSeasons,
-                                                movieIMDBID: movieIMDBID,
+                                                tvIMDBID: tvIMDBID,
                                             }}
                                             className="webpage-link"
                                         >
