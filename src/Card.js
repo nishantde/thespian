@@ -32,6 +32,7 @@ const Card = ({ movie }) => {
 
     /* TV details */
     const [tvBackdropPath, setTVBackdropPath] = useState("");
+    const [tvCreatedBy, setTVCreatedBy] = useState([]);
     const [tvFirstAirDate, setTVFirstAirDate] = useState("");
     const [tvLastAirDate, setTVLastAirDate] = useState("");
     const [tvGenres, setTVGenres] = useState([]);
@@ -97,41 +98,71 @@ const Card = ({ movie }) => {
                 })
                 .catch((err) => console.error(err));
         } else if (titleType == "tv" || titleType == "series") {
-            fetch(
-                TMDB_TV_FETCH_INTERNAL_LINK_PREPEND +
-                    imdbID +
-                    TMDB_TV_FETCH_INTERNAL_LINK_APPEND,
-                options
-            )
-                .then((response) => response.json())
-                .then((response) => {
-                    tvFetchTMDBID = response["tv_results"][0]["id"].toString();
-                    setTVTMDBID(tvFetchTMDBID);
-                })
-                .then(() => {
-                    fetch(TMDB_TV_FETCH_LINK_PREPEND + tvFetchTMDBID, options)
-                        .then((response) => response.json())
-                        .then((response) => {
-                            setTVBackdropPath(response["backdrop_path"]);
-                            setTVFirstAirDate(response["first_air_date"]);
-                            setTVLastAirDate(response["last_air_date"]);
-                            setTVGenres(response["genres"]);
-                            setTVLanguages(response["spoken_languages"]);
-                            setTVNetworks(response["networks"]);
-                            setTVNumberOfEpisodes(
-                                response["number_of_episodes"]
-                            );
-                            setTVNumberOfSeasons(response["number_of_seasons"]);
-                            setTVOverview(response["overview"]);
-                            setTVProductionCompanies(
-                                response["production_companies"]
-                            );
-                            setTVSeasons(response["seasons"]);
-                            setTVTMDBRating(response["vote_average"]);
-                        })
-                        .catch((err) => console.error(err));
-                })
-                .catch((err) => console.error(err));
+            if (imdbID.toString().slice(0, 2) != "tt") {
+                fetch(TMDB_TV_FETCH_LINK_PREPEND + movieIMDBID, options)
+                    .then((response) => response.json())
+                    .then((response) => {
+                        setTVBackdropPath(response["backdrop_path"]);
+                        setTVCreatedBy(response["created_by"]);
+                        setTVFirstAirDate(response["first_air_date"]);
+                        setTVLastAirDate(response["last_air_date"]);
+                        setTVGenres(response["genres"]);
+                        setTVLanguages(response["spoken_languages"]);
+                        setTVNetworks(response["networks"]);
+                        setTVNumberOfEpisodes(response["number_of_episodes"]);
+                        setTVNumberOfSeasons(response["number_of_seasons"]);
+                        setTVOverview(response["overview"]);
+                        setTVProductionCompanies(
+                            response["production_companies"]
+                        );
+                        setTVSeasons(response["seasons"]);
+                        setTVTMDBRating(response["vote_average"]);
+                    })
+                    .catch((err) => console.error(err));
+            } else {
+                fetch(
+                    TMDB_TV_FETCH_INTERNAL_LINK_PREPEND +
+                        imdbID +
+                        TMDB_TV_FETCH_INTERNAL_LINK_APPEND,
+                    options
+                )
+                    .then((response) => response.json())
+                    .then((response) => {
+                        tvFetchTMDBID =
+                            response["tv_results"][0]["id"].toString();
+                        setTVTMDBID(tvFetchTMDBID);
+                    })
+                    .then(() => {
+                        fetch(
+                            TMDB_TV_FETCH_LINK_PREPEND + tvFetchTMDBID,
+                            options
+                        )
+                            .then((response) => response.json())
+                            .then((response) => {
+                                setTVBackdropPath(response["backdrop_path"]);
+                                setTVCreatedBy(response["created_by"]);
+                                setTVFirstAirDate(response["first_air_date"]);
+                                setTVLastAirDate(response["last_air_date"]);
+                                setTVGenres(response["genres"]);
+                                setTVLanguages(response["spoken_languages"]);
+                                setTVNetworks(response["networks"]);
+                                setTVNumberOfEpisodes(
+                                    response["number_of_episodes"]
+                                );
+                                setTVNumberOfSeasons(
+                                    response["number_of_seasons"]
+                                );
+                                setTVOverview(response["overview"]);
+                                setTVProductionCompanies(
+                                    response["production_companies"]
+                                );
+                                setTVSeasons(response["seasons"]);
+                                setTVTMDBRating(response["vote_average"]);
+                            })
+                            .catch((err) => console.error(err));
+                    })
+                    .catch((err) => console.error(err));
+            }
         }
     };
 
@@ -234,6 +265,7 @@ const Card = ({ movie }) => {
                                             to={"/tv"}
                                             state={{
                                                 tvBackdropPath: tvBackdropPath,
+                                                tvCreatedBy: tvCreatedBy,
                                                 tvFirstAirDate: tvFirstAirDate,
                                                 tvLastAirDate: tvLastAirDate,
                                                 tvGenres: tvGenres,

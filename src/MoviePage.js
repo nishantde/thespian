@@ -22,7 +22,7 @@ const MoviePage = () => {
     const [moviePlot, setMoviePlot] = useState("");
     const [movieAwards, setMovieAwards] = useState("N/A");
     const [movieIMDBRating, setMovieIMDBRating] = useState("N/A");
-    const [movieBanner, setMovieBanner] = useState("");
+    // const [movieBanner, setMovieBanner] = useState("");
 
     const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =

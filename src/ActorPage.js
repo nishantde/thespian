@@ -64,8 +64,10 @@ const ActorPage = () => {
 
         actorKnownMovies.map((element) => {
             actorKnownMoviesList.push({
-                Title: element["title"],
-                Year: element["release_date"].slice(0, 4),
+                Title: element["title"] ? element["title"] : element["name"],
+                Year: element["release_date"]
+                    ? element["release_date"].slice(0, 4)
+                    : element["first_air_date"].slice(0, 4),
                 Poster:
                     TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
                     element["poster_path"],
