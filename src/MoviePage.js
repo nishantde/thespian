@@ -8,8 +8,6 @@ import Loading from "./Loading";
 
 const MoviePage = () => {
     var OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-    // const TMDB_API_READ_ACCESS_TOKEN =
-    //     process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -22,15 +20,11 @@ const MoviePage = () => {
     const [moviePlot, setMoviePlot] = useState("");
     const [movieAwards, setMovieAwards] = useState("N/A");
     const [movieIMDBRating, setMovieIMDBRating] = useState("N/A");
-    // const [movieBanner, setMovieBanner] = useState("");
 
     const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
     const OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND =
         "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&i=";
     var MOVIE_EMBED_LINK_PREPEND = "https://vidsrc.to/embed/movie/";
-    // const TMDB_MOVIE_BANNER_IMAGE_PREPEND =
-    //     "https://api.themoviedb.org/3/movie/";
-    // const TMDB_MOVIE_IMAGE_TAG_APPEND = "/images";
     const TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/original";
 
@@ -53,14 +47,6 @@ const MoviePage = () => {
             },
         };
 
-        // const tmdbOptions = {
-        //     method: "GET",
-        //     headers: {
-        //         accept: "application/json",
-        //         Authorization: "Bearer " + TMDB_API_READ_ACCESS_TOKEN,
-        //     },
-        // };
-
         fetch(OMDB_MOVIE_ADDITIONAL_DETAILS_PREPEND + movieEmbedID, options)
             .then((response) => response.json())
             .then((response) => {
@@ -75,21 +61,6 @@ const MoviePage = () => {
                 setMovieIMDBRating(response["Ratings"][0]["Value"]);
             })
             .catch((err) => console.error(err));
-
-        // fetch(
-        //     TMDB_MOVIE_BANNER_IMAGE_PREPEND +
-        //         movieEmbedID +
-        //         TMDB_MOVIE_IMAGE_TAG_APPEND,
-        //     tmdbOptions
-        // )
-        //     .then((response) => response.json())
-        //     .then((response) => {
-        //         setMovieBanner(
-        //             TMDB_MOVIE_BANNER_IMAGE_PATH_PREPEND +
-        //                 response["backdrops"][0]["file_path"]
-        //         );
-        //     })
-        //     .catch((err) => console.error(err));
 
         setTimeout(() => {
             var movieTitle = document.getElementById("movieTitle");

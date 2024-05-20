@@ -10,18 +10,9 @@ const ActorPage = () => {
     const [actorName, setActorName] = useState("");
     const [actorBiography, setActorBiography] = useState("");
     const [actorBirthday, setActorBirthday] = useState("");
-    // const [actorGender, setActorGender] = useState(0);
     const [actorKnownDepartment, setActorKnownDepartment] = useState("");
     const [actorBirthplace, setActorBirthplace] = useState("");
     const [actorPageKnownMovies, setActorPageKnownMovies] = useState([]);
-
-    // var actorKnownMovie = {
-    //     Title: "",
-    //     Year: "",
-    //     Poster: "",
-    //     Type: "",
-    //     imdbID: "",
-    // };
 
     var actorKnownMoviesList = [];
 
@@ -40,27 +31,8 @@ const ActorPage = () => {
     const TMDB_ACTOR_PAGE_DETAILS_PREPEND =
         "https://api.themoviedb.org/3/person/";
 
-    // console.log('Known movies: ', actorKnownMovies);
-
     async function getActorDetails() {
         setIsActorPageLoading(true);
-
-        // for (let i = 0; i < actorKnownMovies.length; i++) {
-        //     console.log('Known movie ', i, ': ', actorKnownMovies[i]);
-        //     actorKnownMovie["Title"] = actorKnownMovies[i]["title"];
-        //     actorKnownMovie["Year"] = actorKnownMovies[i]["release_date"].slice(
-        //         0,
-        //         4
-        //     );
-        //     actorKnownMovie["Poster"] =
-        //         TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
-        //         actorKnownMovies[i]["poster_path"];
-        //     actorKnownMovie["Type"] = actorKnownMovies[i]["media_type"];
-        //     actorKnownMovie["imdbID"] = actorKnownMovies[i]["id"].toString();
-        //     if (!actorKnownMoviesList.includes(actorKnownMovie)) {
-        //         actorKnownMoviesList.push(actorKnownMovie);
-        //     }
-        // }
 
         actorKnownMovies.map((element) => {
             actorKnownMoviesList.push({
@@ -75,8 +47,6 @@ const ActorPage = () => {
                 imdbID: element["id"],
             });
         });
-
-        console.log(actorKnownMoviesList);
 
         setActorPageKnownMovies(actorKnownMoviesList);
 
@@ -94,14 +64,12 @@ const ActorPage = () => {
                 setActorName(response["name"]);
                 setActorBiography(response["biography"]);
                 setActorBirthday(response["birthday"]);
-                // setActorGender(actorGenderDictionary[response["gender"]]);
                 setActorKnownDepartment(response["known_for_department"]);
                 setActorBirthplace(response["place_of_birth"]);
             })
             .catch((error) => console.error(error));
 
         setIsActorPageLoading(false);
-        // console.log(actorPageKnownMovies);
     }
 
     useEffect(() => {
