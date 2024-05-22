@@ -10,16 +10,18 @@ List of bugs/issues currently present and being looked at (this list will keep g
 - [x] Loading component not working as intended (was not showing up for initial search)
 - [ ] Custom font shenanigans (minor)
 - [ ] Video source shenanigans (minor)
-- [x] All TV page details do not show up when visited via the 'Known for' section on an actor page
+- [x] All TV page details do not show up when visited via the 'Known for' section on an actor page (was working initially but then gave error of too many re-renders)
+- [ ] The input bar for the TV season and episode selectors do not reflect accurately on initial load when the season/episode is selected, though the media player does update accordingly
 
 To-do:
 - [x] Better loading animation
 - [x] TV details shown on cards
 - [ ] Other title types (might hide result - depending on available information)
-- [ ] Interactive TV show streaming (currently this is preliminary - only shows the pilot episode)
+- [x] Interactive TV show streaming (currently this is preliminary - only shows the pilot episode)
 - [x] Pagination
 - [x] Implement TV titles in the 'Known for' section
 - [ ] Different loading styling for different elements
+- [ ] Better styling of the interactive TV season and episode selector elements
 - [ ] User accounts (future update)
 
 Pages to finish:
@@ -28,7 +30,7 @@ Pages to finish:
 - [x] Movie Streaming Page
 - [x] TV Streaming Page
 - [ ] About Page
-- [ ] Privacy Policy
+- [ ] Privacy Policy Page
 
 To work on a local copy of the project 
 

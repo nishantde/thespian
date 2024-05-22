@@ -11,7 +11,7 @@ const Card = ({ movie }) => {
     const TMDB_TV_FETCH_EXTERNAL_LINK_APPEND = "/external_ids";
 
     var movieTitle, movieYear, moviePoster, titleType, imdbID;
-    var tvFetchTMDBID;
+    var tvFetchTMDBID, tvFetchIMDBID;
 
     movieTitle = movie["Title"];
     movieYear = movie["Year"];
@@ -58,7 +58,7 @@ const Card = ({ movie }) => {
 
     if (titleType == "tv" || titleType == "series") {
         if (imdbID.toString().slice(0, 2) == "tt") {
-            setTVIMDBID(imdbID);
+            tvFetchIMDBID = imdbID;
         }
     }
 
@@ -116,12 +116,13 @@ const Card = ({ movie }) => {
                 )
                     .then((response) => response.json())
                     .then((response) => {
-                        setTVIMDBID(response["imdb_id"].toString());
+                        tvFetchIMDBID = response["imdb_id"].toString();
                     })
                     .then(() => {
                         fetch(TMDB_TV_FETCH_LINK_PREPEND + imdbID, options)
                             .then((response) => response.json())
                             .then((response) => {
+                                setTVIMDBID(tvFetchIMDBID);
                                 setTVBackdropPath(response["backdrop_path"]);
                                 setTVCreatedBy(response["created_by"]);
                                 setTVFirstAirDate(response["first_air_date"]);
@@ -146,6 +147,7 @@ const Card = ({ movie }) => {
                     })
                     .catch((err) => console.error(err));
             } else {
+                tvFetchIMDBID = imdbID;
                 fetch(
                     TMDB_TV_FETCH_INTERNAL_LINK_PREPEND +
                         imdbID +
@@ -156,7 +158,7 @@ const Card = ({ movie }) => {
                     .then((response) => {
                         tvFetchTMDBID =
                             response["tv_results"][0]["id"].toString();
-                        setTVTMDBID(tvFetchTMDBID);
+                        // setTVTMDBID(tvFetchTMDBID);
                     })
                     .then(() => {
                         fetch(
@@ -165,6 +167,7 @@ const Card = ({ movie }) => {
                         )
                             .then((response) => response.json())
                             .then((response) => {
+                                setTVIMDBID(imdbID);
                                 setTVBackdropPath(response["backdrop_path"]);
                                 setTVCreatedBy(response["created_by"]);
                                 setTVFirstAirDate(response["first_air_date"]);

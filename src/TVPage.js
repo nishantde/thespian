@@ -19,6 +19,9 @@ const MoviePage = () => {
     const [tvPlot, setTVPlot] = useState("");
     const [tvAwards, setTVAwards] = useState("N/A");
     const [tvIMDBRating, setTVIMDBRating] = useState("N/A");
+    const [currentSeasonNumber, setCurrentSeasonNumber] = useState(1);
+    const [currentEpisodeNumber, setCurrentEpisodeNumber] = useState(1);
+    const [seasonEpisodeMapState, setSeasonEpisodeMapState] = useState({});
 
     const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
     const OMDB_TV_ADDITIONAL_DETAILS_PREPEND =
@@ -42,6 +45,21 @@ const MoviePage = () => {
     var tvProductionCompanies = location.state?.tvProductionCompanies;
     var tvLanguages = location.state?.tvLanguages;
 
+    var seasonEpisodeMap = {};
+    var newArray = [];
+
+    // function mapSeasonsAndEpisodes(array, key) {
+    //     array.map((arrayElement) => {
+    //         for (let i = 0; i < arrayElement[key]; i++) {
+    //             newArray.push(i + 1);
+    //         }
+    //         seasonEpisodeMap[arrayElement["season_number"]] = newArray;
+    //         newArray = [];
+    //     });
+
+    //     console.log(seasonEpisodeMap);
+    // }
+
     function fetchMoreDetails() {
         setIsLoading(true);
         const options = {
@@ -50,6 +68,17 @@ const MoviePage = () => {
                 accept: "application/json",
             },
         };
+
+        tvSeasons.map((arrayElement) => {
+            for (let i = 0; i < arrayElement["episode_count"]; i++) {
+                newArray.push(i + 1);
+            }
+            seasonEpisodeMap[arrayElement["season_number"]] = newArray;
+            newArray = [];
+        });
+        setSeasonEpisodeMapState(seasonEpisodeMap);
+
+        console.log(seasonEpisodeMap);
 
         fetch(OMDB_TV_ADDITIONAL_DETAILS_PREPEND + tvIMDBID, options)
             .then((response) => response.json())
@@ -195,19 +224,124 @@ const MoviePage = () => {
         );
     };
 
-    const ValidMovieIDContent = ({ movieEmbedSource }) => {
+    function TVStreamingContent({ tvID, seasonNumber, episodeNumber }) {
+        return (
+            <div className="movie-content">
+                <embed
+                    className="movie-page-view-video"
+                    src={
+                        TV_EMBED_LINK_PREPEND +
+                        tvID +
+                        "/" +
+                        seasonNumber +
+                        "/" +
+                        episodeNumber
+                    }
+                    type="video/webm"
+                />
+            </div>
+        );
+    }
+
+    const ValidMovieIDContent = () => {
         return (
             <div>
                 <div className="movie-page-details">
                     <MoreDetails />
                 </div>
-                <div className="movie-content">
+                <div className="tv-season-episode-selector">
+                    <select
+                        id="tvSeasonSelector"
+                        onChange={(e) => {
+                            e.preventDefault();
+                            setCurrentSeasonNumber(e.target.value);
+                            setCurrentEpisodeNumber(1);
+                            TVStreamingContent(
+                                tvIMDBID,
+                                e.target.value,
+                                currentEpisodeNumber
+                            );
+                        }}
+                    >
+                        {tvSeasons.map((tvSeason) => (
+                            <option
+                                key={tvSeason["id"]}
+                                value={tvSeason["season_number"]}
+                                selected={
+                                    tvSeason["season_number"] ==
+                                    currentSeasonNumber
+                                }
+                            >
+                                {tvSeason["season_number"]}
+                            </option>
+                        ))}
+                    </select>
+                    <select
+                        id="tvEpisodeSelector"
+                        onChange={(e) => {
+                            e.preventDefault();
+                            setCurrentEpisodeNumber(e.target.value);
+                            TVStreamingContent(
+                                tvIMDBID,
+                                currentSeasonNumber,
+                                currentEpisodeNumber
+                            );
+                        }}
+                    >
+                        {seasonEpisodeMapState[currentSeasonNumber].map(
+                            (currentEpisode) => (
+                                <option
+                                    key={currentEpisode}
+                                    value={currentEpisode}
+                                    selected={(e) => {
+                                        return (
+                                            currentEpisode ==
+                                            currentEpisodeNumber
+                                        );
+                                    }}
+                                >
+                                    {currentEpisode}
+                                </option>
+                            )
+                        )}
+                    </select>
+                    {/* {tvSeasons.map((tvSeason) => (
+                        <input
+                            key={tvSeason["id"]}
+                            type="number"
+                            placeholder={"1 - " + tvSeason["episode_count"]}
+                            min={"1"}
+                            max={tvSeason["episode_count"].toString()}
+                            value={currentEpisodeNumber}
+                            onChange={(e) =>
+                                setCurrentEpisodeNumber(e.target.value)
+                            }
+                        />
+                    ))} */}
+                    <button
+                        onClick={() =>
+                            TVStreamingContent(
+                                tvIMDBID,
+                                currentSeasonNumber,
+                                currentEpisodeNumber
+                            )
+                        }
+                    >
+                        Go
+                    </button>
+                </div>
+                <TVStreamingContent
+                    tvID={tvIMDBID}
+                    seasonNumber={currentSeasonNumber}
+                    episodeNumber={currentEpisodeNumber}
+                />
+                {/* <div className="movie-content">
                     <embed
                         className="movie-page-view-video"
                         src={movieEmbedSource}
                         type="video/webm"
                     />
-                </div>
+                </div> */}
                 <div className="movie-load-warning">
                     <p>
                         All titles might not be available. However, if the video
