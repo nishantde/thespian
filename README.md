@@ -9,9 +9,9 @@ Not all titles are available to watch at the moment, currently being limited at 
 List of bugs/issues currently present and being looked at (this list will keep getting updated as more bugs pop up):
 - [x] Loading component not working as intended (was not showing up for initial search)
 - [ ] Custom font shenanigans (minor)
-- [ ] Video source shenanigans (minor)
+- [x] Video source shenanigans (minor)
 - [x] All TV page details do not show up when visited via the 'Known for' section on an actor page (was working initially but then gave error of too many re-renders)
-- [ ] The input bar for the TV season and episode selectors do not reflect accurately on initial load when the season/episode is selected, though the media player does update accordingly
+- [x] The input bar for the TV season and episode selectors do not reflect accurately, though the media player does update accordingly (on initial load when the episode is selected, the dropdown defaulted to the number set through the code but did not reflect until the episode selected was clicked again)
 
 To-do:
 - [x] Better loading animation
@@ -22,6 +22,7 @@ To-do:
 - [x] Implement TV titles in the 'Known for' section
 - [ ] Different loading styling for different elements
 - [ ] Better styling of the interactive TV season and episode selector elements
+- [ ] Full-screen playback of video player
 - [ ] User accounts (future update)
 
 Pages to finish:
@@ -31,6 +32,7 @@ Pages to finish:
 - [x] TV Streaming Page
 - [ ] About Page
 - [ ] Privacy Policy Page
+- [ ] Genre Page (future update)
 
 To work on a local copy of the project 
 
