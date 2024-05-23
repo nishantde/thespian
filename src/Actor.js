@@ -52,7 +52,7 @@ const Actors = ({ movieActor }) => {
     if (isActorSectionLoading) {
         return (
             <div className="movie-actor">
-                <Loading />;
+                <Loading />
             </div>
         );
     } else {

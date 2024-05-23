@@ -1,3 +1,11 @@
+.page-icon {
+    display: inline-block;
+    width: 1rem;
+    filter: invert(100%);
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
 .tv-season-episode-selector {
     display: flex;
     flex-direction: row;

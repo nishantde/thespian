@@ -3,6 +3,19 @@ import { useLocation } from "react-router-dom";
 import "./TVPage.css";
 import { useEffect, useState } from "react";
 
+import actorIcon from "./assets/icons/icon-actors.png";
+import awardsIcon from "./assets/icons/icon-awards.png";
+import companiesIcon from "./assets/icons/icon-companies.png";
+import directorIcon from "./assets/icons/icon-director.png";
+import episodesIcon from "./assets/icons/icon-episodes.png";
+import genresIcon from "./assets/icons/icon-genres.png";
+import imdbIcon from "./assets/icons/icon-imdb.png";
+import languagesIcon from "./assets/icons/icon-languages.png";
+import ratingIcon from "./assets/icons/icon-rating.png";
+import releaseDateIcon from "./assets/icons/icon-release-date.png";
+import runtimeIcon from "./assets/icons/icon-runtime.png";
+import seasonsIcon from "./assets/icons/icon-seasons.png";
+
 import Actor from "./Actor";
 import Loading from "./Loading";
 
@@ -99,6 +112,11 @@ const MoviePage = () => {
                     <div className="movie-title-and-imdb-rating-section">
                         <h1 id="tvTitle">{tvTitle}</h1>
                         <p className="movie-imdb-rating">
+                            <img
+                                src={imdbIcon}
+                                className="page-icon"
+                                alt="IMDB Icon"
+                            />
                             <span>&#10030; {tvIMDBRating}</span>
                         </p>
                     </div>
@@ -118,20 +136,48 @@ const MoviePage = () => {
                         <p className="movie-plot-section">{tvPlot}</p>
                         <div className="movie-details-subsection">
                             <div className="movie-parental-rating-section">
-                                <h3>Rated</h3>
+                                <h3>
+                                    <img
+                                        src={ratingIcon}
+                                        className="page-icon"
+                                        alt="Rating Icon"
+                                    />{" "}
+                                    Rated
+                                </h3>
                                 <p>{tvRating}</p>
                             </div>
                             <div className="movie-release-date-section">
-                                <h3>Release Date</h3>
+                                <h3>
+                                    <img
+                                        src={releaseDateIcon}
+                                        className="page-icon"
+                                        alt="Release Date Icon"
+                                    />
+                                    Release Date
+                                </h3>
                                 <p>{tvReleaseDate}</p>
                             </div>
                             <div className="movie-runtime-section">
-                                <h3>Episode Runtime</h3>
+                                <h3>
+                                    <img
+                                        src={runtimeIcon}
+                                        className="page-icon"
+                                        alt="Runtime Icon"
+                                    />
+                                    Episode Runtime
+                                </h3>
                                 <p>{tvEpisodeRuntime}</p>
                             </div>
                         </div>
                         <div className="movie-genre-section">
-                            <h3>Genres</h3>
+                            <h3>
+                                <img
+                                    src={genresIcon}
+                                    className="page-icon"
+                                    alt="Genres Icon"
+                                />
+                                Genres
+                            </h3>
                             <p className="movie-genre-listing">
                                 {tvGenres.map((genre) => (
                                     <span
@@ -144,7 +190,14 @@ const MoviePage = () => {
                             </p>
                         </div>
                         <div className="movie-director-section">
-                            <h3>Created By</h3>
+                            <h3>
+                                <img
+                                    src={directorIcon}
+                                    className="page-icon"
+                                    alt="Director Icon"
+                                />
+                                Created By
+                            </h3>
                             <div className="tv-created-by-listing">
                                 {tvCreatedBy.map((creator) => (
                                     <p
@@ -157,7 +210,14 @@ const MoviePage = () => {
                             </div>
                         </div>
                         <div className="movie-actor-section">
-                            <h3>Actors</h3>
+                            <h3>
+                                <img
+                                    src={actorIcon}
+                                    className="page-icon"
+                                    alt="Actors Icon"
+                                />
+                                Actors
+                            </h3>
                             <div className="movie-actor-listing">
                                 {tvActors.map((actor) => (
                                     <Actor movieActor={actor} key={actor} />
@@ -167,19 +227,47 @@ const MoviePage = () => {
                     </div>
                     <div className="movie-details-other-flex-two">
                         <div className="movie-awards-section">
-                            <h3>Awards</h3>
+                            <h3>
+                                <img
+                                    src={awardsIcon}
+                                    className="page-icon"
+                                    alt="Awards Icon"
+                                />
+                                Awards
+                            </h3>
                             <p>{tvAwards}</p>
                         </div>
                         <div className="movie-budget-section">
-                            <h3>Number of Seasons</h3>
+                            <h3>
+                                <img
+                                    src={seasonsIcon}
+                                    className="page-icon"
+                                    alt="TV Seasons Icon"
+                                />
+                                Number of Seasons
+                            </h3>
                             <p>{tvNumberOfSeasons}</p>
                         </div>
                         <div className="movie-revenue-section">
-                            <h3>Number of Episodes</h3>
+                            <h3>
+                                <img
+                                    src={episodesIcon}
+                                    className="page-icon"
+                                    alt="TV Episodes Icon"
+                                />
+                                Number of Episodes
+                            </h3>
                             <p>{tvNumberOfEpisodes}</p>
                         </div>
                         <div className="movie-production-companies-section">
-                            <h3>Production Companies</h3>
+                            <h3>
+                                <img
+                                    src={companiesIcon}
+                                    className="page-icon"
+                                    alt="Companies Icon"
+                                />
+                                Production Companies
+                            </h3>
                             <div className="movie-production-companies">
                                 {tvProductionCompanies.map((company) => (
                                     <p key={company["id"]}>{company["name"]}</p>
@@ -187,7 +275,14 @@ const MoviePage = () => {
                             </div>
                         </div>
                         <div className="movie-languages-section">
-                            <h3>Languages</h3>
+                            <h3>
+                                <img
+                                    src={languagesIcon}
+                                    className="page-icon"
+                                    alt="Languages Icon"
+                                />
+                                Languages
+                            </h3>
                             <div className="movie-languages">
                                 {tvLanguages.map((language) => (
                                     <p key={language["iso_639_1"]}>
@@ -302,7 +397,8 @@ const MoviePage = () => {
                             </p>
                         ) : (
                             <p className="tv-season-overview no-overview">
-                                No overview available for season {currentSeasonNumber}
+                                No overview available for season{" "}
+                                {currentSeasonNumber}
                             </p>
                         )}
                     </div>
