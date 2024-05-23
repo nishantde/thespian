@@ -28,6 +28,22 @@
     margin: 1rem 0;
 }
 
+.tv-season-overview-section {
+    display: block;
+    margin: 3rem auto;
+    width: 100%;
+    max-width: 600px;
+    line-height: 1.4;
+}
+
+.tv-season-prefix-span {
+    font-weight: bold;
+}
+
+.no-overview {
+    text-align: center;
+}
+
 @media only screen and (max-width: 520px) {
     .tv-season-episode-selector {
         flex-direction: column;

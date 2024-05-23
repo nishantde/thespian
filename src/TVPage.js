@@ -22,6 +22,7 @@ const MoviePage = () => {
     const [currentSeasonNumber, setCurrentSeasonNumber] = useState(1);
     const [currentEpisodeNumber, setCurrentEpisodeNumber] = useState(1);
     const [seasonEpisodeMapState, setSeasonEpisodeMapState] = useState({});
+    const [currentSeasonOverview, setCurrentSeasonOverview] = useState("");
 
     const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
     const OMDB_TV_ADDITIONAL_DETAILS_PREPEND =
@@ -65,6 +66,7 @@ const MoviePage = () => {
             newArray = [];
         });
         setSeasonEpisodeMapState(seasonEpisodeMap);
+        setCurrentSeasonOverview(tvSeasons[currentSeasonNumber]["overview"]);
 
         fetch(OMDB_TV_ADDITIONAL_DETAILS_PREPEND + tvIMDBID, options)
             .then((response) => response.json())
@@ -244,6 +246,9 @@ const MoviePage = () => {
                                 e.preventDefault();
                                 setCurrentSeasonNumber(e.target.value);
                                 setCurrentEpisodeNumber(1);
+                                setCurrentSeasonOverview(
+                                    tvSeasons[e.target.value]["overview"]
+                                );
                             }}
                         >
                             {tvSeasons.map((tvSeason) => (
@@ -284,6 +289,22 @@ const MoviePage = () => {
                                 )
                             )}
                         </select>
+                    </div>
+                </div>
+                <div className="tv-season-overview-section">
+                    <div>
+                        {currentSeasonOverview ? (
+                            <p className="tv-season-overview">
+                                <span className="tv-season-prefix-span">
+                                    Season {currentSeasonNumber} Synopsis:
+                                </span>
+                                {" " + currentSeasonOverview}
+                            </p>
+                        ) : (
+                            <p className="tv-season-overview no-overview">
+                                No overview available for season {currentSeasonNumber}
+                            </p>
+                        )}
                     </div>
                 </div>
                 <TVStreamingContent
