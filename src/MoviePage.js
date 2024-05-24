@@ -76,9 +76,9 @@ const MoviePage = () => {
             .catch((err) => console.error(err));
 
         setTimeout(() => {
-            var movieTitle = document.getElementById("movieTitle");
-            if (movieTitle) {
-                movieTitle.scrollIntoView({ behavior: "smooth" });
+            var moviePageBanner = document.getElementById("moviePageBanner");
+            if (moviePageBanner) {
+                moviePageBanner.scrollIntoView({ behavior: "smooth" });
             }
         }, 200);
 
@@ -316,15 +316,15 @@ const MoviePage = () => {
         setTimeout(() => {
             fetchMoreDetails();
         }, 1200);
-        var movieTitle = document.getElementById("movieTitle");
-        if (movieTitle) {
-            console.log(movieTitle.offsetHeight);
+        var moviePageBanner = document.getElementById("moviePageBanner");
+        if (moviePageBanner) {
+            console.log(moviePageBanner.offsetHeight);
         }
     }, []);
 
     return (
         <div>
-            <div className="movie-banner-image-section">
+            <div className="movie-banner-image-section" id="moviePageBanner">
                 <div
                     style={{
                         backgroundImage:

@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Card.css";
+
+import noPosterFound from "./assets/images/no-poster-found.png";
+
 import { useEffect, useState } from "react";
 
 const Card = ({ movie }) => {
@@ -207,7 +210,14 @@ const Card = ({ movie }) => {
                 <div className="card-inner">
                     <div className="card-front">
                         <div className="card-image">
-                            <img src={moviePoster} alt="Placeholder" />
+                            <img
+                                src={
+                                    !moviePoster || moviePoster == "N/A"
+                                        ? noPosterFound
+                                        : moviePoster
+                                }
+                                alt="Placeholder"
+                            />
                         </div>
                         <div className="card-front-content">
                             <div className="card-front-title-year">

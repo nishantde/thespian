@@ -36,6 +36,7 @@ const MoviePage = () => {
     const [currentEpisodeNumber, setCurrentEpisodeNumber] = useState(1);
     const [seasonEpisodeMapState, setSeasonEpisodeMapState] = useState({});
     const [currentSeasonOverview, setCurrentSeasonOverview] = useState("");
+    const [seasonOverviewMapState, setSeasonOverviewMapState] = useState({});
 
     const EXTERNAL_IMDB_LINK_PREPEND = "https://www.imdb.com/title/";
     const OMDB_TV_ADDITIONAL_DETAILS_PREPEND =
@@ -60,6 +61,7 @@ const MoviePage = () => {
     var tvLanguages = location.state?.tvLanguages;
 
     var seasonEpisodeMap = {};
+    var seasonOverviewMap = {};
     var newArray = [];
 
     function fetchMoreDetails() {
@@ -71,15 +73,21 @@ const MoviePage = () => {
             },
         };
 
-        tvSeasons.map((arrayElement) => {
-            for (let i = 0; i < arrayElement["episode_count"]; i++) {
-                newArray.push(i + 1);
-            }
-            seasonEpisodeMap[arrayElement["season_number"]] = newArray;
-            newArray = [];
-        });
-        setSeasonEpisodeMapState(seasonEpisodeMap);
-        setCurrentSeasonOverview(tvSeasons[currentSeasonNumber]["overview"]);
+        if (tvSeasons) {
+            tvSeasons.map((arrayElement) => {
+                for (let i = 0; i < arrayElement["episode_count"]; i++) {
+                    newArray.push(i + 1);
+                }
+                seasonEpisodeMap[arrayElement["season_number"]] = newArray;
+                seasonOverviewMap[arrayElement["season_number"]] =
+                    arrayElement["overview"];
+                newArray = [];
+            });
+
+            setSeasonEpisodeMapState(seasonEpisodeMap);
+            setSeasonOverviewMapState(seasonOverviewMap);
+            setCurrentSeasonOverview(seasonOverviewMap[currentSeasonNumber]);
+        }
 
         fetch(OMDB_TV_ADDITIONAL_DETAILS_PREPEND + tvIMDBID, options)
             .then((response) => response.json())
@@ -96,9 +104,9 @@ const MoviePage = () => {
             .catch((err) => console.error(err));
 
         setTimeout(() => {
-            var tvTitle = document.getElementById("tvTitle");
-            if (tvTitle) {
-                tvTitle.scrollIntoView({ behavior: "smooth" });
+            var tvPageBanner = document.getElementById("tvPageBanner");
+            if (tvPageBanner) {
+                tvPageBanner.scrollIntoView({ behavior: "smooth" });
             }
         }, 200);
 
@@ -342,7 +350,7 @@ const MoviePage = () => {
                                 setCurrentSeasonNumber(e.target.value);
                                 setCurrentEpisodeNumber(1);
                                 setCurrentSeasonOverview(
-                                    tvSeasons[e.target.value]["overview"]
+                                    seasonOverviewMapState[e.target.value]
                                 );
                             }}
                         >
@@ -433,15 +441,15 @@ const MoviePage = () => {
         setTimeout(() => {
             fetchMoreDetails();
         }, 1200);
-        var tvTitle = document.getElementById("tvTitle");
-        if (tvTitle) {
-            console.log(tvTitle.offsetHeight);
+        var tvPageBanner = document.getElementById("tvPageBanner");
+        if (tvPageBanner) {
+            console.log(tvPageBanner.offsetHeight);
         }
     }, []);
 
     return (
         <div>
-            <div className="movie-banner-image-section">
+            <div className="movie-banner-image-section" id="tvPageBanner">
                 <div
                     style={{
                         backgroundImage:

@@ -6,27 +6,28 @@ Thespian - a React web app to stream content online
 
 Not all titles are available to watch at the moment, currently being limited at the source itself
 
-List of bugs/issues currently present and being looked at (this list will keep getting updated as more bugs pop up):
+##### List of bugs/issues currently present and being looked at (this list will keep getting updated as more bugs pop up):
 - [x] Loading component not working as intended (was not showing up for initial search)
 - [ ] Custom font shenanigans (minor)
 - [x] Video source shenanigans (minor)
 - [x] All TV page details do not show up when visited via the 'Known for' section on an actor page (was working initially but then gave error of too many re-renders)
 - [x] The input bar for the TV season and episode selectors do not reflect accurately, though the media player does update accordingly (on initial load when the episode is selected, the dropdown defaulted to the number set through the code but did not reflect until the episode selected was clicked again)
-- [ ] TV season synopses do not properly show up if no season before the first one exists; additionally, TV shows where only one season has been released do not work properly (unable to access certain parameters from within the data obtained)
+- [x] TV season synopses do not properly show up if no season before the first one exists; additionally, TV shows where only one season has been released do not work properly (unable to access certain parameters from within the data obtained)
 
-To-do:
+##### To-do:
 - [x] Better loading animation
 - [x] TV details shown on cards
 - [ ] Other title types (might hide result - depending on available information)
 - [x] Interactive TV show streaming (currently this is preliminary - only shows the pilot episode)
 - [x] Pagination
 - [x] Implement TV titles in the 'Known for' section
+- [x] Implement a different placeholder image
 - [ ] Different loading styling for different elements
 - [ ] Better styling of the interactive TV season and episode selector elements
 - [ ] Full-screen playback of video player
 - [ ] User accounts (future update)
 
-Pages to finish:
+##### Pages to finish:
 - [x] Attributions Page
 - [x] Actor Page
 - [x] Movie Streaming Page
