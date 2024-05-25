@@ -1,3 +1,7 @@
+.tv-page-content-page-wrap {
+    width: 100%;
+}
+
 .page-icon {
     display: inline-block;
     width: 1rem;
@@ -17,11 +21,13 @@
     gap: 20%;
 }
 
-.tv-season-selector-section, .tv-episode-selector-section {
+.tv-season-selector-section,
+.tv-episode-selector-section {
     width: 40%;
 }
 
-#tvSeasonSelector, #tvEpisodeSelector {
+#tvSeasonSelector,
+#tvEpisodeSelector {
     width: 100%;
     height: 3rem;
     padding: 1rem;
@@ -58,7 +64,8 @@
         gap: 20%;
     }
 
-    .tv-season-selector-section, .tv-episode-selector-section {
+    .tv-season-selector-section,
+    .tv-episode-selector-section {
         width: 100%;
     }
 }

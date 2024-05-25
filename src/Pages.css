@@ -8,6 +8,7 @@
     border: 4px solid var(--black-olive);
     border-radius: 8px;
     align-items: center;
+    background: var(--black-olive);
 }
 
 .left-buttons,

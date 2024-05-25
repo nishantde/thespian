@@ -330,6 +330,7 @@ const MoviePage = () => {
                     }
                     frameBorder="0"
                     allowFullScreen
+                    title="TV Streaming Content"
                 >
                     Your browser does not support this element.
                 </iframe>
@@ -362,7 +363,7 @@ const MoviePage = () => {
                                     key={tvSeason["id"]}
                                     value={tvSeason["season_number"]}
                                     selected={
-                                        tvSeason["season_number"] ==
+                                        tvSeason["season_number"] ===
                                         currentSeasonNumber
                                     }
                                 >
@@ -386,7 +387,7 @@ const MoviePage = () => {
                                         key={currentEpisode}
                                         value={currentEpisode}
                                         selected={
-                                            currentEpisode ==
+                                            currentEpisode ===
                                             currentEpisodeNumber
                                         }
                                     >
@@ -472,14 +473,18 @@ const MoviePage = () => {
                     className="movie-banner-image hide-banner-on-desktop"
                 />
             </div>
-            <div className="movie-page-content">
-                {isLoading ? (
-                    <Loading />
-                ) : tvIMDBID ? (
-                    <ValidMovieIDContent movieEmbedSource={movieEmbedSource} />
-                ) : (
-                    <InvalidMovieIDContent />
-                )}
+            <div className="tv-page-content-page-wrap">
+                <div className="movie-page-content">
+                    {isLoading ? (
+                        <Loading />
+                    ) : tvIMDBID ? (
+                        <ValidMovieIDContent
+                            movieEmbedSource={movieEmbedSource}
+                        />
+                    ) : (
+                        <InvalidMovieIDContent />
+                    )}
+                </div>
             </div>
         </div>
     );

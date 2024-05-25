@@ -59,8 +59,8 @@ const Card = ({ movie }) => {
         imdbID = "default";
     }
 
-    if (titleType == "tv" || titleType == "series") {
-        if (imdbID.toString().slice(0, 2) == "tt") {
+    if (titleType === "tv" || titleType === "series") {
+        if (imdbID.toString().slice(0, 2) === "tt") {
             tvFetchIMDBID = imdbID;
         }
     }
@@ -109,8 +109,8 @@ const Card = ({ movie }) => {
                     setMovieIMDBID(response["imdb_id"]);
                 })
                 .catch((err) => console.error(err));
-        } else if (titleType == "tv" || titleType == "series") {
-            if (imdbID.toString().slice(0, 2) != "tt") {
+        } else if (titleType === "tv" || titleType === "series") {
+            if (imdbID.toString().slice(0, 2) !== "tt") {
                 fetch(
                     TMDB_TV_FETCH_LINK_PREPEND +
                         imdbID +
@@ -212,7 +212,7 @@ const Card = ({ movie }) => {
                         <div className="card-image">
                             <img
                                 src={
-                                    !moviePoster || moviePoster == "N/A"
+                                    !moviePoster || moviePoster === "N/A"
                                         ? noPosterFound
                                         : moviePoster
                                 }
@@ -227,7 +227,7 @@ const Card = ({ movie }) => {
                             <div className="card-front-tmdb-rating">
                                 <p className="title-tmdb-rating">
                                     &#10030;{" "}
-                                    {titleType == "movie"
+                                    {titleType === "movie"
                                         ? parseFloat(movieTMDBRating).toFixed(1)
                                         : parseFloat(tvTMDBRating).toFixed(1)}
                                 </p>
@@ -245,7 +245,7 @@ const Card = ({ movie }) => {
                     >
                         <div className="card-back-content">
                             <div className="additional-details">
-                                {titleType == "movie" ? (
+                                {titleType === "movie" ? (
                                     <h4 className="card-back-subheading">
                                         Runtime
                                     </h4>
@@ -254,7 +254,7 @@ const Card = ({ movie }) => {
                                         Series Run
                                     </h4>
                                 )}
-                                {titleType == "movie" ? (
+                                {titleType === "movie" ? (
                                     <p className="card-back-details">
                                         {movieRuntime} minutes
                                     </p>
@@ -268,7 +268,7 @@ const Card = ({ movie }) => {
                                     <h4 className="card-back-subheading">
                                         Overview
                                     </h4>
-                                    {titleType == "movie" ? (
+                                    {titleType === "movie" ? (
                                         <p className="card-back-details details-overview">
                                             {movieOverview}
                                         </p>
@@ -281,7 +281,7 @@ const Card = ({ movie }) => {
                             </div>
                             <div className="link-to-view">
                                 <button className="button-to-view">
-                                    {titleType == "movie" ? (
+                                    {titleType === "movie" ? (
                                         <Link
                                             to={"/movie"}
                                             state={{

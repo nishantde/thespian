@@ -13,6 +13,7 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [x] All TV page details do not show up when visited via the 'Known for' section on an actor page (was working initially but then gave error of too many re-renders)
 - [x] The input bar for the TV season and episode selectors do not reflect accurately, though the media player does update accordingly (on initial load when the episode is selected, the dropdown defaulted to the number set through the code but did not reflect until the episode selected was clicked again)
 - [x] TV season synopses do not properly show up if no season before the first one exists; additionally, TV shows where only one season has been released do not work properly (unable to access certain parameters from within the data obtained)
+- [x] Full-screen media playback still maintains the scroll gutter (now removed)
 
 ### To-do:
 - [x] Better loading animation

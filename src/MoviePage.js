@@ -289,7 +289,7 @@ const MoviePage = () => {
                         className="movie-page-view-video"
                         src={movieEmbedSource}
                         frameBorder="0"
-                        allowFullScreen
+                        allowFullScreen title="Movie Streaming Content"
                     >
                         Your browser does not support this element.
                     </iframe>
@@ -349,14 +349,18 @@ const MoviePage = () => {
                     className="movie-banner-image hide-banner-on-desktop"
                 />
             </div>
-            <div className="movie-page-content">
-                {isLoading ? (
-                    <Loading />
-                ) : movieEmbedID ? (
-                    <ValidMovieIDContent movieEmbedSource={movieEmbedSource} />
-                ) : (
-                    <InvalidMovieIDContent />
-                )}
+            <div className="movie-page-content-page-wrap">
+                <div className="movie-page-content">
+                    {isLoading ? (
+                        <Loading />
+                    ) : movieEmbedID ? (
+                        <ValidMovieIDContent
+                            movieEmbedSource={movieEmbedSource}
+                        />
+                    ) : (
+                        <InvalidMovieIDContent />
+                    )}
+                </div>
             </div>
         </div>
     );
