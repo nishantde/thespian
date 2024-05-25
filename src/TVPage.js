@@ -318,7 +318,7 @@ const MoviePage = () => {
     function TVStreamingContent({ tvID, seasonNumber, episodeNumber }) {
         return (
             <div className="movie-content">
-                <embed
+                <iframe
                     className="movie-page-view-video"
                     src={
                         TV_EMBED_LINK_PREPEND +
@@ -328,8 +328,11 @@ const MoviePage = () => {
                         "/" +
                         episodeNumber
                     }
-                    type="video/webm"
-                />
+                    frameBorder="0"
+                    allowFullScreen
+                >
+                    Your browser does not support this element.
+                </iframe>
             </div>
         );
     }

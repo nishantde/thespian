@@ -24,7 +24,7 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [x] Implement a different placeholder image
 - [ ] Different loading styling for different elements
 - [ ] Better styling of the interactive TV season and episode selector elements
-- [ ] Full-screen playback of video player
+- [x] Full-screen playback of video player
 - [ ] User accounts (future update)
 
 ### Pages to finish:

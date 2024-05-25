@@ -99,11 +99,16 @@ body,
     background: linear-gradient(
         to bottom,
         var(--eerie-black) 0%,
+        var(--eerie-black) 10%,
         var(--eerie-black) 20%,
-        #201f1d 40%,
-        #151514 60%,
-        #0b0b0a 80%,
-        black 100%
+        var(--eerie-black) 30%,
+        #21201f 40%,
+        #1e1d1b 50%,
+        #1a1918 60%,
+        #161614 70%,
+        #131211 80%,
+        #0f0e0e 90%,
+        #0b0b0a 100%
     );
     color: var(--floral-white);
     padding: 0;
@@ -119,11 +124,16 @@ html {
     background: linear-gradient(
         to bottom,
         var(--eerie-black) 0%,
+        var(--eerie-black) 10%,
         var(--eerie-black) 20%,
-        #201f1d 40%,
-        #151514 60%,
-        #0b0b0a 80%,
-        black 100%
+        var(--eerie-black) 30%,
+        #21201f 40%,
+        #1e1d1b 50%,
+        #1a1918 60%,
+        #161614 70%,
+        #131211 80%,
+        #0f0e0e 90%,
+        #0b0b0a 100%
     );
     background-repeat: no-repeat;
 }

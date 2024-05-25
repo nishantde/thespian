@@ -285,11 +285,14 @@ const MoviePage = () => {
                     <MoreDetails />
                 </div>
                 <div className="movie-content">
-                    <embed
+                    <iframe
                         className="movie-page-view-video"
                         src={movieEmbedSource}
-                        type="video/webm"
-                    />
+                        frameBorder="0"
+                        allowFullScreen
+                    >
+                        Your browser does not support this element.
+                    </iframe>
                 </div>
                 <div className="movie-load-warning">
                     <p>
