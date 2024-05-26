@@ -4,7 +4,7 @@ import brandFetchLogo from "./assets/images/attribution-brandfetch.png";
 import coolorsLogo from "./assets/images/attribution-coolors.png";
 import dafontLogo from "./assets/images/attribution-dafontfree.png";
 import omdbLogo from "./assets/images/attribution-omdb.png";
-import reactJSLogo from "./assets/images/attribution-reactjs.png";
+import icons8Logo from "./assets/images/attribution-icons8.jpeg";
 import tmdbLogo from "./assets/images/attribution-tmdb.png";
 import vidsrcLogo from "./assets/images/attribution-vidsrc.png";
 import wallpaperFlareLogo from "./assets/images/attribution-wallpaperflare.png";
@@ -92,17 +92,17 @@ const AttributionsPage = () => {
                 <div className="attribution-section">
                     <div className="attribution-logo-and-source">
                         <img
-                            src={reactJSLogo}
-                            alt="ReactJS.org Logo"
+                            src={icons8Logo}
+                            alt="Icons8 Logo"
                             className="attribution-logo"
                         />
                         <div className="attribution-source">
-                            <h3>ReactJS</h3>
+                            <h3>Icons8</h3>
                         </div>
                     </div>
                     <div className="attribution-details">
                         <p className="attribution-info">
-                            The front-end framework on which Thespian is built
+                            Obtaining icons for various Thespian elements
                         </p>
                     </div>
                 </div>

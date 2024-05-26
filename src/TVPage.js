@@ -466,9 +466,9 @@ const MoviePage = () => {
                     }}
                     className="movie-banner-image hide-banner-on-mobile"
                 >
-                    <div className="movie-banner-gradient"></div>
+                    <div className="movie-banner-gradient tv-banner-gradient"></div>
                 </div>
-                <div className="movie-banner-image hide-banner-on-desktop movie-banner-gradient-mobile"></div>
+                <div className="movie-banner-image hide-banner-on-desktop movie-banner-gradient-mobile tv-banner-gradient-mobile"></div>
                 <img
                     src={TMDB_TV_BANNER_IMAGE_PATH_PREPEND + tvBackdropPath}
                     alt="Movie Banner"
