@@ -72,7 +72,7 @@
     background: var(--flame);
     border-radius: 1rem;
     border: 2px solid var(--flame);
-  }
+}
 
 h1,
 h2,
@@ -95,7 +95,6 @@ h6 {
 html,
 body,
 .App {
-    /* background: var(--eerie-black); */
     background: linear-gradient(
         to bottom,
         var(--eerie-black) 0%,
@@ -117,29 +116,6 @@ body,
     scroll-behavior: smooth;
     min-height: 100vh;
 }
-
-/*
-html {
-    scrollbar-gutter: stable;
-    overflow-x: hidden;
-    margin-right: calc(-1 * (100vw - 100%));
-    background: linear-gradient(
-        to bottom,
-        var(--eerie-black) 0%,
-        var(--eerie-black) 10%,
-        var(--eerie-black) 20%,
-        var(--eerie-black) 30%,
-        #21201f 40%,
-        #1e1d1b 50%,
-        #1a1918 60%,
-        #161614 70%,
-        #131211 80%,
-        #0f0e0e 90%,
-        #0b0b0a 100%
-    );
-    background-repeat: no-repeat;
-}
-*/
 
 .App {
     overflow-x: hidden;

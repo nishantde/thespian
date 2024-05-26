@@ -357,6 +357,7 @@ const MoviePage = () => {
                                     seasonOverviewMapState[e.target.value]
                                 );
                             }}
+                            value={currentSeasonNumber}
                         >
                             {tvSeasons.map((tvSeason) => (
                                 <option
@@ -380,6 +381,7 @@ const MoviePage = () => {
                                 e.preventDefault();
                                 setCurrentEpisodeNumber(e.target.value);
                             }}
+                            value={currentEpisodeNumber}
                         >
                             {seasonEpisodeMapState[currentSeasonNumber].map(
                                 (currentEpisode) => (

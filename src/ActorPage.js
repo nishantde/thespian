@@ -129,6 +129,7 @@ const ActorPage = () => {
                         totalResults="IGNORE"
                         key={Math.random}
                     />
+                    <div className="extra-whitespace"></div>
                 </div>
             )}
         </div>
