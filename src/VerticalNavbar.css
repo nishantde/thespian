@@ -1,0 +1,57 @@
+.vertical-navbar {
+    width: fit-content;
+    height: 100vh;
+    position: fixed;
+    display: block;
+    background: transparent;
+    color: var(--floral-white);
+    z-index: 10;
+    padding: 1rem;
+}
+
+.vertical-navbar-content {
+    height: 100%;
+}
+
+.vertical-navbar-icon-list {
+    width: 5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.vertical-navbar-icon {
+    padding: 0.5rem;
+    align-self: center;
+    transition: 0.1s all ease-in-out;
+}
+
+.vertical-navbar-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    padding: 0.7rem;
+}
+
+.vertical-navbar-icon img {
+    width: 100%;
+    height: 100%;
+    filter: invert(100%);
+}
+
+.vertical-navbar-icon:hover {
+    background: var(--flame);
+    transition: 0.1s all ease-in-out;
+}
+
+@media only screen and (max-width: 1492px) {
+    .vertical-navbar {
+        display: none;
+    }
+}

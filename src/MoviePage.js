@@ -289,7 +289,8 @@ const MoviePage = () => {
                         className="movie-page-view-video"
                         src={movieEmbedSource}
                         frameBorder="0"
-                        allowFullScreen title="Movie Streaming Content"
+                        allowFullScreen
+                        title="Movie Streaming Content"
                     >
                         Your browser does not support this element.
                     </iframe>

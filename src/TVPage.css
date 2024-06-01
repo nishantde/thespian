@@ -16,11 +16,7 @@
 }
 
 .tv-banner-gradient {
-    background-image: linear-gradient(
-        to bottom,
-        transparent,
-        #14213D
-    );
+    background-image: linear-gradient(to bottom, transparent, #14213d);
 }
 
 .page-icon {
@@ -79,15 +75,13 @@
     text-align: center;
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 980px) {
     .tv-banner-gradient-mobile {
-        background-image: linear-gradient(
-        to bottom,
-        transparent,
-        #14213D
-    );
+        background-image: linear-gradient(to bottom, transparent, #14213d);
     }
+}
 
+@media only screen and (max-width: 520px) {
     .tv-season-episode-selector {
         flex-direction: column;
         gap: 20%;
