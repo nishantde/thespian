@@ -1,5 +1,5 @@
 .hero-section-parent {
-    width: 100%;
+    width: 100vw;
     background: url("./assets/images/hero-section-background.png");
     background-size: cover;
 }
