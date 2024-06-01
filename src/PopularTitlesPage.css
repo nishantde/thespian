@@ -1,3 +1,17 @@
-.popular-page-trial {
-    color: blue;
+.popular-titles-page-content {
+    background-image: linear-gradient(
+        180deg,
+        hsl(170deg 100% 13%) 0%,
+        hsl(143deg 46% 17%) 10%,
+        hsl(92deg 45% 15%) 20%,
+        hsl(59deg 79% 10%) 30%,
+        hsl(40deg 100% 11%) 40%,
+        hsl(26deg 100% 12%) 50%,
+        hsl(32deg 100% 10%) 60%,
+        hsl(38deg 100% 7%) 70%,
+        hsl(44deg 92% 6%) 80%,
+        hsl(49deg 56% 5%) 90%,
+        hsl(60deg 5% 4%) 100%
+    );
+    min-height: 100vh;
 }
