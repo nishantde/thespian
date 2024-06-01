@@ -1,3 +1,4 @@
+
 # Thespian
 
 ***Please note**: The project has not been deployed yet*
@@ -7,13 +8,21 @@ Thespian - a React web app to stream content online
 Not all titles are available to watch at the moment, currently being limited at the source itself
 
 ### List of bugs/issues currently present and being looked at (this list will keep getting updated as more bugs pop up):
-- [x] Loading component not working as intended (was not showing up for initial search)
+- [x] Loading component not working as intended
+    - Was not showing up for initial search
 - [ ] Custom font shenanigans (minor)
+    - Multiple font weights not showing up properly
 - [x] Video source shenanigans (minor)
-- [x] All TV page details do not show up when visited via the 'Known for' section on an actor page (was working initially but then gave error of too many re-renders)
-- [x] The input bar for the TV season and episode selectors do not reflect accurately, though the media player does update accordingly (on initial load when the episode is selected, the dropdown defaulted to the number set through the code but did not reflect until the episode selected was clicked again)
-- [x] TV season synopses do not properly show up if no season before the first one exists; additionally, TV shows where only one season has been released do not work properly (unable to access certain parameters from within the data obtained)
-- [x] Full-screen media playback still maintains the scroll gutter (now removed)
+- [x] All TV page details do not show up when visited via the 'Known for' section on an actor page
+    - Was working initially but then gave error of too many re-renders
+- [x] The input bar for the TV season and episode selectors do not reflect accurately
+    - The media player does update accordingly (on initial load when the episode is selected, the dropdown defaulted to the number set through the code but did not reflect until the episode selected was clicked again)
+- [x] TV season synopses do not properly show up if no season before the first one exists
+    - Additionally, TV shows where only one season has been released do not work properly (unable to access certain parameters from within the data obtained)
+- [x] Full-screen media playback still maintains the scroll gutter
+    - Now removed
+- [x] Requests are being continuously sent over the network for the top rated titles page
+    - Currently a workaround has been applied to prevent titles from appearing twice
 
 ### To-do:
 - [x] Better loading animation
@@ -26,6 +35,7 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [ ] Different loading styling for different elements
 - [ ] Better styling of the interactive TV season and episode selector elements
 - [x] Full-screen playback of video player
+- [ ] Stable scroll gutter for pages (except movie/TV streaming pages)
 - [ ] User accounts (future update)
 
 ### Pages to finish:
@@ -33,6 +43,10 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [x] Actor Page
 - [x] Movie Streaming Page
 - [x] TV Streaming Page
+- [x] Top Rated Titles Page
+- [ ] Popular Titles Page
+- [ ] Trending Titles Page
+- [ ] Upcoming Movies Page
 - [ ] About Page
 - [ ] Privacy Policy Page
 - [ ] Genre Page (future update)

@@ -4,6 +4,7 @@ import popularIcon from "./assets/icons/icon-popular.png";
 import upcomingIcon from "./assets/icons/icon-upcoming.png";
 import topRatedIcon from "./assets/icons/icon-top-rated.png";
 import trendingIcon from "./assets/icons/icon-trending.png";
+import { Link } from "react-router-dom";
 
 const VerticalNavbar = () => {
     return (
@@ -11,16 +12,33 @@ const VerticalNavbar = () => {
             <div className="vertical-navbar-content">
                 <ul className="vertical-navbar-icon-list">
                     <li className="vertical-navbar-icon">
-                        <img src={topRatedIcon} alt="Top Rated Titles Icon" />
+                        <Link to="/top-rated">
+                            <img
+                                src={topRatedIcon}
+                                alt="Top Rated Titles Icon"
+                            />
+                        </Link>
                     </li>
                     <li className="vertical-navbar-icon">
-                        <img src={popularIcon} alt="Popular Titles Icon" />
+                        <Link to="/popular">
+                            <img src={popularIcon} alt="Popular Titles Icon" />
+                        </Link>
                     </li>
                     <li className="vertical-navbar-icon">
-                        <img src={trendingIcon} alt="Trending Titles Icon" />
+                        <Link to="/trending">
+                            <img
+                                src={trendingIcon}
+                                alt="Trending Titles Icon"
+                            />
+                        </Link>
                     </li>
                     <li className="vertical-navbar-icon">
-                        <img src={upcomingIcon} alt="Upcoming Movies Icon" />
+                        <Link to="/upcoming">
+                            <img
+                                src={upcomingIcon}
+                                alt="Upcoming Movies Icon"
+                            />
+                        </Link>
                     </li>
                 </ul>
             </div>
