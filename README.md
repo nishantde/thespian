@@ -35,7 +35,8 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [ ] Different loading styling for different elements
 - [ ] Better styling of the interactive TV season and episode selector elements
 - [x] Full-screen playback of video player
-- [x] Stable scroll bar for pages (except movie/TV streaming pages)
+- [x] Stable scroll bar for pages
+- [ ] Better file/folder structuring
 - [ ] User accounts (future update)
 
 ### Pages to finish:

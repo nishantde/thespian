@@ -279,54 +279,64 @@ const Card = ({ movie }) => {
                                     )}
                                 </div>
                             </div>
-                            <div className="link-to-view">
-                                <button className="button-to-view">
-                                    {titleType === "movie" ? (
-                                        <Link
-                                            to={"/movie"}
-                                            state={{
-                                                movieEmbedID: movieIMDBID,
-                                                movieBackdropPath:
-                                                    movieBackdropPath,
-                                                movieBudget: movieBudget,
-                                                movieRevenue: movieRevenue,
-                                                movieGenres: movieGenres,
-                                                movieProductionCompanies:
-                                                    movieProductionCompanies,
-                                                movieLanguages: movieLanguages,
-                                            }}
-                                            className="webpage-link"
-                                        >
-                                            Watch Now
-                                        </Link>
-                                    ) : (
-                                        <Link
-                                            to={"/tv"}
-                                            state={{
-                                                tvBackdropPath: tvBackdropPath,
-                                                tvCreatedBy: tvCreatedBy,
-                                                tvFirstAirDate: tvFirstAirDate,
-                                                tvLastAirDate: tvLastAirDate,
-                                                tvGenres: tvGenres,
-                                                tvTMDBID: tvTMDBID,
-                                                tvLanguages: tvLanguages,
-                                                tvNetworks: tvNetworks,
-                                                tvNumberOfEpisodes:
-                                                    tvNumberOfEpisodes,
-                                                tvNumberOfSeasons:
-                                                    tvNumberOfSeasons,
-                                                tvProductionCompanies:
-                                                    tvProductionCompanies,
-                                                tvSeasons: tvSeasons,
-                                                tvIMDBID: tvIMDBID,
-                                            }}
-                                            className="webpage-link"
-                                        >
-                                            Watch Now
-                                        </Link>
-                                    )}
-                                </button>
-                            </div>
+                            {titleType === "movie" ||
+                            titleType === "tv" ||
+                            titleType === "series" ? (
+                                <div className="link-to-view">
+                                    <button className="button-to-view">
+                                        {titleType === "movie" ? (
+                                            <Link
+                                                to={"/movie"}
+                                                state={{
+                                                    movieEmbedID: movieIMDBID,
+                                                    movieBackdropPath:
+                                                        movieBackdropPath,
+                                                    movieBudget: movieBudget,
+                                                    movieRevenue: movieRevenue,
+                                                    movieGenres: movieGenres,
+                                                    movieProductionCompanies:
+                                                        movieProductionCompanies,
+                                                    movieLanguages:
+                                                        movieLanguages,
+                                                }}
+                                                className="webpage-link"
+                                            >
+                                                Watch Now
+                                            </Link>
+                                        ) : (
+                                            <Link
+                                                to={"/tv"}
+                                                state={{
+                                                    tvBackdropPath:
+                                                        tvBackdropPath,
+                                                    tvCreatedBy: tvCreatedBy,
+                                                    tvFirstAirDate:
+                                                        tvFirstAirDate,
+                                                    tvLastAirDate:
+                                                        tvLastAirDate,
+                                                    tvGenres: tvGenres,
+                                                    tvTMDBID: tvTMDBID,
+                                                    tvLanguages: tvLanguages,
+                                                    tvNetworks: tvNetworks,
+                                                    tvNumberOfEpisodes:
+                                                        tvNumberOfEpisodes,
+                                                    tvNumberOfSeasons:
+                                                        tvNumberOfSeasons,
+                                                    tvProductionCompanies:
+                                                        tvProductionCompanies,
+                                                    tvSeasons: tvSeasons,
+                                                    tvIMDBID: tvIMDBID,
+                                                }}
+                                                className="webpage-link"
+                                            >
+                                                Watch Now
+                                            </Link>
+                                        )}
+                                    </button>
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                         </div>
                     </div>
                 </div>

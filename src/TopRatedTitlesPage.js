@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./TopRatedTitlesPage.css";
 import Cards from "./Cards";
 import Loading from "./Loading";
+import topRatedIcon from "./assets/icons/icon-top-rated.png";
 
 const TopRatedTitlesPage = () => {
     const [isTopRatedPageLoading, setIsTopRatedPageLoading] = useState(false);
@@ -21,7 +22,7 @@ const TopRatedTitlesPage = () => {
 
     async function getTopRatedTitles() {
         setIsTopRatedPageLoading(true);
-        
+
         const TMDB_API_READ_ACCESS_TOKEN =
             process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN;
 
@@ -52,7 +53,7 @@ const TopRatedTitlesPage = () => {
                         imdbID: element["id"],
                     });
                 });
-                /* Setting the first 20 titles because each title appears twice for movies, but does not appear twice for TV */ 
+                /* Setting the first 20 titles because each title appears twice for movies, but does not appear twice for TV */
                 setTopRatedMovies(topRatedMoviesResponseList.slice(0, 20));
             })
             .catch((err) => console.error(err));
@@ -95,13 +96,25 @@ const TopRatedTitlesPage = () => {
                 <div>
                     <div className="top-rated-movies-section">
                         <h1 className="top-rated-movies-heading">
+                            <img
+                                src={topRatedIcon}
+                                className="top-rated-titles-icon"
+                                alt="Top Rated Titles Icon"
+                            />{" "}
                             Top Rated Movies
                         </h1>
                         <Cards movies={topRatedMovies} totalResults="IGNORE" />
                         <div className="extra-whitespace"></div>
                     </div>
                     <div className="top-rated-tv-section">
-                        <h1 className="top-rated-tv-heading">Top Rated TV</h1>
+                        <h1 className="top-rated-tv-heading">
+                            <img
+                                src={topRatedIcon}
+                                className="top-rated-titles-icon"
+                                alt="Top Rated Titles Icon"
+                            />{" "}
+                            Top Rated TV
+                        </h1>
                         <Cards movies={topRatedTV} totalResults="IGNORE" />
                         <div className="extra-whitespace"></div>
                     </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./PopularTitlesPage.css";
 import Cards from "./Cards";
 import Loading from "./Loading";
+import popularIcon from "./assets/icons/icon-popular.png";
 
 const PopularTitlesPage = () => {
     const [isPopularPageLoading, setIsPopularPageLoading] = useState(false);
@@ -95,13 +96,25 @@ const PopularTitlesPage = () => {
                 <div>
                     <div className="top-rated-movies-section">
                         <h1 className="top-rated-movies-heading">
+                            <img
+                                src={popularIcon}
+                                className="top-rated-titles-icon"
+                                alt="Top Rated Titles Icon"
+                            />{" "}
                             Popular Movies
                         </h1>
                         <Cards movies={popularMovies} totalResults="IGNORE" />
                         <div className="extra-whitespace"></div>
                     </div>
                     <div className="top-rated-tv-section">
-                        <h1 className="top-rated-tv-heading">Popular TV</h1>
+                        <h1 className="top-rated-tv-heading">
+                            <img
+                                src={popularIcon}
+                                className="top-rated-titles-icon"
+                                alt="Top Rated Titles Icon"
+                            />{" "}
+                            Popular TV
+                        </h1>
                         <Cards movies={popularTV} totalResults="IGNORE" />
                         <div className="extra-whitespace"></div>
                     </div>

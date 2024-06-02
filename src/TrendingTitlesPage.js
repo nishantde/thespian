@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./TrendingTitlesPage.css";
 import Cards from "./Cards";
 import Loading from "./Loading";
+import trendingIcon from "./assets/icons/icon-trending.png";
 
 const TrendingTitlesPage = () => {
     const [isTrendingPageLoading, setIsTrendingPageLoading] = useState(false);
@@ -15,7 +16,8 @@ const TrendingTitlesPage = () => {
 
     const TMDB_TRENDING_MOVIES_URL =
         "https://api.themoviedb.org/3/trending/movie/week";
-    const TMDB_TRENDING_TV_URL = " https://api.themoviedb.org/3/trending/tv/week";
+    const TMDB_TRENDING_TV_URL =
+        " https://api.themoviedb.org/3/trending/tv/week";
     const TMDB_TITLE_POSTER_IMAGE_PATH_PREPEND =
         "https://image.tmdb.org/t/p/w500";
 
@@ -52,7 +54,8 @@ const TrendingTitlesPage = () => {
                         imdbID: element["id"],
                     });
                 });
-                setTrendingMovies(trendingMoviesResponseList);
+                /* Setting the first 20 titles because each title appears twice for movies, but does not appear twice for TV */
+                setTrendingMovies(trendingMoviesResponseList.slice(0, 20));
             })
             .catch((err) => console.error(err));
 
@@ -94,13 +97,25 @@ const TrendingTitlesPage = () => {
                 <div>
                     <div className="top-rated-movies-section">
                         <h1 className="top-rated-movies-heading">
+                            <img
+                                src={trendingIcon}
+                                className="top-rated-titles-icon"
+                                alt="Top Rated Titles Icon"
+                            />{" "}
                             Trending Movies
                         </h1>
                         <Cards movies={trendingMovies} totalResults="IGNORE" />
                         <div className="extra-whitespace"></div>
                     </div>
                     <div className="top-rated-tv-section">
-                        <h1 className="top-rated-tv-heading">Trending TV</h1>
+                        <h1 className="top-rated-tv-heading">
+                            <img
+                                src={trendingIcon}
+                                className="top-rated-titles-icon"
+                                alt="Top Rated Titles Icon"
+                            />{" "}
+                            Trending TV
+                        </h1>
                         <Cards movies={trendingTV} totalResults="IGNORE" />
                         <div className="extra-whitespace"></div>
                     </div>

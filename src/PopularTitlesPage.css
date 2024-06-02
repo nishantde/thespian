@@ -1,18 +1,18 @@
 .popular-titles-page-content {
     background-image: linear-gradient(
-        180deg,
-        hsl(170deg 100% 13%) 0%,
-        hsl(143deg 46% 17%) 10%,
-        hsl(92deg 45% 15%) 20%,
-        hsl(59deg 79% 10%) 30%,
-        hsl(40deg 100% 11%) 40%,
-        hsl(26deg 100% 12%) 50%,
-        hsl(32deg 100% 10%) 60%,
-        hsl(38deg 100% 7%) 70%,
-        hsl(44deg 92% 6%) 80%,
-        hsl(49deg 56% 5%) 90%,
-        hsl(60deg 5% 4%) 100%
+        45deg,
+        hsl(270deg 37% 46%) 0%,
+        hsl(265deg 36% 49%) 11%,
+        hsl(261deg 37% 52%) 22%,
+        hsl(256deg 41% 54%) 33%,
+        hsl(252deg 44% 57%) 44%,
+        hsl(247deg 48% 60%) 56%,
+        hsl(242deg 53% 62%) 67%,
+        hsl(237deg 60% 64%) 78%,
+        hsl(233deg 67% 65%) 89%,
+        hsl(229deg 76% 66%) 100%
     );
+    background-attachment: fixed;
     min-height: 100vh;
 }
 

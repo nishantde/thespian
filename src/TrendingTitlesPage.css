@@ -1,18 +1,18 @@
 .trending-titles-page-content {
     background-image: linear-gradient(
-        180deg,
-        hsl(321deg 46% 16%) 0%,
-        hsl(302deg 34% 16%) 10%,
-        hsl(277deg 31% 18%) 20%,
-        hsl(253deg 28% 19%) 30%,
-        hsl(230deg 31% 19%) 40%,
-        hsl(216deg 41% 18%) 50%,
-        hsl(197deg 77% 12%) 60%,
-        hsl(186deg 67% 9%) 70%,
-        hsl(165deg 34% 8%) 80%,
-        hsl(117deg 15% 7%) 90%,
-        hsl(60deg 5% 4%) 100%
+        45deg,
+        hsl(35deg 100% 72%) 0%,
+        hsl(32deg 100% 71%) 11%,
+        hsl(28deg 100% 70%) 22%,
+        hsl(25deg 100% 70%) 33%,
+        hsl(21deg 100% 69%) 44%,
+        hsl(17deg 100% 69%) 56%,
+        hsl(12deg 100% 69%) 67%,
+        hsl(7deg 100% 70%) 78%,
+        hsl(1deg 100% 71%) 89%,
+        hsl(355deg 100% 69%) 100%
     );
+    background-attachment: fixed;
     min-height: 100vh;
 }
 
