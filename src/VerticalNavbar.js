@@ -1,7 +1,6 @@
 import "./VerticalNavbar.css";
 
 import popularIcon from "./assets/icons/icon-popular.png";
-import upcomingIcon from "./assets/icons/icon-upcoming.png";
 import topRatedIcon from "./assets/icons/icon-top-rated.png";
 import trendingIcon from "./assets/icons/icon-trending.png";
 import { Link } from "react-router-dom";
@@ -29,14 +28,6 @@ const VerticalNavbar = () => {
                             <img
                                 src={trendingIcon}
                                 alt="Trending Titles Icon"
-                            />
-                        </Link>
-                    </li>
-                    <li className="vertical-navbar-icon">
-                        <Link to="/upcoming">
-                            <img
-                                src={upcomingIcon}
-                                alt="Upcoming Movies Icon"
                             />
                         </Link>
                     </li>

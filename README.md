@@ -23,6 +23,7 @@ Not all titles are available to watch at the moment, currently being limited at 
     - Now removed
 - [x] Requests are being continuously sent over the network for the top rated titles page
     - Currently a workaround has been applied to prevent titles from appearing twice
+- [ ] An extra black bar appears at the bottom of some of the pages where additional whitespace has been added
 
 ### To-do:
 - [x] Better loading animation
@@ -47,10 +48,9 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [x] Top Rated Titles Page
 - [x] Popular Titles Page
 - [x] Trending Titles Page
-- [ ] Upcoming Movies Page
 - [ ] About Page
 - [ ] Privacy Policy Page
-- [ ] Genre Page (future update)
+- [x] Genre Page
 
 To work on a local copy of the project 
 

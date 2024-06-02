@@ -145,6 +145,10 @@
     flex-wrap: wrap;
 }
 
+.movie-genre-link {
+    text-decoration: none;
+}
+
 .movie-genre {
     background-color: var(--black-olive);
     color: var(--timberwolf);

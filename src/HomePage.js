@@ -61,7 +61,6 @@ function HomePage() {
             });
 
         setIsLoading(false);
-        console.log(movies);
 
         /* To auto-scroll to the listings after 1 second of searching */
         setTimeout(() => {

@@ -10,7 +10,7 @@ import PrivacyPolicyPage from "./PrivacyPolicyPage.js";
 import TopRatedTitlesPage from "./TopRatedTitlesPage.js";
 import PopularTitlesPage from "./PopularTitlesPage.js";
 import TrendingTitlesPage from "./TrendingTitlesPage.js";
-import UpcomingMoviesPage from "./UpcomingMoviesPage.js";
+import GenrePage from "./GenrePage.js";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ActorPage from "./ActorPage.js";
@@ -41,7 +41,7 @@ function App() {
                     <Route path="/top-rated" element={<TopRatedTitlesPage />} />
                     <Route path="/popular" element={<PopularTitlesPage />} />
                     <Route path="/trending" element={<TrendingTitlesPage />} />
-                    <Route path="/upcoming" element={<UpcomingMoviesPage />} />
+                    <Route path="/genre" element={<GenrePage />} />
                 </Routes>
             </div>
         </Router>

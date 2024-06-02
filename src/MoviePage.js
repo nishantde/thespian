@@ -160,12 +160,20 @@ const MoviePage = () => {
                             </h3>
                             <p className="movie-genre-listing">
                                 {movieGenres.map((genre) => (
-                                    <span
+                                    <Link
+                                        to="/genre"
                                         key={genre["id"]}
-                                        className="movie-genre"
+                                        state={{
+                                            obtainedGenreID: genre["id"],
+                                            movieOrTV: "movie",
+                                            obtainedGenreName: genre["name"],
+                                        }}
+                                        className="movie-genre-link"
                                     >
-                                        {genre["name"]}
-                                    </span>
+                                        <span className="movie-genre">
+                                            {genre["name"]}
+                                        </span>
+                                    </Link>
                                 ))}
                             </p>
                         </div>
