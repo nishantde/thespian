@@ -47,10 +47,6 @@
     max-width: 80vw;
 }
 
-.extra-whitespace {
-    margin-bottom: 1rem;
-}
-
 @media only screen and (max-width: 520px) {
     .padding-adjustment {
         padding-top: 6rem;

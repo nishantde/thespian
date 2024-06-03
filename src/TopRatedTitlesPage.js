@@ -104,7 +104,6 @@ const TopRatedTitlesPage = () => {
                             Top Rated Movies
                         </h1>
                         <Cards movies={topRatedMovies} totalResults="IGNORE" />
-                        <div className="extra-whitespace"></div>
                     </div>
                     <div className="top-rated-tv-section">
                         <h1 className="top-rated-tv-heading">
@@ -116,7 +115,6 @@ const TopRatedTitlesPage = () => {
                             Top Rated TV
                         </h1>
                         <Cards movies={topRatedTV} totalResults="IGNORE" />
-                        <div className="extra-whitespace"></div>
                     </div>
                 </div>
             )}

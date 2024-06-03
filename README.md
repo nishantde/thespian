@@ -23,7 +23,8 @@ Not all titles are available to watch at the moment, currently being limited at 
     - Now removed
 - [x] Requests are being continuously sent over the network for the top rated titles page
     - Currently a workaround has been applied to prevent titles from appearing twice
-- [ ] An extra black bar appears at the bottom of some of the pages where additional whitespace has been added
+- [x] An extra black bar appears at the bottom of some of the pages where additional whitespace has been added
+    - Added additional padding to the cards section itself so that manual whitespace does not need to be added
 
 ### To-do:
 - [x] Better loading animation

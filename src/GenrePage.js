@@ -62,7 +62,8 @@ const GenrePage = () => {
                         imdbID: element["id"],
                     });
                 });
-                setMovieGenreTitles(movieGenreResponseList);
+                /* Setting the first 20 titles because each title appears twice for movies, but does not appear twice for TV */
+                setMovieGenreTitles(movieGenreResponseList.slice(0, 20));
             })
             .catch((err) => console.error(err));
 
@@ -91,7 +92,8 @@ const GenrePage = () => {
                         imdbID: element["id"],
                     });
                 });
-                setTVGenreTitles(tvGenreResponseList);
+                /* Setting the first 20 titles because each title appears twice for movies, but does not appear twice for TV */
+                setTVGenreTitles(tvGenreResponseList.slice(0, 20));
             })
             .catch((err) => console.error(err));
 
@@ -125,7 +127,6 @@ const GenrePage = () => {
                     <Cards movies={tvGenreTitles} totalResults="IGNORE" />
                 </div>
             )}
-            <div className="extra-whitespace"></div>
         </div>
     );
 };

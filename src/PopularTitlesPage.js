@@ -104,7 +104,6 @@ const PopularTitlesPage = () => {
                             Popular Movies
                         </h1>
                         <Cards movies={popularMovies} totalResults="IGNORE" />
-                        <div className="extra-whitespace"></div>
                     </div>
                     <div className="top-rated-tv-section">
                         <h1 className="top-rated-tv-heading">
@@ -116,7 +115,6 @@ const PopularTitlesPage = () => {
                             Popular TV
                         </h1>
                         <Cards movies={popularTV} totalResults="IGNORE" />
-                        <div className="extra-whitespace"></div>
                     </div>
                 </div>
             )}
