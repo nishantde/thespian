@@ -79,58 +79,62 @@ const ActorPage = () => {
     }, [actorName]);
 
     return (
-        <div className="actor-page-content padding-adjustment">
-            {isActorPageLoading ? (
-                <Loading />
-            ) : (
-                <div>
-                    <div className="actor-portrait-and-details-section">
-                        <div className="actor-portrait">
-                            <img
-                                src={
-                                    TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
-                                    actorProfilePath
-                                }
-                                alt={actorOriginalName}
-                                className="actor-portrait-image"
-                            />
-                        </div>
-                        <div className="actor-details">
-                            <h1 className="actor-page-name">{actorName}</h1>
-                            <h3 className="actor-original-name-heading">
-                                Also known as
-                            </h3>
-                            <p className="actor-original-name">
-                                {actorOriginalName}
-                            </p>
-                            <h3 className="actor-known-department-heading">
-                                Department
-                            </h3>
-                            <p className="actor-known-department">
-                                {actorKnownDepartment}
-                            </p>
-                            <div className="actor-birthday-and-birthplace">
-                                <h3 className="actor-birthday-heading">Born</h3>
-                                <p className="actor-birthday">
-                                    {actorBirthday}
-                                </p>
-                                <h3 className="actor-birthplace-heading">
-                                    Place of birth
+        <div className="actor-page-content-wrap padding-adjustment">
+            <div className="actor-page-content">
+                {isActorPageLoading ? (
+                    <Loading />
+                ) : (
+                    <div>
+                        <div className="actor-portrait-and-details-section">
+                            <div className="actor-portrait">
+                                <img
+                                    src={
+                                        TMDB_ACTOR_POSTER_IMAGE_PATH_PREPEND +
+                                        actorProfilePath
+                                    }
+                                    alt={actorOriginalName}
+                                    className="actor-portrait-image"
+                                />
+                            </div>
+                            <div className="actor-details">
+                                <h1 className="actor-page-name">{actorName}</h1>
+                                <h3 className="actor-original-name-heading">
+                                    Also known as
                                 </h3>
-                                <p className="actor-birthplace">
-                                    {actorBirthplace}
+                                <p className="actor-original-name">
+                                    {actorOriginalName}
                                 </p>
+                                <h3 className="actor-known-department-heading">
+                                    Department
+                                </h3>
+                                <p className="actor-known-department">
+                                    {actorKnownDepartment}
+                                </p>
+                                <div className="actor-birthday-and-birthplace">
+                                    <h3 className="actor-birthday-heading">
+                                        Born
+                                    </h3>
+                                    <p className="actor-birthday">
+                                        {actorBirthday}
+                                    </p>
+                                    <h3 className="actor-birthplace-heading">
+                                        Place of birth
+                                    </h3>
+                                    <p className="actor-birthplace">
+                                        {actorBirthplace}
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        <p className="actor-biography">{actorBiography}</p>
+                        <Cards
+                            movies={actorPageKnownMovies}
+                            totalResults="IGNORE"
+                            key={Math.random}
+                        />
                     </div>
-                    <p className="actor-biography">{actorBiography}</p>
-                    <Cards
-                        movies={actorPageKnownMovies}
-                        totalResults="IGNORE"
-                        key={Math.random}
-                    />
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

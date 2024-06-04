@@ -1,11 +1,13 @@
 
-# Thespian
+![Thespian Logo](./src/assets/logos/thespian-logo-v2.png)
 
 ***Please note**: The project has not been deployed yet*
 
 Thespian - a React web app to stream content online
 
 Not all titles are available to watch at the moment, currently being limited at the source itself
+
+![Thespian Primary Colour Scheme](./src/assets/misc/thespian-primary-colour-scheme.png)
 
 ### List of bugs/issues currently present and being looked at (this list will keep getting updated as more bugs pop up):
 - [x] Loading component not working as intended
@@ -38,7 +40,10 @@ Not all titles are available to watch at the moment, currently being limited at 
 - [ ] Better styling of the interactive TV season and episode selector elements
 - [x] Full-screen playback of video player
 - [x] Stable scroll bar for pages
-- [ ] Better file/folder structuring
+- [x] Full-width title display on cards (rating position to be shifted)
+- [ ] Overhaul of the colour schemes used in some of the pages (Trending, Popular, etc)
+- [ ] Better file/folder structuring (future update)
+- [ ] Refactoring and optimizing the code (future update)
 - [ ] User accounts (future update)
 
 ### Pages to finish:

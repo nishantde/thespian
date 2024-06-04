@@ -1,3 +1,21 @@
+.actor-page-content-wrap {
+    width: 100%;
+    background-image: linear-gradient(
+        45deg,
+        hsl(245deg 39% 28%) 0%,
+        hsl(248deg 40% 29%) 11%,
+        hsl(251deg 41% 30%) 22%,
+        hsl(254deg 42% 30%) 33%,
+        hsl(258deg 43% 31%) 44%,
+        hsl(260deg 43% 32%) 56%,
+        hsl(263deg 44% 32%) 67%,
+        hsl(266deg 45% 33%) 78%,
+        hsl(269deg 46% 34%) 89%,
+        hsl(272deg 47% 34%) 100%
+    );
+    background-attachment: fixed;
+}
+
 .actor-page-content {
     margin: auto;
     width: 100%;
